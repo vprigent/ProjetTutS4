@@ -1,7 +1,12 @@
 *.class
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Personal exclusion #
+out/
+.idea/
+bin/
+.classpath
+.projet
+
 
 # Package Files #
 *.jar
