@@ -9,24 +9,20 @@ public class Node {
 	private String name;
 	private int posX;
 	private int posY;
-	private Shape forme;
+	private Shape shape;
 	
 	/**
-	 * @param color the color to set
+	 * Default constructor
 	 */
 	public Node() {
 		
 	}
-	
-	/**
-	 * @param color the color to set
-	 */
-	public void drawNode() {
-		
+
+	public void drawNode()
 	}
 
 	/**
-	 * @param color the color to set
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -47,10 +43,10 @@ public class Node {
 	}
 
 	/**
-	 * @param forme the forme to set
+	 * @param shape the shape to set
 	 */
-	public void setForme(Shape forme) {
-		this.forme = forme;
+	public void setForme(Shape shape) {
+		this.shape = shape;
 	}	
 	
 }

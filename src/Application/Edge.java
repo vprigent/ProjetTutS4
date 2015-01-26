@@ -16,7 +16,10 @@ public class Edge {
 	public Edge() {
 		
 	}
-	
+
+	/**
+	 * WTF ? On draw comme ça, à l'arrache, no soucy ? Au pire, on nettoiera ça plus tard
+	 */
 	public void drawEdge() {
 		
 	}
