@@ -1,12 +1,12 @@
-package Application;
+package model;
 
 import java.awt.Color;
 
 public class Edge {
-	private Color color;
 	private int size;
 	private String label;
-	
+	private Color color;
+
 	private Node source;
 	private Node destination;
 	

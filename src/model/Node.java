@@ -1,16 +1,16 @@
-package Application;
+package model;
 
 import java.awt.Color;
 import java.awt.Shape;
 
 public class Node {
-	private Color color;
 	private int size;
-	private String name;
 	private int posX;
 	private int posY;
+	private String name;
 	private Shape shape;
-	
+	private Color color;
+
 	/**
 	 * Default constructor
 	 */
@@ -18,7 +18,7 @@ public class Node {
 		
 	}
 
-	public void drawNode()
+	public void drawNode() {
 	}
 
 	/**

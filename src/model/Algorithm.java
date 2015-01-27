@@ -1,4 +1,4 @@
-package Application;
+package model;
 
 /**
  * Cette classe est à revoir car incomplète et faite plus ou moins à l'arrache.

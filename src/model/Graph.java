@@ -1,10 +1,7 @@
-package Application;
+package model;
 
 import java.awt.*;
 import java.util.Collection;
-
-import Application.Edge;
-import Application.Node;
 
 
 /**
