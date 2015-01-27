@@ -1,7 +1,7 @@
 package model;
 
 import java.awt.*;
-import java.util.Collection;
+import java.util.ArrayList;
 
 
 /**
@@ -12,13 +12,13 @@ public class Graph {
     private String file; // c'est le fichier de sauvegarde ou duquel a été chargé le graphe ?
     private Color defaultColor;
     private int defaultThickness;
-    private Collection<Node> nodes; // NB V. : J'aurais fait un set pour ça, étant donné qu'aucun noeud ne peut être dupliqué
-    private Collection<Edge> edges; // NB V. : De même ici
+    private ArrayList<Node> nodes; // NB V. : J'aurais fait un set pour ça, étant donné qu'aucun noeud ne peut être dupliqué
+    private ArrayList<Edge> edges; // NB V. : De même ici
 
     /**
      * Constructor
      */
-    public Graph(){
+    public Graph() {
 
     }
 
