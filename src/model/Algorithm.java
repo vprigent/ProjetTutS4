@@ -4,7 +4,6 @@ package model;
  * Cette classe est à revoir car incomplète et faite plus ou moins à l'arrache.
  */
 public abstract class Algorithm {
-    private String fileName;
 
     public Algorithm() {
 
