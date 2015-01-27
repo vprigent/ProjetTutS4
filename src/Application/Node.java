@@ -18,7 +18,7 @@ public class Node {
 		
 	}
 
-	public void drawNode()
+	public void drawNode() {
 	}
 
 	/**
