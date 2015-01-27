@@ -6,6 +6,7 @@ out/
 bin/
 .classpath
 .projet
+*.iml
 
 
 # Package Files #
