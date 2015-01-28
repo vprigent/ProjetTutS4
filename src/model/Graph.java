@@ -3,10 +3,6 @@ package model;
 import java.awt.*;
 import java.util.ArrayList;
 
-
-/**
- * Created by Vincent on 26/01/2015.
- */
 public class Graph {
     private String name;
     private String file; // c'est le fichier de sauvegarde ou duquel a été chargé le graphe ?

@@ -19,7 +19,8 @@ public class Edge {
 
     /**
      * Default constructor
-     * @param source Define the source node
+     *
+     * @param source      Define the source node
      * @param destination Define the destination node
      */
     public Edge(Node source, Node destination) {

@@ -11,9 +11,7 @@ import java.awt.MenuBar;
 import java.util.Observable;
 import java.util.Observer;
 
-/**
- * Created by vprigent on 27/01/15.
- */
+
 public class MainFrame extends JFrame implements Observer {
     private GraphHandler model;
     
