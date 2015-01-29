@@ -14,10 +14,11 @@ public class Node {
      * Default constructor
      */
     public Node() {
-
-    }
-
-    public void drawNode() {
+        this.size = 1;
+        this.posX = 0;
+        this.posY = 0;
+        this.name = "";
+        this.shape = new Rectangle(posX, posY, size*10, size*10);
     }
 
     /**
@@ -48,4 +49,70 @@ public class Node {
         this.shape = shape;
     }
 
+    /**
+     *
+     * @param x new value on x
+     * @param y new value on y
+     */
+    public void setPosition(int x, int y) {
+        this.posX = x;
+        this.posY = y;
+    }
+
+    /**
+     * @return size of the node
+     */
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     * @return position on x
+     */
+    public int getPosX() {
+        return posX;
+    }
+
+    /**
+     * @return position on y
+     */
+    public int getPosY() {
+        return posY;
+    }
+
+    /**
+     * @return color of the node
+     */
+    public Color getColor() {
+        return color;
+    }
+
+    /**
+     * @return shape of the node
+     */
+    public Shape getShape() {
+        return shape;
+    }
+
+    /**
+     * @return name of the node
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Debugging function
+     */
+    @Override
+    public String toString() {
+        return "Node{" +
+                "size=" + size +
+                ", posX=" + posX +
+                ", posY=" + posY +
+                ", name='" + name + '\'' +
+                ", shape=" + shape +
+                ", color=" + color +
+                '}' + "\n";
+    }
 }

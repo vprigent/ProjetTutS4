@@ -14,8 +14,7 @@ public class Edge {
     private Node source;
     private Node destination;
 
-    private boolean isOrientedToSource = false; // il est possible d'optimiser ça en rendant les attributs source et destination utiles pour savoir vers quoi est orienté l'arc.
-    private boolean isOrientedToDestination = false;
+    private boolean isOriented = false; // il est possible d'optimiser ça en rendant les attributs source et destination utiles pour savoir vers quoi est orienté l'arc.
 
     /**
      * Default constructor
@@ -31,11 +30,10 @@ public class Edge {
         this.destination = destination;
     }
 
-    public Edge(Node source, Node destination, boolean isOrientedToSource, boolean isOrientedToDestination, Color color, String label, int size) {
+    public Edge(Node source, Node destination, boolean isOriented, Color color, String label, int size) {
         this.source = source;
         this.destination = destination;
-        this.isOrientedToDestination = isOrientedToDestination;
-        this.isOrientedToSource = isOrientedToSource;
+        this.isOriented = isOriented;
         this.color = color;
         this.label = label;
         this.size = size;
@@ -74,12 +72,12 @@ public class Edge {
         return color;
     }
 
-    public boolean isOrientedToSource() {
-        return isOrientedToSource;
+    public boolean isOriented() {
+        return isOriented;
     }
 
-    public void setOrientedToSource(boolean isOrientedToSource) {
-        this.isOrientedToSource = isOrientedToSource;
+    public void setOriented(boolean isOriented) {
+        this.isOriented = isOriented;
     }
 
     /**
@@ -96,9 +94,27 @@ public class Edge {
         return source;
     }
 
+    /**
+     * Allow to switch the source and destination node when the graph become oriented and the actual source become the destination
+     */
     public void switchOrientationNode() {
         Node temp = source;
         source = destination;
         destination = temp;
+    }
+
+    /**
+     * Debugging function
+     */
+    @Override
+    public String toString() {
+        return "Edge{" +
+                "size=" + size +
+                ", label='" + label + '\'' +
+                ", color=" + color +
+                ", source=" + source +
+                ", destination=" + destination +
+                ", isOriented=" + isOriented +
+                '}'+"\n";
     }
 }
