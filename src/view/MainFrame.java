@@ -18,11 +18,13 @@ public class MainFrame extends JFrame implements Observer {
     private JMenuBar menuBar = new JMenuBar();
     private JMenuBar toolBar = new JMenuBar();
     
-    
+    // Menu buttons
     private JButton newGraph = new JButton("Nouveau");
     private JButton loadGraph = new JButton("Charger");
     private JButton saveGraph = new JButton("Sauvegarder");
     private JButton removeGraph = new JButton("Supprimer");
+    
+    // Tool-bar buttons
 
     public MainFrame(GraphHandler model) {
         this.model = model;
@@ -32,16 +34,17 @@ public class MainFrame extends JFrame implements Observer {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     
         
+
         menuBar.add(newGraph);
         menuBar.add(loadGraph);
         menuBar.add(saveGraph);
         menuBar.add(removeGraph);
         
-        
-        this.setLayout(new GridLayout(10, 1));
+
+        //this.setLayout(new GridLayout(10, 1));
         
         this.getContentPane().add(menuBar, BorderLayout.NORTH);
-        this.getContentPane().add(toolBar, BorderLayout.NORTH);
+        this.getContentPane().add(toolBar, BorderLayout.WEST);
         
 
     }
