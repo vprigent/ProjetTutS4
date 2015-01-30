@@ -8,17 +8,35 @@ public class Node {
     private int posY;
     private String name;
     private Shape shape;
-    private Color color;
+    private Color color = Color.BLACK;
 
     /**
      * Default constructor
      */
     public Node() {
-        this.size = 1;
-        this.posX = 0;
-        this.posY = 0;
-        this.name = "";
+        this.size  = 1;
+        this.posX  = 0;
+        this.posY  = 0;
+        this.name  = "";
         this.shape = new Rectangle(posX, posY, size*10, size*10);
+    }
+
+    /**
+     *  Constructor
+     * @param size size of the node
+     * @param posX position on x
+     * @param posY position on y
+     * @param name name of the node
+     * @param shape shape of the node
+     * @param color color of the node
+     */
+    public Node(int size, int posX, int posY, String name, Shape shape, Color color) {
+        this.size  = size;
+        this.posX  = posX;
+        this.posY  = posY;
+        this.name  = name;
+        this.shape = shape;
+        this.color = color;
     }
 
     /**

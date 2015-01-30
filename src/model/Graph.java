@@ -12,11 +12,20 @@ public class Graph {
     private ArrayList<Edge> edges;
 
     /**
-     * Constructor
+     * Default Constructor
      */
     public Graph() {
         this.nodes = new ArrayList<Node>();
         this.edges = new ArrayList<Edge>();
+    }
+
+    /**
+     * Constructor
+     * @param file file where you load the graph
+     */
+    public Graph(String file) {
+        this.file = file;
+        this.loadGraph();
     }
 
 
@@ -24,20 +33,6 @@ public class Graph {
      * Load the graph from a specific file
      */
     public void loadGraph() {
-
-    }
-
-    /**
-     * Create a new node and add it to the current graph
-     */
-    public void createNode() {
-
-    }
-
-    /**
-     * Create a new edge and add it to the current graph
-     */
-    public void createEdge() {
 
     }
 
@@ -98,5 +93,8 @@ public class Graph {
                 ", nodes=" + nodes +
                 ", edges=" + edges +
                 '}';
+    }
+
+    public void save() {
     }
 }

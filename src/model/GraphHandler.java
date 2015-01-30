@@ -1,20 +1,32 @@
 package model;
 
+import java.awt.*;
 import java.util.Observable;
 
 
 public class GraphHandler extends Observable {
-   private Graph g = new Graph();
-
+   private Graph g;
 
     public GraphHandler() {
-        Node n = new Node();
-        Node p = new Node();
-        Edge e = new Edge(n,p);
-        g.addNode(n);
-        g.addNode(p);
-        g.addEdge(e);
-        System.out.println(g);
     }
+
+    public void addNode() {
+        g.addNode(new Node());
+    }
+
+    public void addNode(int size, int posX, int posY, String name, Shape shape, Color color) {
+        g.addNode(new Node(size, posX, posY, name, shape, color));
+    }
+
+
+    public void createNewGraph() {
+        if(g != null) g.save();
+        g = new Graph();
+    }
+
+    public void loadGraphFromFile(String path) {
+        g = new Graph(path);
+    }
+
 
 }
