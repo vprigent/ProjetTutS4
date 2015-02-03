@@ -39,11 +39,8 @@ public class Edge {
         this.size = size;
     }
 
-    /**
-     * @param color the color to set
-     */
-    public void setColor(Color color) {
-        this.color = color;
+    public int getSize() {
+        return size;
     }
 
     /**
@@ -53,6 +50,10 @@ public class Edge {
         this.size = size;
     }
 
+    public String getLabel() {
+        return label;
+    }
+
     /**
      * @param label the label to set
      */
@@ -60,16 +61,15 @@ public class Edge {
         this.label = label;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
     public Color getColor() {
         return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public boolean isOriented() {
@@ -115,6 +115,6 @@ public class Edge {
                 ", source=" + source +
                 ", destination=" + destination +
                 ", isOriented=" + isOriented +
-                '}'+"\n";
+                '}' + "\n";
     }
 }

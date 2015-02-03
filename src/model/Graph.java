@@ -5,10 +5,11 @@ import java.util.ArrayList;
 
 public class Graph {
     private String name = "Default";
-    private String file; // c'est le fichier de sauvegarde ou duquel a été chargé le graphe ?
+    private String file;
     private Color defaultColor = Color.black;
     private int defaultThickness = 1;
     private ArrayList<Node> nodes;
+
     private ArrayList<Edge> edges;
 
     /**
@@ -21,13 +22,13 @@ public class Graph {
 
     /**
      * Constructor
+     *
      * @param file file where you load the graph
      */
     public Graph(String file) {
         this.file = file;
         this.loadGraph();
     }
-
 
     /**
      * Load the graph from a specific file
@@ -43,20 +44,6 @@ public class Graph {
 
     }
 
-    /**
-     * Remove a node and every edges associated
-     */
-    public void removeNode() {
-
-    }
-
-
-    /**
-     * Remove a edge between two nodes
-     */
-    public void removeEdge() {
-
-    }
 
     /**
      * Move a node to a new position
@@ -66,18 +53,50 @@ public class Graph {
     }
 
     /**
-     * Select what ?
+     * Add a new node to the graoh
+     *
+     * @param n node to add
      */
-    public void select() {
-
-    }
-
     public void addNode(Node n) {
         nodes.add(n);
     }
 
+    /**
+     * Add a new edge to the graph
+     *
+     * @param e edge to add
+     */
     public void addEdge(Edge e) {
         edges.add(e);
+    }
+
+    /**
+     * Remove a node and every edges associated
+     */
+    public void removeNode(Node n) {
+        nodes.remove(n);
+    }
+
+    /**
+     * Remove a edge between two nodes
+     */
+    public void removeEdge() {
+
+    }
+
+    public ArrayList<Edge> getEdges() {
+        return edges;
+    }
+
+    public ArrayList<Node> getNodes() {
+        return nodes;
+    }
+
+    /**
+     * TODO : mise en place du système de sauvegarde, si le fichier n'a pas été créé, le créer en demandant à l'utilisateur quel format choisir
+     * Save the current graph on a file
+     */
+    public void save() {
     }
 
     /**
@@ -93,8 +112,5 @@ public class Graph {
                 ", nodes=" + nodes +
                 ", edges=" + edges +
                 '}';
-    }
-
-    public void save() {
     }
 }

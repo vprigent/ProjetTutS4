@@ -1,4 +1,4 @@
-package model;
+package model.algorithm;
 
 /**
  * Cette classe est à revoir car incomplète et faite plus ou moins à l'arrache.

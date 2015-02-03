@@ -14,50 +14,30 @@ public class Node {
      * Default constructor
      */
     public Node() {
-        this.size  = 1;
-        this.posX  = 0;
-        this.posY  = 0;
-        this.name  = "";
-        this.shape = new Rectangle(posX, posY, size*10, size*10);
+        this.size = 1;
+        this.posX = 0;
+        this.posY = 0;
+        this.name = "";
+        this.shape = new Rectangle(posX, posY, size * 10, size * 10);
     }
 
     /**
-     *  Constructor
-     * @param size size of the node
-     * @param posX position on x
-     * @param posY position on y
-     * @param name name of the node
+     * Constructor
+     *
+     * @param size  size of the node
+     * @param posX  position on x
+     * @param posY  position on y
+     * @param name  name of the node
      * @param shape shape of the node
      * @param color color of the node
      */
     public Node(int size, int posX, int posY, String name, Shape shape, Color color) {
-        this.size  = size;
-        this.posX  = posX;
-        this.posY  = posY;
-        this.name  = name;
+        this.size = size;
+        this.posX = posX;
+        this.posY = posY;
+        this.name = name;
         this.shape = shape;
         this.color = color;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @param color the color to set
-     */
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    /**
-     * @param size the size to set
-     */
-    public void setSize(int size) {
-        this.size = size;
     }
 
     /**
@@ -68,7 +48,6 @@ public class Node {
     }
 
     /**
-     *
      * @param x new value on x
      * @param y new value on y
      */
@@ -82,6 +61,13 @@ public class Node {
      */
     public int getSize() {
         return size;
+    }
+
+    /**
+     * @param size the size to set
+     */
+    public void setSize(int size) {
+        this.size = size;
     }
 
     /**
@@ -106,6 +92,13 @@ public class Node {
     }
 
     /**
+     * @param color the color to set
+     */
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    /**
      * @return shape of the node
      */
     public Shape getShape() {
@@ -117,6 +110,13 @@ public class Node {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

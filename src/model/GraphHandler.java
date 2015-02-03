@@ -5,7 +5,7 @@ import java.util.Observable;
 
 
 public class GraphHandler extends Observable {
-   private Graph g;
+    private Graph g;
 
     public GraphHandler() {
     }
@@ -20,7 +20,7 @@ public class GraphHandler extends Observable {
 
 
     public void createNewGraph() {
-        if(g != null) g.save();
+        if (g != null) g.save();
         g = new Graph();
     }
 
