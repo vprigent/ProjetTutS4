@@ -4,12 +4,11 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Graph {
+    private final int defaultThickness = 1;
     private String name = "Default";
     private String file;
     private Color defaultColor = Color.black;
-    private int defaultThickness = 1;
     private ArrayList<Node> nodes;
-
     private ArrayList<Edge> edges;
 
     /**
@@ -48,8 +47,8 @@ public class Graph {
     /**
      * Move a node to a new position
      */
-    public void moveNode() {
-
+    public void moveNode(Node n, int x, int y) {
+        if (n != null) n.setPosition(x, y);
     }
 
     /**
