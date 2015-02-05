@@ -30,6 +30,17 @@ public class Edge {
         this.destination = destination;
     }
 
+    /**
+     *
+     * Constructor
+     *
+     * @param source node source
+     * @param destination node destination
+     * @param isOriented if the edge is oriented, ie source and destination are importants
+     * @param color the color of the edge
+     * @param label label of the edge, informations attached
+     * @param size size of the edge
+     */
     public Edge(Node source, Node destination, boolean isOriented, Color color, String label, int size) {
         this.source = source;
         this.destination = destination;

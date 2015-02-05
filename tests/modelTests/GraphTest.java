@@ -1,10 +1,13 @@
 package modelTests;
 
+import model.Edge;
 import model.Graph;
 import model.Node;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -57,14 +60,16 @@ public class GraphTest {
         }
 
         assertEquals(g.getNodes().size(), 10002);
-
-
     }
 
     @Test
     public void testAddEdge() throws Exception {
-
-
+        g.addNode(new Node());
+        g.addNode(new Node(3, 1, 2, "Hello", new Rectangle(), Color.BLUE));
+        Edge e= new Edge(g.getNodes().get(0), g.getNodes().get(1));
+        g.addEdge(e); // add an edge between the two nodes
+        assertEquals(g.getEdges().size(), 1);
+        assertTrue(g.getEdges().get(0) == e);
     }
 
     @Test
@@ -80,7 +85,26 @@ public class GraphTest {
 
     @Test
     public void testRemoveEdge() throws Exception {
+        g.addNode(new Node());
+        g.addNode(new Node(3, 1, 2, "Hello", new Rectangle(), Color.BLUE));
+        Edge e= new Edge(g.getNodes().get(0), g.getNodes().get(1));
+        g.addEdge(e); // add an edge between the two nodes
+        assertEquals(g.getEdges().size(), 1);
+        assertTrue(g.getEdges().get(0) == e);
 
+        g.removeEdge(e);
+        assertTrue(g.getEdges().isEmpty() == true);
+    }
+
+    @Test
+    public void testGetNodeFromCoordinates() throws Exception {
+        Node n = new Node();
+        g.addNode(n);
+        assertEquals(g.getNodeFromCoordinates(0, 0), n);
+        assertEquals(g.getNodeFromCoordinates(1, 1), null);
+
+        Graph gr = new Graph();
+        assertEquals(gr.getNodeFromCoordinates(0,0), null);
     }
 
     @Test

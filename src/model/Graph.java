@@ -73,14 +73,37 @@ public class Graph {
      * Remove a node and every edges associated
      */
     public void removeNode(Node n) {
+        for(Edge e : edges) {
+            if(e.getDestination() == n || e.getSource() == n) edges.remove(e);
+        }
         nodes.remove(n);
     }
 
     /**
      * Remove a edge between two nodes
      */
-    public void removeEdge() {
+    public void removeEdge(Edge e) {
+        edges.remove(e);
+    }
 
+    /**
+     * Search and return the node with the given coordinates
+     * @param x the coordinate in x of the node
+     * @param y the coordinate in y of the node
+     * @return the node if exist or null
+     */
+    public Node getNodeFromCoordinates(int x, int y) {
+        if(nodes.isEmpty()) {
+            return null;
+        }
+
+        for (Node n : nodes) {
+            if(n.getPosX() == x && n.getPosY() == y) {
+                return n;
+            }
+        }
+
+        return null;
     }
 
     public ArrayList<Edge> getEdges() {
