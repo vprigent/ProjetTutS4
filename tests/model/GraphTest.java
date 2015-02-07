@@ -1,8 +1,5 @@
-package modelTests;
+package model;
 
-import model.Edge;
-import model.Graph;
-import model.Node;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

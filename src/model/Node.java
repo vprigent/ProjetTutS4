@@ -81,6 +81,7 @@ public class Node {
      * @param size the size to set
      */
     public void setSize(int size) {
+        if(size > maxSize) size = maxSize;
         this.size = size;
     }
 

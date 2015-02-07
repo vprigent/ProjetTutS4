@@ -1,6 +1,5 @@
-package modelTests;
+package model;
 
-import model.Node;
 import org.junit.Before;
 import org.junit.Test;
 

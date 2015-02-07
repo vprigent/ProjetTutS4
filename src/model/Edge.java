@@ -16,7 +16,7 @@ public class Edge {
     private Node source;
     private Node destination;
 
-    private boolean isOriented = false; // il est possible d'optimiser ça en rendant les attributs source et destination utiles pour savoir vers quoi est orienté l'arc.
+    private boolean isOriented = false;
 
     /**
      * Default constructor
@@ -116,6 +116,14 @@ public class Edge {
         Node temp = source;
         source = destination;
         destination = temp;
+    }
+
+    public void changeNode(Node source, Node destination) {
+        if(source != null)
+            this.source = source;
+
+        if (destination != null)
+            this.destination = destination;
     }
 
     /**
