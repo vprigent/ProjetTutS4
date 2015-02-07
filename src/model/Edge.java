@@ -7,6 +7,8 @@ import java.awt.*;
  */
 
 public class Edge {
+    public final int maxSize = 10;
+
     private int size;
     private String label;
     private Color color;
@@ -47,6 +49,8 @@ public class Edge {
         this.isOriented = isOriented;
         this.color = color;
         this.label = label;
+        if(size > maxSize)
+            size = maxSize;
         this.size = size;
     }
 
@@ -58,7 +62,7 @@ public class Edge {
      * @param size the size to set
      */
     public void setSize(int size) {
-        this.size = size;
+        if(this.size <= maxSize) this.size = size;
     }
 
     public String getLabel() {

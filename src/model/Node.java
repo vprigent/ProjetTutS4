@@ -3,6 +3,9 @@ package model;
 import java.awt.*;
 
 public class Node {
+    public final int maxSize = 10;
+    public final int maxPosition = 1000;
+
     private int size;
     private int posX;
     private int posY;
@@ -32,9 +35,18 @@ public class Node {
      * @param color color of the node
      */
     public Node(int size, int posX, int posY, String name, Shape shape, Color color) {
+        if(size > maxSize)
+            size = maxSize;
         this.size = size;
+
+        if(posX > maxPosition)
+            posX = maxPosition;
         this.posX = posX;
+
+        if(posY > maxPosition)
+            posY = maxPosition;
         this.posY = posY;
+
         this.name = name;
         this.shape = shape;
         this.color = color;
@@ -52,6 +64,8 @@ public class Node {
      * @param y new value on y
      */
     public void setPosition(int x, int y) {
+        if(x > maxPosition) x = maxPosition;
+        if(y > maxPosition) y = maxPosition;
         this.posX = x;
         this.posY = y;
     }

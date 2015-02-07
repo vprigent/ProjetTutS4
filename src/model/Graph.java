@@ -42,8 +42,7 @@ public class Graph {
     public void applyAlgorithm() {
 
     }
-
-
+    
     /**
      * Move a node to a new position
      */
