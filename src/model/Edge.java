@@ -33,6 +33,18 @@ public class Edge {
     }
 
     /**
+     * Simple constructor for simple graphs
+     *
+     * @param source        Define the source node
+     * @param destination   Define the destination node
+     * @param isOriented    The graph is oriented
+     */
+    public Edge(Node source, Node destination, Boolean isOriented) {
+        this(source, destination);
+        this.isOriented = isOriented;
+    }
+
+    /**
      *
      * Constructor
      *
@@ -118,6 +130,11 @@ public class Edge {
         destination = temp;
     }
 
+    /**
+     * Change one or the two of the nodes of the edge
+     * @param source        New source node
+     * @param destination   New destination node
+     */
     public void changeNode(Node source, Node destination) {
         if(source != null)
             this.source = source;

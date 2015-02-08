@@ -90,7 +90,7 @@ public class GraphTest {
         assertTrue(g.getEdges().get(0) == e);
 
         g.removeEdge(e);
-        assertTrue(g.getEdges().isEmpty() == true);
+        assertTrue(g.getEdges().isEmpty());
     }
 
     @Test

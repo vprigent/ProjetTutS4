@@ -43,7 +43,7 @@ public class MainFrame extends JFrame implements Observer {
         this.setVisible(true);
         this.setSize(800, 600);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         newGraph.setBackground(Color.gray);
         loadGraph.setBackground(Color.gray);

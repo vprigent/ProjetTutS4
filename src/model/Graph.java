@@ -42,7 +42,7 @@ public class Graph {
     public void applyAlgorithm() {
 
     }
-    
+
     /**
      * Move a node to a new position
      */
@@ -72,8 +72,8 @@ public class Graph {
      * Remove a node and every edges associated
      */
     public void removeNode(Node n) {
-        for(Edge e : edges) {
-            if(e.getDestination() == n || e.getSource() == n) edges.remove(e);
+        for (Edge e : edges) {
+            if (e.getDestination() == n || e.getSource() == n) edges.remove(e);
         }
         nodes.remove(n);
     }
@@ -87,17 +87,18 @@ public class Graph {
 
     /**
      * Search and return the node with the given coordinates
+     *
      * @param x the coordinate in x of the node
      * @param y the coordinate in y of the node
      * @return the node if exist or null
      */
     public Node getNodeFromCoordinates(int x, int y) {
-        if(nodes.isEmpty()) {
+        if (nodes.isEmpty()) {
             return null;
         }
 
         for (Node n : nodes) {
-            if(n.getPosX() == x && n.getPosY() == y) {
+            if (n.getPosX() == x && n.getPosY() == y) {
                 return n;
             }
         }
@@ -111,6 +112,18 @@ public class Graph {
 
     public ArrayList<Node> getNodes() {
         return nodes;
+    }
+
+    /**
+     * @param name of the node
+     * @return the node with the name given
+     */
+    public Node getNode(String name) {
+        for (Node n : nodes) {
+            if(n.getName() == name)
+                return n;
+        }
+        return null;
     }
 
     /**
