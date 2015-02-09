@@ -10,14 +10,9 @@ public class GraphHandler extends Observable {
     public GraphHandler() {
     }
 
-    public void addNode() {
-        g.addNode(new Node());
+    public Graph getGraph() {
+        return g;
     }
-
-    public void addNode(int size, int posX, int posY, String name, Shape shape, Color color) {
-        g.addNode(new Node(size, posX, posY, name, shape, color));
-    }
-
 
     public void createNewGraph() {
         if (g != null) g.save();

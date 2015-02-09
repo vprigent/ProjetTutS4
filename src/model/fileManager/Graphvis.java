@@ -1,6 +1,8 @@
 package model.fileManager;
 
 import model.Graph;
+import model.Node;
+import model.Edge;
 
 public class Graphvis extends GraphLoader {
     @Override
@@ -12,16 +14,16 @@ public class Graphvis extends GraphLoader {
     protected Graph createGraphFromData(String data) {
         Graph g = new Graph();
 
-        // Removed blanks
-        data = data.replaceAll(" ", "");
-
-        String[] buffer = data.split("{*}");
-
+        String[] buffer = data.split("[\\{*\\}]");
 
         for(String s : buffer)
             System.out.println(s);
 
         return g;
+    }
+
+    public void extractDatasFromLine(String line, Graph g) {
+
     }
 
     @Override
