@@ -74,7 +74,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Graph Drawer");
-        setMinimumSize(new java.awt.Dimension(700, 400));
+        setMinimumSize(new java.awt.Dimension(800, 400));
         setName("MainFrame"); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -412,6 +412,6 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-
+		
 	}
 }
