@@ -401,6 +401,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 		System.out.println("delete");
 	}
 	
+	
+	// Drawing
     private void mainPanelMouseClicked(java.awt.event.MouseEvent evt) {                                       
         System.out.println(evt.getX());
         System.out.println(evt.getY());
