@@ -3,39 +3,8 @@ package model.algorithm;
 public class ColorAlgorithm extends Algorithm {
 
     @Override
-    public void browseNodes() {
+    public void algorithm() {
         // TODO Auto-generated method stub
 
     }
-
-    @Override
-    public void colorGraph() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void defineSize() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void defineIndexes() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void defineShapes() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void areAdjacents() {
-        // TODO Auto-generated method stub
-
-    }
-
 }
