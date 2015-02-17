@@ -5,33 +5,31 @@ import java.util.Observer;
 
 import model.GraphHandler;
 
-/**
- * 
- * @author basbournas
- */
-public class MainFrame extends javax.swing.JFrame implements Observer {
+import javax.swing.*;
+
+public class MainFrame extends JFrame implements Observer {
 
 	private GraphHandler model;
 
 	// Variables declaration
-	private javax.swing.JButton add;
-	private javax.swing.JComboBox algorithms;
-	private javax.swing.JButton copy;
-	private javax.swing.JButton cut;
-	private javax.swing.JButton delete;
-	private javax.swing.JComboBox displayMode;
-	private javax.swing.JButton loadButton;
-	private javax.swing.JPanel mainPanel;
-	private javax.swing.JPanel menuBar;
-	private javax.swing.JButton newButton;
-	private javax.swing.JButton paste;
-	private javax.swing.JButton redo;
-	private javax.swing.JButton removeButton;
-	private javax.swing.JButton saveButton;
-	private javax.swing.JPanel toolBar;
-	private javax.swing.JButton undo;
-	private javax.swing.JButton zoomIn;
-	private javax.swing.JButton zoomOut;
+	private JButton add;
+	private JComboBox algorithms;
+	private JButton copy;
+	private JButton cut;
+	private JButton delete;
+	private JComboBox displayMode;
+	private JButton loadButton;
+	private JPanel mainPanel;
+	private JPanel menuBar;
+	private JButton newButton;
+	private JButton paste;
+	private JButton redo;
+	private JButton removeButton;
+	private JButton saveButton;
+	private JPanel toolBar;
+	private JButton undo;
+	private JButton zoomIn;
+	private JButton zoomOut;
 
 	// End of variables declaration
 
@@ -49,26 +47,26 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
-        toolBar = new javax.swing.JPanel();
-        menuBar = new javax.swing.JPanel();
-        newButton = new javax.swing.JButton();
-        loadButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
-        removeButton = new javax.swing.JButton();
-        undo = new javax.swing.JButton();
-        redo = new javax.swing.JButton();
-        displayMode = new javax.swing.JComboBox();
-        algorithms = new javax.swing.JComboBox();
-        zoomIn = new javax.swing.JButton();
-        zoomOut = new javax.swing.JButton();
-        copy = new javax.swing.JButton();
-        cut = new javax.swing.JButton();
-        paste = new javax.swing.JButton();
-        add = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
+        mainPanel = new JPanel();
+        toolBar = new JPanel();
+        menuBar = new JPanel();
+        newButton = new JButton();
+        loadButton = new JButton();
+        saveButton = new JButton();
+        removeButton = new JButton();
+        undo = new JButton();
+        redo = new JButton();
+        displayMode = new JComboBox();
+        algorithms = new JComboBox();
+        zoomIn = new JButton();
+        zoomOut = new JButton();
+        copy = new JButton();
+        cut = new JButton();
+        paste = new JButton();
+        add = new JButton();
+        delete = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Graph Drawer");
         setMinimumSize(new java.awt.Dimension(800, 400));
         setName("MainFrame"); // NOI18N
@@ -90,7 +88,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         newButton.setForeground(new java.awt.Color(254, 254, 254));
         newButton.setFocusPainted(false);
         newButton.setFocusable(false);
-        newButton.setLabel("Nouveau");
+        newButton.setText("Nouveau");
         newButton.setMaximumSize(new java.awt.Dimension(69, 30));
         newButton.setMinimumSize(new java.awt.Dimension(69, 30));
         newButton.setName("new"); // NOI18N
@@ -104,7 +102,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         loadButton.setForeground(new java.awt.Color(254, 254, 254));
         loadButton.setFocusPainted(false);
         loadButton.setFocusable(false);
-        loadButton.setLabel("Charger");
+        loadButton.setText("Charger");
         loadButton.setMaximumSize(new java.awt.Dimension(65, 30));
         loadButton.setMinimumSize(new java.awt.Dimension(65, 30));
         loadButton.setName("load"); // NOI18N
@@ -119,7 +117,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         saveButton.setForeground(new java.awt.Color(254, 254, 254));
         saveButton.setFocusPainted(false);
         saveButton.setFocusable(false);
-        saveButton.setLabel("Sauvegarder");
+        saveButton.setText("Sauvegarder");
         saveButton.setName("save"); // NOI18N
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +129,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         removeButton.setForeground(new java.awt.Color(254, 254, 254));
         removeButton.setFocusPainted(false);
         removeButton.setFocusable(false);
-        removeButton.setLabel("Supprimer");
+        removeButton.setText("Supprimer");
         removeButton.setMaximumSize(new java.awt.Dimension(79, 30));
         removeButton.setMinimumSize(new java.awt.Dimension(79, 30));
         removeButton.setName("remove"); // NOI18N
@@ -141,32 +139,32 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
+        GroupLayout menuBarLayout = new GroupLayout(menuBar);
         menuBar.setLayout(menuBarLayout);
         menuBarLayout.setHorizontalGroup(
-            menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            menuBarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(menuBarLayout.createSequentialGroup()
-                .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loadButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loadButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(removeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         menuBarLayout.setVerticalGroup(
-            menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBarLayout.createSequentialGroup()
+            menuBarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, menuBarLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loadButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(menuBarLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(newButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loadButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveButton)
-                    .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(removeButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         );
 
-        undo.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/DataContainer_MovePreviousHS.png"))); // NOI18N
+        undo.setIcon(new ImageIcon(getClass().getResource("icons/DataContainer_MovePreviousHS.png"))); // NOI18N
         undo.setFocusPainted(false);
         undo.setFocusable(false);
         undo.setName("undo"); // NOI18N
@@ -176,7 +174,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        redo.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/DataContainer_MoveNextHS.png"))); // NOI18N
+        redo.setIcon(new ImageIcon(getClass().getResource("icons/DataContainer_MoveNextHS.png"))); // NOI18N
         redo.setFocusPainted(false);
         redo.setFocusable(false);
         redo.setName("undo"); // NOI18N
@@ -186,7 +184,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        displayMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tout afficher", "Sommets", "Arrêtes" }));
+        displayMode.setModel(new DefaultComboBoxModel(new String[] { "Tout afficher", "Sommets", "Arrêtes" }));
         displayMode.setFocusable(false);
         displayMode.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -194,7 +192,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        algorithms.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aucun Algorithme", "Aleatoire", "Circulaire", "Modele de force", "Colorisation", "Calcul d'indice", "Taille", "Personnalisé" }));
+        algorithms.setModel(new DefaultComboBoxModel(new String[] { "Aucun Algorithme", "Aleatoire", "Circulaire", "Modele de force", "Colorisation", "Calcul d'indice", "Taille", "Personnalisé" }));
         algorithms.setFocusable(false);
         algorithms.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -202,7 +200,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        zoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/zoomIn.png"))); // NOI18N
+        zoomIn.setIcon(new ImageIcon(getClass().getResource("icons/zoomIn.png"))); // NOI18N
         zoomIn.setFocusable(false);
         zoomIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +208,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        zoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/zoomOut.png"))); // NOI18N
+        zoomOut.setIcon(new ImageIcon(getClass().getResource("icons/zoomOut.png"))); // NOI18N
         zoomOut.setFocusable(false);
         zoomOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +216,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        copy.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/copy.png"))); // NOI18N
+        copy.setIcon(new ImageIcon(getClass().getResource("icons/copy.png"))); // NOI18N
         copy.setFocusable(false);
         copy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +224,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        cut.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/cut.png"))); // NOI18N
+        cut.setIcon(new ImageIcon(getClass().getResource("icons/cut.png"))); // NOI18N
         cut.setFocusable(false);
         cut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +232,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        paste.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/paste.png"))); // NOI18N
+        paste.setIcon(new ImageIcon(getClass().getResource("icons/paste.png"))); // NOI18N
         paste.setFocusable(false);
         paste.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,7 +240,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        add.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/add.png"))); // NOI18N
+        add.setIcon(new ImageIcon(getClass().getResource("icons/add.png"))); // NOI18N
         add.setToolTipText("");
         add.setFocusable(false);
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +249,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("icons/delete.png"))); // NOI18N
+        delete.setIcon(new ImageIcon(getClass().getResource("icons/delete.png"))); // NOI18N
         delete.setFocusable(false);
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,44 +257,44 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             }
         });
 
-        javax.swing.GroupLayout toolBarLayout = new javax.swing.GroupLayout(toolBar);
+        GroupLayout toolBarLayout = new GroupLayout(toolBar);
         toolBar.setLayout(toolBarLayout);
         toolBarLayout.setHorizontalGroup(
-            toolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            toolBarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(toolBarLayout.createSequentialGroup()
                 .addComponent(undo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(redo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(displayMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(algorithms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(displayMode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(algorithms, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(zoomIn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(zoomOut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(copy)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cut)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(paste)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(add)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(delete)
                 .addGap(0, 256, Short.MAX_VALUE))
-            .addComponent(menuBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         toolBarLayout.setVerticalGroup(
-            toolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            toolBarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(toolBarLayout.createSequentialGroup()
-                .addComponent(menuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(toolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(toolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(displayMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(algorithms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(toolBarLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(toolBarLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(displayMode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(algorithms, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(zoomIn))
                     .addComponent(zoomOut)
                     .addComponent(copy)
@@ -309,28 +307,28 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(toolBar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addComponent(toolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(toolBar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(397, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
         );
 
         pack();

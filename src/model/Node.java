@@ -55,7 +55,7 @@ public class Node {
     /**
      * @param shape the shape to set
      */
-    public void setForme(Shape shape) {
+    public void setShape(Shape shape) {
         this.shape = shape;
     }
 

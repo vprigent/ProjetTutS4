@@ -51,7 +51,7 @@ public class Graph {
     }
 
     /**
-     * Add a new node to the graoh
+     * Add a new node to the graph
      *
      * @param n node to add
      */
