@@ -22,7 +22,7 @@ public class Graphvis extends GraphLoader {
             System.out.println(e);
         }
 
-        System.out.println(data);
+        //System.out.println(data);
 
         return null;
     }

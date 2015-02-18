@@ -3,8 +3,8 @@ package model;
 import java.awt.*;
 
 public class Node {
-    public final int maxSize = 100;
-    public final int maxPosition = 1000;
+    public final int maxSize = 10;
+    public final int maxPosition = 2000;
 
     private int size;
     private int posX;
