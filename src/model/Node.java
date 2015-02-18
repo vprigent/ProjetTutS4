@@ -3,7 +3,7 @@ package model;
 import java.awt.*;
 
 public class Node {
-    public final int maxSize = 10;
+    public final int maxSize = 100;
     public final int maxPosition = 1000;
 
     private int size;
@@ -21,7 +21,7 @@ public class Node {
         this.posX = 0;
         this.posY = 0;
         this.name = "";
-        this.shape = new Rectangle(posX, posY, size * 10, size * 10);
+        //this.shape = new Rectangle(posX, posY, size * 10, size * 10);
     }
 
     /**
