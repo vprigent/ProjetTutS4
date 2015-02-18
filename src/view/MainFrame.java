@@ -1,7 +1,7 @@
 package view;
 
-import model.GraphHandler;
-import model.Node;
+import model.*;
+import model.Shape;
 
 import javax.swing.*;
 import java.awt.*;
@@ -409,8 +409,7 @@ public class MainFrame extends JFrame implements Observer {
 
     // Drawing
     private void mainPanelMouseClicked(MouseEvent evt) {
-        Shape shape = new Rectangle(evt.getX(), evt.getY(), 100, 100);
-        model.getCurrentGraph().addNode(new Node(100, evt.getX(), evt.getY(), "name", shape, Color.BLACK));
+        model.getCurrentGraph().addNode(new Node(100, evt.getX(), evt.getY(), "name", Shape.SQUARE, Color.BLACK));
 
         drawGraph();
     }

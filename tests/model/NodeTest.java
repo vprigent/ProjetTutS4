@@ -13,7 +13,7 @@ public class NodeTest {
 
     @Before
     public void setUp() throws Exception {
-        n = new Node(2, 15, 6, "nom", new Rectangle(2,15,2*10,2*10), Color.BLUE);
+        n = new Node(2, 15, 6, "nom", Shape.SQUARE, Color.BLUE);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class NodeTest {
 
     @Test
     public void NodeConstructorTest() {
-        Node n = new Node(3, 68, 47, "Test", new Rectangle(68, 47, 3 * 10, 3 * 10), Color.BLUE);
+        Node n = new Node(3, 68, 47, "Test", Shape.SQUARE, Color.BLUE);
 
         assertEquals(n.getSize(), 3);
         assertEquals(n.getPosX(), 68);

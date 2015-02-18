@@ -10,8 +10,8 @@ public class Node {
     private int posX;
     private int posY;
     private String name;
-    private Shape shape;
     private Color color = Color.BLACK;
+    private Shape shape = Shape.SQUARE;
 
     /**
      * Default constructor
@@ -21,7 +21,6 @@ public class Node {
         this.posX = 0;
         this.posY = 0;
         this.name = "";
-        //this.shape = new Rectangle(posX, posY, size * 10, size * 10);
     }
 
     /**

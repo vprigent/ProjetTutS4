@@ -62,7 +62,7 @@ public class GraphTest {
     @Test
     public void testAddEdge() throws Exception {
         g.addNode(new Node());
-        g.addNode(new Node(3, 1, 2, "Hello", new Rectangle(), Color.BLUE));
+        g.addNode(new Node(3, 1, 2, "Hello", Shape.SQUARE, Color.BLUE));
         Edge e= new Edge(g.getNodes().get(0), g.getNodes().get(1));
         g.addEdge(e); // add an edge between the two nodes
         assertEquals(g.getEdges().size(), 1);
@@ -83,7 +83,7 @@ public class GraphTest {
     @Test
     public void testRemoveEdge() throws Exception {
         g.addNode(new Node());
-        g.addNode(new Node(3, 1, 2, "Hello", new Rectangle(), Color.BLUE));
+        g.addNode(new Node(3, 1, 2, "Hello", Shape.SQUARE, Color.BLUE));
         Edge e= new Edge(g.getNodes().get(0), g.getNodes().get(1));
         g.addEdge(e); // add an edge between the two nodes
         assertEquals(g.getEdges().size(), 1);
