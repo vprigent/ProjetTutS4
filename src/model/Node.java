@@ -6,6 +6,7 @@ public class Node {
     public final int maxSize = 10;
     public final int maxPosition = 2000;
 
+    private int value;
     private int size;
     private int posX;
     private int posY;
@@ -17,6 +18,7 @@ public class Node {
      * Default constructor
      */
     public Node() {
+        this.value = 1;
         this.size = 1;
         this.posX = 0;
         this.posY = 0;
@@ -67,6 +69,20 @@ public class Node {
         if(y > maxPosition) y = maxPosition;
         this.posX = x;
         this.posY = y;
+    }
+    
+    /**
+     * @return value of the node
+     */
+    public int getValue() {
+    	return value;
+    }
+    
+    /**
+     * @param value the value to set
+     */
+    public void setValue(int value) {
+        this.value=value;
     }
 
     /**

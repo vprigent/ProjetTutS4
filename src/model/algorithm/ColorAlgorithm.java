@@ -9,13 +9,27 @@ import model.Shape;
 
 public class ColorAlgorithm extends Algorithm {
 
-    @Override
-    public void algorithm(Graph g) {
-    	ArrayList<Node> myNodes = g.getNodes ();
-    	
-    	for (Node n : myNodes) {
-    		n.setColor(Color.BLUE);
-    	}
+	@Override
+	public void algorithm(Graph g) {
+		ArrayList<Node> myNodes = g.getNodes();
 
-    }
+		int minValue=-1;
+		int nextMin=1000001;
+		
+		for (int i = 1; i <= myNodes.size(); i++) {
+			for (Node n : myNodes) {
+				if (n.getValue()>minValue)
+				{
+					n.setColor(new Color(255/i,0,0));
+					
+					if (n.getValue()<=nextMin) {
+						nextMin=n.getValue();
+					}
+				}
+			}
+			minValue=nextMin;
+			nextMin=1000001;
+		}
+
+	}
 }
