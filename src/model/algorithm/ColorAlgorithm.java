@@ -2,6 +2,7 @@ package model.algorithm;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import model.Graph;
 import model.Node;
@@ -10,7 +11,7 @@ public class ColorAlgorithm extends Algorithm {
 
 	@Override
 	public void algorithm(Graph g) {
-		ArrayList<Node> myNodes = g.getNodes();
+		Vector<Node> myNodes = g.getNodes();
 		
 		int nbNodes=0;
 		for (Node n : myNodes)

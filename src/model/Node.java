@@ -70,14 +70,14 @@ public class Node {
         this.posX = x;
         this.posY = y;
     }
-    
+
     /**
      * @return value of the node
      */
     public int getValue() {
     	return value;
     }
-    
+
     /**
      * @param value the value to set
      */

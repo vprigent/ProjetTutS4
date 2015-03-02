@@ -24,7 +24,7 @@ public class NodeTest {
         assertEquals(nd.getPosX(), 0);
         assertEquals(nd.getPosY(), 0);
         assertEquals(nd.getName(), "");
-        assertEquals(nd.getShape(), new Rectangle(nd.getPosX(), nd.getPosY(), nd.getSize() * 10, nd.getSize() * 10));
+        assertEquals(nd.getShape(), Shape.SQUARE);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class NodeTest {
         assertEquals(n.getPosX(), 68);
         assertEquals(n.getPosY(), 47);
         assertEquals(n.getName(), "Test");
-        assertEquals(n.getShape(), new Rectangle(n.getPosX(), n.getPosY(), n.getSize() * 10, n.getSize() * 10));
+        assertEquals(n.getShape(), Shape.SQUARE);
         assertEquals(n.getColor(), Color.BLUE);
 
     }

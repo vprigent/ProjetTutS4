@@ -3,6 +3,7 @@ package model.algorithm;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Vector;
 
 import model.Graph;
 import model.Node;
@@ -12,7 +13,7 @@ public class RandomLayout extends Algorithm {
 
     @Override
     public void algorithm(Graph g) {
-        ArrayList<Node> myNodes = g.getNodes();
+        Vector<Node> myNodes = g.getNodes();
         
         for (Node n : myNodes) {
         	int r = 1 + (int)(Math.random()*(255-1)+1);

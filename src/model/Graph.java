@@ -2,21 +2,22 @@ package model;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class Graph {
     private final int defaultThickness = 1;
     private String name = "Default";
     private String file;
     private Color defaultColor = Color.black;
-    private ArrayList<Node> nodes;
-    private ArrayList<Edge> edges;
+    private Vector<Node> nodes;
+    private Vector<Edge> edges;
 
     /**
      * Default Constructor
      */
     public Graph() {
-        this.nodes = new ArrayList<Node>();
-        this.edges = new ArrayList<Edge>();
+        this.nodes = new Vector<Node>();
+        this.edges = new Vector<Edge>();
     }
 
     /**
@@ -105,11 +106,11 @@ public class Graph {
         return null;
     }
 
-    public ArrayList<Edge> getEdges() {
+    public Vector<Edge> getEdges() {
         return edges;
     }
 
-    public ArrayList<Node> getNodes() {
+    public Vector<Node> getNodes() {
         return nodes;
     }
 
