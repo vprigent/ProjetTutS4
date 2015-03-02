@@ -1,6 +1,7 @@
 package model.algorithm;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 
 import model.Graph;

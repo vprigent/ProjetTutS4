@@ -3,16 +3,19 @@ package model;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+
 
 public class Graph {
     private final int defaultThickness = 1;
     private String name = "Default";
     private String file;
     private Color defaultColor = Color.black;
+
     private Collection<Node> nodes;
     private Collection<Edge> edges;
+
 
     /**
      * Default Constructor
