@@ -2,7 +2,9 @@ package model;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Observable;
+import java.util.Vector;
 
 
 public class GraphHandler extends Observable {
@@ -16,7 +18,7 @@ public class GraphHandler extends Observable {
         g.addNode(new Node(size, posX, posY, name, shape, color));
     }
 
-    public ArrayList<Node> getNodes() {
+    public synchronized Collection<Node> getNodes() {
         return g.getNodes();
     }
 

@@ -9,5 +9,15 @@ public class Main {
         MainFrame mainFrame = new MainFrame(graphHandler);
 
         graphHandler.addObserver(mainFrame);
+        
+        while (true){
+        	try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	mainFrame.repaint();
+        }
     }
 }

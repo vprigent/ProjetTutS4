@@ -2,21 +2,24 @@ package model;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Graph {
     private final int defaultThickness = 1;
     private String name = "Default";
     private String file;
     private Color defaultColor = Color.black;
-    private ArrayList<Node> nodes;
-    private ArrayList<Edge> edges;
+    private Collection<Node> nodes;
+    private Collection<Edge> edges;
 
     /**
      * Default Constructor
      */
     public Graph() {
-        this.nodes = new ArrayList<Node>();
-        this.edges = new ArrayList<Edge>();
+        this.nodes = new CopyOnWriteArrayList<Node>();
+        this.edges = new CopyOnWriteArrayList<Edge>();
     }
 
     /**
@@ -105,11 +108,11 @@ public class Graph {
         return null;
     }
 
-    public ArrayList<Edge> getEdges() {
+    public Collection<Edge> getEdges() {
         return edges;
     }
 
-    public ArrayList<Node> getNodes() {
+    public Collection<Node> getNodes() {
         return nodes;
     }
 

@@ -1,6 +1,7 @@
 package model.algorithm;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import model.Graph;
 import model.Node;
@@ -9,7 +10,7 @@ public class SizeAlgorithm extends Algorithm{
 
     @Override
     public void algorithm(Graph g) {
-		ArrayList<Node> myNodes = g.getNodes();
+		Collection<Node> myNodes = g.getNodes();
 
 		int nbNodes=0;
 		for (Node n : myNodes)
