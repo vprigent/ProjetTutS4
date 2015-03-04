@@ -497,22 +497,22 @@ public class MainFrame extends JFrame implements Observer {
 		int posX = evt.getX();
 		int posY = evt.getY();
 
-		if (!evt.isControlDown())
-			selectedNodes.removeAll(selectedNodes);
+		if (posY >= toolBar.getHeight()) {
+			if (!evt.isControlDown())
+				selectedNodes.removeAll(selectedNodes);
 
-		for (Node n : model.getNodes()) {
-			if (n.contains(posX, posY)){			
-				selectedNodes.add(n);
+			for (Node n : model.getNodes()) {
+				if (n.contains(posX, posY)) {
+					selectedNodes.add(n);
+				}
+			}
+
+			if (selectedNodes.isEmpty()) {
+				model.getCurrentGraph().addNode(
+						new Node(25, posX, posY, "name", Shape.SQUARE,
+								Color.BLACK));
 			}
 		}
-
-		if (selectedNodes.isEmpty()) {
-			model.getCurrentGraph()
-					.addNode(
-							new Node(25, posX, posY, "name", Shape.SQUARE,
-									Color.BLACK));
-		}
-
 	}
 
 	private synchronized void drawGraph() {
@@ -520,7 +520,7 @@ public class MainFrame extends JFrame implements Observer {
 		for (Node n : model.getNodes()) {
 			if (selectedNodes.contains(n))
 				g.setColor(Color.RED);
-			 else
+			else
 				g.setColor(n.getColor());
 
 			g.drawRect(n.getPosX(), n.getPosY(), n.getSize(), n.getSize());
