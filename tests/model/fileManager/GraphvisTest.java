@@ -1,12 +1,8 @@
 package model.fileManager;
 
-import model.Edge;
 import model.Graph;
-import model.Node;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,7 +18,6 @@ public class GraphvisTest {
 
         filemanager.loadGraph("tests/graphvis.dot");
     }
-
 
 
     @Test

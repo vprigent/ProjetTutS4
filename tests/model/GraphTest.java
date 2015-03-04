@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -38,8 +39,9 @@ public class GraphTest {
         Node n = new Node();
         g.addNode(n);
         g.moveNode(n, 1,5);
-        assertEquals(g.getNodes().get(0).getPosX(), 1);
-        assertEquals(g.getNodes().get(0).getPosY(), 5);
+        ArrayList<Node> nodes = (ArrayList)g.getNodes();
+        assertEquals(nodes.get(0).getPosX(), 1);
+        assertEquals(nodes.get(0).getPosY(), 5);
     }
 
     @Test
@@ -50,7 +52,9 @@ public class GraphTest {
         n = new Node();
         g.addNode(n);
         assertEquals(g.getNodes().size(), 2);
-        assertTrue(g.getNodes().get(0) != n);
+
+        ArrayList<Node> nodes = (ArrayList)g.getNodes();
+        assertTrue(nodes.get(0) != n);
 
         for(int i = 0 ; i < 10000; i++) {
             g.addNode(new Node());
@@ -63,10 +67,14 @@ public class GraphTest {
     public void testAddEdge() throws Exception {
         g.addNode(new Node());
         g.addNode(new Node(3, 1, 2, "Hello", Shape.SQUARE, Color.BLUE));
-        Edge e= new Edge(g.getNodes().get(0), g.getNodes().get(1));
+
+        ArrayList<Node> nodes = (ArrayList)g.getNodes();
+        Edge e= new Edge(nodes.get(0), nodes.get(1));
         g.addEdge(e); // add an edge between the two nodes
+
+        ArrayList<Edge> edges = (ArrayList)g.getEdges();
         assertEquals(g.getEdges().size(), 1);
-        assertTrue(g.getEdges().get(0) == e);
+        assertTrue(edges.get(0) == e);
     }
 
     @Test
@@ -75,7 +83,9 @@ public class GraphTest {
 
         g.addNode(n);
         assertEquals(g.getNodes().size(), 1);
-        assertTrue(g.getNodes().get(0) == n);
+
+        ArrayList<Node> nodes = (ArrayList)g.getNodes();
+        assertTrue(nodes.get(0) == n);
         g.removeNode(n);
         assertEquals(g.getNodes().size(), 0);
     }
@@ -84,10 +94,14 @@ public class GraphTest {
     public void testRemoveEdge() throws Exception {
         g.addNode(new Node());
         g.addNode(new Node(3, 1, 2, "Hello", Shape.SQUARE, Color.BLUE));
-        Edge e= new Edge(g.getNodes().get(0), g.getNodes().get(1));
+
+        ArrayList<Node> nodes = (ArrayList)g.getNodes();
+        Edge e= new Edge(nodes.get(0), nodes.get(1));
         g.addEdge(e); // add an edge between the two nodes
         assertEquals(g.getEdges().size(), 1);
-        assertTrue(g.getEdges().get(0) == e);
+
+        ArrayList<Edge> edges = (ArrayList)g.getEdges();
+        assertTrue(edges.get(0) == e);
 
         g.removeEdge(e);
         assertTrue(g.getEdges().isEmpty());
