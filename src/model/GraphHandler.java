@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class GraphHandler extends Observable {
@@ -33,5 +34,9 @@ public class GraphHandler extends Observable {
 
     public Graph getCurrentGraph() {
         return g;
+    }
+    
+    public void removeAll(){
+    	g.removeAll();
     }
 }

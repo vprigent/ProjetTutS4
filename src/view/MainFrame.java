@@ -17,6 +17,7 @@ import java.util.Observer;
 public class MainFrame extends JFrame implements Observer {
 
 	private GraphHandler model;
+	private Node selectedNode;
 
 	// Variables declaration
 	private JButton add;
@@ -434,6 +435,8 @@ public class MainFrame extends JFrame implements Observer {
 
 	private void removeButtonActionPerformed(ActionEvent evt) {
 		System.out.println("remove");
+		model.removeAll();
+		mainPanel.repaint();
 	}
 
 	private void undoActionPerformed(ActionEvent evt) {
@@ -455,7 +458,7 @@ public class MainFrame extends JFrame implements Observer {
 			System.out.println(algorithms.getSelectedItem());
 		}
 	}
-	Object verrou = new Object();
+
 	private void zoomInActionPerformed(ActionEvent evt) {
 		System.out.println("zoomIn");
 	}
@@ -486,19 +489,43 @@ public class MainFrame extends JFrame implements Observer {
 
 	// Drawing
 	private void mainPanelMouseClicked(MouseEvent evt) {
-		model.getCurrentGraph().addNode(
-				new Node(100, evt.getX(), evt.getY(), "name", Shape.SQUARE,
-						Color.BLACK));
+		System.out.println("clic");
+		int posX = evt.getX();
+		int posY = evt.getY();
+
+		
+			selectedNode = null;
+		 
+			for (Node n : model.getNodes()) {
+				if (n.contains(posX, posY)) {
+					selectedNode = n;
+					System.out.println("Selected changed");
+				}
+			}
+			if (selectedNode == null) {
+				model.getCurrentGraph().addNode(
+						new Node(25, posX, posY, "name", Shape.SQUARE,
+								Color.BLACK));
+			}		
+
 	}
 
-	private synchronized void  drawGraph() {
+	private synchronized void drawGraph() {
+		Graphics g = mainPanel.getGraphics();
+
 		for (Node n : model.getNodes()) {
-			mainPanel.getGraphics().drawRect(n.getPosX(), n.getPosY(),
-					n.getSize() * 10, n.getSize() * 10);
+			if (n == selectedNode) {
+				g.setColor(Color.RED);
+				System.out.println("red");
+			}
+
+			else
+				g.setColor(n.getColor());
+
+			g.drawRect(n.getPosX(), n.getPosY(), n.getSize(), n.getSize());
 		}
 	}
 
-	
 	@Override
 	public void repaint() {
 		drawGraph();

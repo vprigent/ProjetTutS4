@@ -3,7 +3,7 @@ package model;
 import java.awt.*;
 
 public class Node {
-    public final int maxSize = 10;
+    public final int maxSize = 100;
     public final int maxPosition = 2000;
 
     private int value;
@@ -163,4 +163,16 @@ public class Node {
                 ", color=" + color +
                 '}' + "\n";
     }
+
+	public boolean contains(int mouseX, int mouseY) {
+		boolean result = false ;
+		
+		Rectangle hitbox = new Rectangle(posX,posY,size,size);
+		
+		
+		if (hitbox.contains(mouseX,mouseY))
+			result = true;
+		
+		return result ;
+	}
 }

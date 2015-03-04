@@ -140,4 +140,9 @@ public class Graph {
                 ", edges=" + edges +
                 '}';
     }
+    
+    public void removeAll(){
+        this.nodes = new CopyOnWriteArrayList<Node>();
+        this.edges = new CopyOnWriteArrayList<Edge>();
+    }
 }
