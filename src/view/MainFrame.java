@@ -9,6 +9,7 @@ import java.util.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Observable;
@@ -17,7 +18,7 @@ import java.util.Observer;
 public class MainFrame extends JFrame implements Observer {
 
 	private GraphHandler model;
-	private Node selectedNode;
+	private ArrayList<Node> selectedNodes;
 
 	// Variables declaration
 	private JButton add;
@@ -39,18 +40,14 @@ public class MainFrame extends JFrame implements Observer {
 	private JButton zoomIn;
 	private JButton zoomOut;
 
-	// End of variables declaration
-
-	/**
-	 * Creates new form MainFrame
-	 */
 	public MainFrame(GraphHandler model) {
 		this.model = model;
+		selectedNodes = new ArrayList<Node>();
 		this.setVisible(true);
 		initComponents();
 	}
 
-	// Generated code
+	// Generated code : don't modify
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
@@ -419,6 +416,7 @@ public class MainFrame extends JFrame implements Observer {
 
 		pack();
 	}// </editor-fold>
+		// End of Generated code
 
 	// Actions
 	private void newButtonActionPerformed(ActionEvent evt) {
@@ -434,7 +432,7 @@ public class MainFrame extends JFrame implements Observer {
 	}
 
 	private void removeButtonActionPerformed(ActionEvent evt) {
-		System.out.println("remove");
+		selectedNodes.removeAll(selectedNodes);
 		model.removeAll();
 		mainPanel.repaint();
 	}
@@ -484,42 +482,45 @@ public class MainFrame extends JFrame implements Observer {
 	}
 
 	private void deleteActionPerformed(ActionEvent evt) {
-		System.out.println("delete");
+		if (!selectedNodes.isEmpty()) {
+			for (Node n : selectedNodes) {
+				model.getNodes().remove(n);
+			}
+
+			mainPanel.repaint();
+		}
 	}
 
 	// Drawing
 	private void mainPanelMouseClicked(MouseEvent evt) {
-		System.out.println("clic");
+
 		int posX = evt.getX();
 		int posY = evt.getY();
 
-		
-			selectedNode = null;
-		 
-			for (Node n : model.getNodes()) {
-				if (n.contains(posX, posY)) {
-					selectedNode = n;
-					System.out.println("Selected changed");
-				}
+		if (!evt.isControlDown())
+			selectedNodes.removeAll(selectedNodes);
+
+		for (Node n : model.getNodes()) {
+			if (n.contains(posX, posY)){			
+				selectedNodes.add(n);
 			}
-			if (selectedNode == null) {
-				model.getCurrentGraph().addNode(
-						new Node(25, posX, posY, "name", Shape.SQUARE,
-								Color.BLACK));
-			}		
+		}
+
+		if (selectedNodes.isEmpty()) {
+			model.getCurrentGraph()
+					.addNode(
+							new Node(25, posX, posY, "name", Shape.SQUARE,
+									Color.BLACK));
+		}
 
 	}
 
 	private synchronized void drawGraph() {
 		Graphics g = mainPanel.getGraphics();
-
 		for (Node n : model.getNodes()) {
-			if (n == selectedNode) {
+			if (selectedNodes.contains(n))
 				g.setColor(Color.RED);
-				System.out.println("red");
-			}
-
-			else
+			 else
 				g.setColor(n.getColor());
 
 			g.drawRect(n.getPosX(), n.getPosY(), n.getSize(), n.getSize());
