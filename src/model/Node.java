@@ -7,7 +7,7 @@ public class Node {
 
     public static final int maxPosition = 2000;
 
-    private double value;
+    private int value;
     private int size;
     private int posX;
     private int posY;

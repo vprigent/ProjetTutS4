@@ -61,7 +61,7 @@ public class Graphml extends GraphLoader {
         key.addContent(new Element("default").setText("1"));
 
         xmlnamespace.addContent(key);
-        
+
         Element root = new Element("graph");
         root.setNamespace(Namespace.NO_NAMESPACE);
         root.setAttribute("id", g.getName());
