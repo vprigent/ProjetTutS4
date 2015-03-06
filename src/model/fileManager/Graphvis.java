@@ -1,14 +1,10 @@
 package model.fileManager;
 
 import model.Graph;
-import model.Node;
-import model.Edge;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
 
 public class Graphvis extends GraphLoader {
     @Override
@@ -48,7 +44,7 @@ public class Graphvis extends GraphLoader {
     }
 
     @Override
-    public void saveGraph(Graph g) {
+    public void saveGraph(Graph g, String filePath) {
 
     }
 }

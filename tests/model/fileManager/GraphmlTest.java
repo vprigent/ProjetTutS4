@@ -28,6 +28,7 @@ public class GraphmlTest {
         g.addNode(nd);
         g.addEdge(new Edge(n, nd));
 
-        fileManager.saveGraph(g);
+        fileManager.saveGraph(g, "/test.graphml");
+
     }
 }

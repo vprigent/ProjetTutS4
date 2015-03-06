@@ -3,10 +3,11 @@ package model;
 import java.awt.*;
 
 public class Node {
-    public final int maxSize = 100;
-    public final int maxPosition = 2000;
+    public static final int maxSize = 100;
 
-    private int value;
+    public static final int maxPosition = 2000;
+
+    private double value;
     private int size;
     private int posX;
     private int posY;

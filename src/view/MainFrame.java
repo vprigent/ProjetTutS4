@@ -499,7 +499,7 @@ public class MainFrame extends JFrame implements Observer {
 
 		if (posY >= toolBar.getHeight()) {
 			if (!evt.isControlDown())
-				selectedNodes.removeAll(selectedNodes);
+				selectedNodes.clear();
 
 			for (Node n : model.getNodes()) {
 				if (n.contains(posX, posY)) {

@@ -8,22 +8,22 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class Graph {
-    private final int defaultThickness = 1;
+
+    public static final int defaultThickness = 1;
+
     private String name = "Default";
     private String file;
-    private Color defaultColor = Color.black;
-
     private Collection<Node> nodes;
     private Collection<Edge> edges;
-
 
     /**
      * Default Constructor
      */
     public Graph() {
-        this.nodes = new CopyOnWriteArrayList<Node>();
-        this.edges = new CopyOnWriteArrayList<Edge>();
+        this.nodes = new ArrayList<Node>();
+        this.edges = new ArrayList<Edge>();
     }
+
 
     /**
      * Constructor
@@ -48,7 +48,7 @@ public class Graph {
     public void applyAlgorithm() {
 
     }
-    
+
     /**
      * Move a node to a new position
      */
@@ -120,6 +120,13 @@ public class Graph {
     }
 
     /**
+     * @return name of the graph
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
      * TODO : mise en place du système de sauvegarde, si le fichier n'a pas été créé, le créer en demandant à l'utilisateur quel format choisir
      * Save the current graph on a file
      */
@@ -134,7 +141,6 @@ public class Graph {
         return "Graph{" +
                 "name='" + name + '\'' +
                 ", file='" + file + '\'' +
-                ", defaultColor=" + defaultColor +
                 ", defaultThickness=" + defaultThickness +
                 ", nodes=" + nodes +
                 ", edges=" + edges +

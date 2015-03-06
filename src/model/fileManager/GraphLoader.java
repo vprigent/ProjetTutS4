@@ -8,5 +8,5 @@ public abstract class GraphLoader {
 
     protected abstract Graph createGraphFromData(String data);
 
-    public abstract void saveGraph(Graph g);
+    public abstract void saveGraph(Graph g, String filePath);
 }
