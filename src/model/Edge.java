@@ -11,7 +11,7 @@ public class Edge {
 
     private int weight;
     private String label;
-    private Color color;
+    private Color color = Color.BLACK;
 
     private Node source;
     private Node destination;
@@ -76,8 +76,18 @@ public class Edge {
         this.label = label;
     }
 
+    /**
+     * @return color of the edge
+     */
     public Color getColor() {
         return color;
+    }
+
+    /**
+     * @return default color of edges
+     */
+    public static Color getDefaultColor() {
+        return Color.BLACK;
     }
 
     /**

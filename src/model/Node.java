@@ -7,6 +7,9 @@ public class Node {
 
     public static final int maxPosition = 2000;
 
+    private static int maxID = 0;
+
+    private int id;
     private int value;
     private int size;
     private int posX;
@@ -24,6 +27,8 @@ public class Node {
         this.posX = 0;
         this.posY = 0;
         this.name = "";
+        this.id = this.maxID;
+        this.maxID++;
     }
 
     /**
@@ -52,6 +57,8 @@ public class Node {
         this.name = name;
         this.shape = shape;
         this.color = color;
+        this.id = this.maxID;
+        this.maxID++;
     }
 
     /**
@@ -123,6 +130,20 @@ public class Node {
     }
 
     /**
+     * @return default color of a node
+     */
+    public static Color getDefaultColor() {
+        return Color.BLACK;
+    }
+
+    /**
+     * @return default shape of a node
+     */
+    public static Shape getDefaultShape() {
+        return Shape.SQUARE;
+    }
+
+    /**
      * @param color the color to set
      */
     public void setColor(Color color) {
@@ -156,7 +177,8 @@ public class Node {
     @Override
     public String toString() {
         return "Node{" +
-                "size=" + size +
+                "id=" + id +
+                ", size=" + size +
                 ", posX=" + posX +
                 ", posY=" + posY +
                 ", name='" + name + '\'' +
@@ -176,4 +198,8 @@ public class Node {
 		
 		return result ;
 	}
+
+    public int getID() {
+        return id;
+    }
 }
