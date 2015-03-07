@@ -4,6 +4,7 @@
 out/
 .idea/
 bin/
+saves/
 .classpath
 .projet
 *.iml

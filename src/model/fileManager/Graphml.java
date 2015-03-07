@@ -10,6 +10,8 @@ import org.jdom.Namespace;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import java.io.FileWriter;
+
 public class Graphml extends GraphLoader {
     @Override
     public Graph loadGraph(String filePath) {
@@ -109,6 +111,10 @@ public class Graphml extends GraphLoader {
             edge.setAttribute("source", String.valueOf(e.getSource().getID()));
             edge.setAttribute("target", String.valueOf(e.getDestination().getID()));
 
+            if(e.isOriented()) {
+                edge.setAttribute("directed", "true");
+            }
+
             if (e.getColor() != Edge.getDefaultColor()) {
                 edge.addContent(new Element("data").setText(e.getColor().toString()));
             }
@@ -120,7 +126,7 @@ public class Graphml extends GraphLoader {
 
         try {
             XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-            sortie.output(document, System.out);
+            sortie.output(document, new FileWriter("saves\\"+filePath));
         } catch (java.io.IOException e) {
             System.err.println(e.getMessage());
         }
