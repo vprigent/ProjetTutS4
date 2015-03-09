@@ -1,23 +1,17 @@
 import model.GraphHandler;
 import view.MainFrame;
+import controller.*;
 
 
 public class Main {
     public static void main(String[] args) {
         GraphHandler graphHandler = new GraphHandler();
 
-        MainFrame mainFrame = new MainFrame(graphHandler);
+        Controller c = new Controller(graphHandler);
+
+        MainFrame mainFrame = new MainFrame(c);
 
         graphHandler.addObserver(mainFrame);
-        
-        while (true){
-        	try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	mainFrame.repaint();
-        }
+
     }
 }

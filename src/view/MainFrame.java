@@ -1,5 +1,6 @@
 package view;
 
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -25,12 +26,14 @@ import javax.swing.WindowConstants;
 import model.GraphHandler;
 import model.Node;
 import model.Shape;
+import controller.Controller;
 
 
 public class MainFrame extends JFrame implements Observer {
 
-	private GraphHandler model;
+    private Controller controller;
 	private ArrayList<Node> selectedNodes;
+    private GraphHandler model;
 
 	// Variables declaration
 	private JButton add;
@@ -54,8 +57,8 @@ public class MainFrame extends JFrame implements Observer {
 	private JButton zoomIn;
 	private JButton zoomOut;
 
-	public MainFrame(GraphHandler model) {
-		this.model = model;
+	public MainFrame(Controller controller) {
+        this.controller = controller;
 		selectedNodes = new ArrayList<Node>();
 		this.setVisible(true);
 		initComponents();
@@ -430,7 +433,7 @@ public class MainFrame extends JFrame implements Observer {
 
 		pack();
 	}// </editor-fold>
-		// End of Generated code
+	// End of Generated code
 
 	// Actions
 	private void newButtonActionPerformed(ActionEvent evt) {
@@ -496,7 +499,7 @@ public class MainFrame extends JFrame implements Observer {
 	}
 
 	private void deleteActionPerformed(ActionEvent evt) {
-		if (!selectedNodes.isEmpty()) {
+        if (!selectedNodes.isEmpty()) {
 			for (Node n : selectedNodes) {
 				model.getNodes().remove(n);
 			}
@@ -507,8 +510,8 @@ public class MainFrame extends JFrame implements Observer {
 
 	// Drawing
 	private void mainPanelMouseClicked(MouseEvent evt) {
-
-		int posX = evt.getX();
+        System.out.println("hello");
+        int posX = evt.getX();
 		int posY = evt.getY();
 
 		if (posY >= toolBar.getHeight()) {
@@ -522,7 +525,7 @@ public class MainFrame extends JFrame implements Observer {
 			}
 
 			if (selectedNodes.isEmpty()) {
-				model.getCurrentGraph().addNode(
+				model.addNode(
 						new Node(25, posX, posY, "name", Shape.SQUARE,
 								Color.BLACK));
 			}
@@ -549,6 +552,9 @@ public class MainFrame extends JFrame implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		System.out.println("Update de la frame");
+        model = (GraphHandler) arg1;
+        revalidate();
+        repaint();
 	}
 
 }
