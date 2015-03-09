@@ -1,10 +1,7 @@
 package model;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Observable;
-import java.util.Vector;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
@@ -15,8 +12,10 @@ public class GraphHandler extends Observable {
     	g = new Graph();
     }
 
-    public void addNode(int size, int posX, int posY, String name, Shape shape, Color color) {
-        g.addNode(new Node(size, posX, posY, name, shape, color));
+    public void addNode(Node node) {
+        g.addNode(node);
+        setChanged();
+        notifyObservers(this);
     }
 
     public synchronized Collection<Node> getNodes() {
@@ -38,5 +37,12 @@ public class GraphHandler extends Observable {
     
     public void removeAll(){
     	g.removeAll();
+    }
+
+    @Override
+    public synchronized void addObserver(Observer o) {
+        super.addObserver(o);
+        setChanged();
+        notifyObservers(this);
     }
 }

@@ -13,8 +13,8 @@ public class Graph {
 
     private String name = "Default";
     private String file;
-    private Collection<Node> nodes;
-    private Collection<Edge> edges;
+    private ArrayList<Node> nodes;
+    private ArrayList<Edge> edges;
 
     /**
      * Default Constructor
@@ -146,9 +146,9 @@ public class Graph {
                 ", edges=" + edges +
                 '}';
     }
-    
+
     public void removeAll(){
-        this.nodes = new CopyOnWriteArrayList<Node>();
-        this.edges = new CopyOnWriteArrayList<Edge>();
+        nodes.clear();
+        edges.clear();
     }
 }
