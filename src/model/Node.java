@@ -27,8 +27,8 @@ public class Node {
         this.posX = 0;
         this.posY = 0;
         this.name = "";
-        this.id = this.maxID;
-        this.maxID++;
+        this.id = Node.maxID;
+        Node.maxID++;
     }
 
     /**
@@ -57,8 +57,8 @@ public class Node {
         this.name = name;
         this.shape = shape;
         this.color = color;
-        this.id = this.maxID;
-        this.maxID++;
+        this.id = Node.maxID;
+        Node.maxID++;
     }
 
     /**

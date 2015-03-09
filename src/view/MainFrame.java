@@ -1,19 +1,31 @@
 package view;
 
-import model.*;
-import model.Shape;
-
-import javax.swing.*;
-
-import java.util.*;
-
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle;
+import javax.swing.WindowConstants;
+
+import model.GraphHandler;
+import model.Node;
+import model.Shape;
+
 
 public class MainFrame extends JFrame implements Observer {
 
@@ -22,11 +34,13 @@ public class MainFrame extends JFrame implements Observer {
 
 	// Variables declaration
 	private JButton add;
-	private JComboBox algorithms;
+	
+	private JComboBox<String> algorithms;
 	private JButton copy;
 	private JButton cut;
 	private JButton delete;
-	private JComboBox displayMode;
+	
+	private JComboBox<String> displayMode;
 	private JButton loadButton;
 	private JPanel mainPanel;
 	private JPanel menuBar;
@@ -48,7 +62,7 @@ public class MainFrame extends JFrame implements Observer {
 	}
 
 	// Generated code : don't modify
-	@SuppressWarnings("unchecked")
+	
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 		mainPanel = new JPanel();
@@ -60,8 +74,8 @@ public class MainFrame extends JFrame implements Observer {
 		removeButton = new JButton();
 		undo = new JButton();
 		redo = new JButton();
-		displayMode = new JComboBox();
-		algorithms = new JComboBox();
+		displayMode = new JComboBox<String>();
+		algorithms = new JComboBox<String>();
 		zoomIn = new JButton();
 		zoomOut = new JButton();
 		copy = new JButton();
@@ -218,7 +232,7 @@ public class MainFrame extends JFrame implements Observer {
 			}
 		});
 
-		displayMode.setModel(new DefaultComboBoxModel(new String[] {
+		displayMode.setModel(new DefaultComboBoxModel<String>(new String[] {
 				"Tout afficher", "Sommets", "Arrêtes" }));
 		displayMode.setFocusable(false);
 		displayMode.addItemListener(new ItemListener() {
@@ -227,7 +241,7 @@ public class MainFrame extends JFrame implements Observer {
 			}
 		});
 
-		algorithms.setModel(new DefaultComboBoxModel(new String[] {
+		algorithms.setModel(new DefaultComboBoxModel<String>(new String[] {
 				"Aucun Algorithme", "Aleatoire", "Circulaire",
 				"Modele de force", "Colorisation", "Calcul d'indice", "Taille",
 				"Personnalisé" }));

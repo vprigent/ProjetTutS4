@@ -1,6 +1,5 @@
 package model.algorithm;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import model.Graph;
@@ -12,9 +11,7 @@ public class SizeAlgorithm extends Algorithm{
     public void algorithm(Graph g) {
 		Collection<Node> myNodes = g.getNodes();
 
-		int nbNodes=0;
-		for (Node n : myNodes)
-			nbNodes++;
+		int nbNodes=myNodes.size();
 		
 		int minValue=-1;
 		int nextMin=1000001;

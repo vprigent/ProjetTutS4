@@ -1,11 +1,8 @@
 package model;
 
-import java.awt.*;
-import java.util.ArrayList;
+import java.awt.Color;
 import java.util.Collection;
 import java.util.Observable;
-import java.util.Vector;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class GraphHandler extends Observable {

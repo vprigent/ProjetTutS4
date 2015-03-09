@@ -1,10 +1,7 @@
 package model.algorithm;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Random;
-import java.util.Vector;
 
 import model.Graph;
 import model.Node;
