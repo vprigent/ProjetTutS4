@@ -4,16 +4,12 @@ import model.*;
 
 import javax.swing.*;
 
-import java.util.*;
-
 import controller.*;
 import model.Shape;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -489,14 +485,12 @@ public class MainFrame extends JFrame implements Observer {
 			for (Node n : selectedNodes) {
 				model.getNodes().remove(n);
 			}
-
 			mainPanel.repaint();
 		}
 	}
 
 	// Drawing
 	private void mainPanelMouseClicked(MouseEvent evt) {
-        System.out.println("hello");
         int posX = evt.getX();
 		int posY = evt.getY();
 
@@ -516,6 +510,8 @@ public class MainFrame extends JFrame implements Observer {
 								Color.BLACK));
 			}
 		}
+
+        repaint();
 	}
 
 	private synchronized void drawGraph() {
