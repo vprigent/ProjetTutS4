@@ -16,7 +16,6 @@ import java.util.Observer;
 public class MainFrame extends JFrame implements Observer {
 
     private Controller controller;
-	private ArrayList<Node> selectedNodes;
     private GraphHandler model;
 
 	// Variables declaration
@@ -27,7 +26,7 @@ public class MainFrame extends JFrame implements Observer {
 	private JButton delete;
 	private JComboBox displayMode;
 	private JButton loadButton;
-	private JPanel mainPanel;
+	private DrawingPanel mainPanel;
 	private JPanel menuBar;
 	private JButton newButton;
 	private JButton paste;
@@ -41,7 +40,6 @@ public class MainFrame extends JFrame implements Observer {
 
 	public MainFrame(Controller controller) {
         this.controller = controller;
-		selectedNodes = new ArrayList<Node>();
 		this.setVisible(true);
 		initComponents();
 	}
@@ -50,7 +48,7 @@ public class MainFrame extends JFrame implements Observer {
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
-		mainPanel = new JPanel();
+		mainPanel = new DrawingPanel(controller.addDrawingController());
 		toolBar = new JPanel();
 		menuBar = new JPanel();
 		newButton = new JButton();
@@ -74,14 +72,6 @@ public class MainFrame extends JFrame implements Observer {
 		setMinimumSize(new java.awt.Dimension(800, 400));
 		setName("MainFrame"); // NOI18N
 		setPreferredSize(new java.awt.Dimension(800, 600));
-
-		mainPanel.setName("MainPanel"); // NOI18N
-		mainPanel.setPreferredSize(new java.awt.Dimension(400, 400));
-		mainPanel.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
-				mainPanelMouseClicked(evt);
-			}
-		});
 
 		toolBar.setBackground(new java.awt.Color(65, 65, 65));
 
@@ -431,8 +421,7 @@ public class MainFrame extends JFrame implements Observer {
 	}
 
 	private void removeButtonActionPerformed(ActionEvent evt) {
-		selectedNodes.removeAll(selectedNodes);
-		model.removeAll();
+        controller.removeAllNodes();
 		mainPanel.repaint();
 	}
 
@@ -481,49 +470,13 @@ public class MainFrame extends JFrame implements Observer {
 	}
 
 	private void deleteActionPerformed(ActionEvent evt) {
-        if (!selectedNodes.isEmpty()) {
-			for (Node n : selectedNodes) {
-				model.getNodes().remove(n);
-			}
-			mainPanel.repaint();
-		}
-	}
-
-	// Drawing
-	private void mainPanelMouseClicked(MouseEvent evt) {
-        int posX = evt.getX();
-		int posY = evt.getY();
-
-		if (posY >= toolBar.getHeight()) {
-			if (!evt.isControlDown())
-				selectedNodes.clear();
-
-			for (Node n : model.getNodes()) {
-				if (n.contains(posX, posY)) {
-					selectedNodes.add(n);
-				}
-			}
-
-			if (selectedNodes.isEmpty()) {
-				model.addNode(
-						new Node(25, posX, posY, "name", Shape.SQUARE,
-								Color.BLACK));
-			}
-		}
-
+        controller.removeSelectedNodes();
         repaint();
 	}
 
-	private synchronized void drawGraph() {
-		Graphics g = mainPanel.getGraphics();
-		for (Node n : model.getNodes()) {
-			if (selectedNodes.contains(n))
-				g.setColor(Color.RED);
-			else
-				g.setColor(n.getColor());
-
-			g.drawRect(n.getPosX(), n.getPosY(), n.getSize(), n.getSize());
-		}
+	private void drawGraph() {
+        mainPanel.revalidate();
+        mainPanel.repaint();
 	}
 
 	@Override
