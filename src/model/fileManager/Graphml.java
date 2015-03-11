@@ -7,15 +7,49 @@ import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.Namespace;
+import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
+
+import java.io.File;
 import java.io.FileWriter;
+import java.util.Iterator;
+import java.util.List;
 
 public class Graphml extends GraphLoader {
     @Override
     public Graph loadGraph(String filePath) {
-        return null;
+    	SAXBuilder sxb = new SAXBuilder();
+    	Document document = null;
+    	Element racine;
+        try
+        {
+           //On crée un nouveau document JDOM avec en argument le fichier XML
+           //Le parsing est terminé ;)
+           document = sxb.build(new File(filePath));
+           
+        }
+        catch(Exception e){}
+        racine = document.getRootElement();
+        List graphs =racine.getChildren("graph");
+        Iterator i=graphs.iterator();
+        while(i.hasNext())
+        {
+        	 Element graph = (Element)i.next();
+        	 List Node=graph.getChildren("node");
+        	 Iterator j=Node.iterator();
+        	 while(j.hasNext())
+        	 {
+        		 System.out.println(((Element) Node).getText());
+        	 }
+            
+             
+        }
+        
+
+    	return null;
     }
 
     @Override
@@ -126,7 +160,7 @@ public class Graphml extends GraphLoader {
 
         try {
             XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-            sortie.output(document, new FileWriter("saves\\"+filePath));
+            sortie.output(document, new FileWriter(filePath));
         } catch (java.io.IOException e) {
             System.err.println(e.getMessage());
         }

@@ -1,9 +1,7 @@
 package model.algorithm;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.Collection;
-
 
 import model.Graph;
 import model.Node;
@@ -14,14 +12,12 @@ public class ColorAlgorithm extends Algorithm {
 	public void algorithm(Graph g) {
 		Collection<Node> myNodes = g.getNodes();
 		
-		int nbNodes=0;
-		for (Node n : myNodes)
-			nbNodes++;
-
+		
+		int nbNodes=myNodes.size();
 		int minValue=-1;
 		int nextMin=1000001;
 		
-		for (int i = 0; i < myNodes.size(); i++) {
+		for (int i = 0; i < nbNodes; i++) {
 			for (Node n : myNodes) {
 				if (n.getValue()>minValue)
 				{
