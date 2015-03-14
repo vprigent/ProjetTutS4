@@ -16,7 +16,6 @@ public class Graph {
     private String file;
     private ArrayList<Node> nodes;
     private ArrayList<Edge> edges;
-    private Algorithm algorithm;
 
     /**
      * Default Constructor
@@ -47,51 +46,8 @@ public class Graph {
     /**
      * Apply a specific algorithm to the graph
      */
-
-    public void applyAlgorithm(String Algorithm) {
-        if(Algorithm=="Aleatoire") {
-            algorithm = new RandomLayout();
-            algorithm.Algorithm(this);
-        }
-        else if(Algorithm=="Aucun Algorithme")
-        {
-
-        }
-
-        else if(Algorithm=="Circulaire")
-        {
-            algorithm =new CircleLayout();
-            algorithm.Algorithm(this);
-        }
-
-        else if(Algorithm=="Modele de force")
-        {
-
-        }
-
-        else if(Algorithm=="Colorisation")
-        {
-            algorithm =new ColorAlgorithm();
-            algorithm.Algorithm(this);
-        }
-
-        else if(Algorithm== "Calcul d'indice")
-        {
-            algorithm =new IndexAlgorithm();
-            algorithm.Algorithm(this);
-        }
-
-        else if(Algorithm=="Taille")
-        {
-            algorithm=new SizeAlgorithm();
-            algorithm.Algorithm(this);
-        }
-
-        else if(Algorithm=="Personnalisé")
-        {
-
-        }
-
+    public void applyAlgorithm(Algorithm algorithm) {
+        algorithm.Algorithm(this);
     }
 
     /**
