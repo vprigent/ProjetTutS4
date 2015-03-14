@@ -20,7 +20,7 @@ public class SizeAlgorithm extends Algorithm{
 			for (Node n : myNodes) {
 				if (n.getValue()>minValue)
 				{
-					n.setSize(10/(nbNodes-i));
+					n.setSize(100/(nbNodes-i));
 					
 					if (n.getValue()<=nextMin) {
 						nextMin=n.getValue();

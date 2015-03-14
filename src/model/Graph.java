@@ -1,7 +1,6 @@
 package model;
 
-import model.algorithm.Algorithm;
-import model.algorithm.RandomLayout;
+import model.algorithm.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,10 +47,50 @@ public class Graph {
     /**
      * Apply a specific algorithm to the graph
      */
-    public void applyAlgorithm(String Algorithm) {
-    algorithm=new RandomLayout();
-        algorithm.Algorithm(this);
 
+    public void applyAlgorithm(String Algorithm) {
+        if(Algorithm=="Aleatoire") {
+            algorithm = new RandomLayout();
+            algorithm.Algorithm(this);
+        }
+        else if(Algorithm=="Aucun Algorithme")
+        {
+
+        }
+
+        else if(Algorithm=="Circulaire")
+        {
+            algorithm =new CircleLayout();
+            algorithm.Algorithm(this);
+        }
+
+        else if(Algorithm=="Modele de force")
+        {
+
+        }
+
+        else if(Algorithm=="Colorisation")
+        {
+            algorithm =new ColorAlgorithm();
+            algorithm.Algorithm(this);
+        }
+
+        else if(Algorithm== "Calcul d'indice")
+        {
+            algorithm =new IndexAlgorithm();
+            algorithm.Algorithm(this);
+        }
+
+        else if(Algorithm=="Taille")
+        {
+            algorithm=new SizeAlgorithm();
+            algorithm.Algorithm(this);
+        }
+
+        else if(Algorithm=="Personnalisé")
+        {
+
+        }
 
     }
 

@@ -23,7 +23,7 @@ public class RandomLayout extends Algorithm {
         	int y = 1 + (int)(Math.random()*(600-1)+1);
             n.setPosition(x, y);
             
-            int sh = 1 + (int)(Math.random()*(600-1)+1);
+            int sh = 1 + (int)(Math.random()*(6-1)+1);
             switch (sh) {
             case 1 :
             	n.setShape(Shape.SQUARE);
