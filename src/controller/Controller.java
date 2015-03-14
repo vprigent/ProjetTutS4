@@ -77,4 +77,5 @@ public class Controller {
         graphHandler.getCurrentGraph().applyAlgorithm(algorithm);
 
     }
+
 }
