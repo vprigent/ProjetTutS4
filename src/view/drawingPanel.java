@@ -1,6 +1,7 @@
 package view;
 
 import controller.DrawingController;
+import model.Edge;
 import model.Graph;
 import model.Node;
 
@@ -14,6 +15,7 @@ public class DrawingPanel extends JPanel {
 
     private Graph graph;
     private DrawingController controller;
+    private double scale = 1.;
 
     public DrawingPanel(final DrawingController controller) {
         setName("MainPanel"); // NOI18N
@@ -22,8 +24,21 @@ public class DrawingPanel extends JPanel {
         this.controller = controller;
 
         addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent evt) {
                 controller.mainPanelMouseClicked(evt);
+                repaint();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent evt) {
+                controller.mainPanelMousePressed(evt);
+                repaint();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent evt) {
+                controller.mainPanelMouseReleased(evt);
                 repaint();
             }
         });
@@ -38,7 +53,18 @@ public class DrawingPanel extends JPanel {
             else
                 g.setColor(n.getColor());
 
-            g.drawRect(n.getPosX(), n.getPosY(), n.getSize(), n.getSize());
+            g.drawRect(n.getPosX()-n.getSize()/2, n.getPosY()-n.getSize()/2, n.getSize(), n.getSize());
+        }
+
+        for (Edge e : graph.getEdges()) {
+            if(controller.getSelectedEdges() != null) {
+                if (controller.getSelectedEdges().contains(e))
+                    g.setColor(Color.RED);
+                else
+                    g.setColor(e.getColor());
+            }
+
+            g.drawLine(e.getSource().getPosX(), e.getSource().getPosY(), e.getDestination().getPosX(), e.getDestination().getPosY());
         }
     }
 }
