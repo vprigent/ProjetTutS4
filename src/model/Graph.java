@@ -156,11 +156,11 @@ public class Graph {
         return null;
     }
 
-    public Collection<Edge> getEdges() {
+    public ArrayList<Edge> getEdges() {
         return edges;
     }
 
-    public Collection<Node> getNodes() {
+    public ArrayList<Node> getNodes() {
         return nodes;
     }
 
@@ -178,6 +178,11 @@ public class Graph {
     public void save() {
     }
 
+    public void removeAll(){
+        nodes.clear();
+        edges.clear();
+    }
+
     /**
      * Debugging function
      */
@@ -190,10 +195,5 @@ public class Graph {
                 ", nodes=" + nodes +
                 ", edges=" + edges +
                 '}';
-    }
-
-    public void removeAll(){
-        nodes.clear();
-        edges.clear();
     }
 }

@@ -507,7 +507,6 @@ public class MainFrame extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println("Update de la frame");
         model = (GraphHandler) arg1;
         revalidate();
         repaint();

@@ -1,6 +1,7 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
@@ -8,37 +9,39 @@ import java.util.Observer;
 
 
 public class GraphHandler extends Observable {
-    private Graph g;
+    private Graph currentGraph;
 
     public GraphHandler() {
-    	g = new Graph();
+    	currentGraph = new Graph();
     }
 
     public void addNode(Node node) {
-        g.addNode(node);
+        currentGraph.addNode(node);
         setChanged();
         notifyObservers(this);
     }
 
-    public synchronized Collection<Node> getNodes() {
-        return g.getNodes();
+    public ArrayList<Node> getNodes() {
+        return currentGraph.getNodes();
     }
 
+    public ArrayList<Edge> getEdges() { return currentGraph.getEdges();}
+
     public void createNewGraph() {
-        if (g != null) g.save();
-        g = new Graph();
+        if (currentGraph != null) currentGraph.save();
+        currentGraph = new Graph();
     }
 
     public void loadGraphFromFile(String path) {
-        g = new Graph(path);
+        currentGraph = new Graph(path);
     }
 
     public Graph getCurrentGraph() {
-        return g;
+        return currentGraph;
     }
     
     public void removeAll(){
-    	g.removeAll();
+    	currentGraph.removeAll();
     }
 
     @Override

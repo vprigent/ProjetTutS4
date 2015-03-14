@@ -187,16 +187,16 @@ public class Node {
                 '}' + "\n";
     }
 
+    /**
+     * Hitbox function
+     * @param mouseX position on x
+     * @param mouseY position on y
+     * @return if the node is in this position
+     */
 	public boolean contains(int mouseX, int mouseY) {
-		boolean result = false ;
-		
 		Rectangle hitbox = new Rectangle(posX,posY,size,size);
-		
-		
-		if (hitbox.contains(mouseX,mouseY))
-			result = true;
-		
-		return result ;
+
+		return hitbox.contains(mouseX+size/2,mouseY+size/2);
 	}
 
     public int getID() {
