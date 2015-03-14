@@ -1,6 +1,8 @@
 package model;
 
 import model.algorithm.*;
+import model.fileManager.GraphLoader;
+import model.fileManager.Graphml;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +18,10 @@ public class Graph {
     private String file;
     private ArrayList<Node> nodes;
     private ArrayList<Edge> edges;
+    private Algorithm algorithm;
+    private GraphLoader graphl;
+
+//57bb3f1b5bb60dafdf54653529d3f604c632eb22
 
     /**
      * Default Constructor
@@ -40,7 +46,8 @@ public class Graph {
      * Load the graph from a specific file
      */
     public void loadGraph() {
-
+       graphl=new Graphml();
+        graphl.loadGraph("graphml.xml");
     }
 
     /**

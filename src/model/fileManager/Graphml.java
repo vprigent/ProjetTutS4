@@ -26,28 +26,30 @@ public class Graphml extends GraphLoader {
     	Element racine;
         try
         {
-           //On crée un nouveau document JDOM avec en argument le fichier XML
-           //Le parsing est terminé ;)
            document = sxb.build(new File(filePath));
            
         }
-        catch(Exception e){}
+        catch(Exception e){
+
+        }
         racine = document.getRootElement();
-        List graphs =racine.getChildren("graph");
+        System.out.println(racine);
+        List graphs =racine.getChildren();
         Iterator i=graphs.iterator();
         while(i.hasNext())
         {
-        	 Element graph = (Element)i.next();
-        	 List Node=graph.getChildren("node");
+
+            Element graph = (Element)i.next();
+        	 List Node=graph.getChildren();
         	 Iterator j=Node.iterator();
         	 while(j.hasNext())
         	 {
-        		 System.out.println(((Element) Node).getText());
+                 System.out.println(((Element) j.next()).getValue());
+
         	 }
             
              
         }
-        
 
     	return null;
     }

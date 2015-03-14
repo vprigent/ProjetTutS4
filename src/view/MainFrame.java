@@ -425,10 +425,12 @@ public class MainFrame extends JFrame implements Observer {
 
 	private void loadButtonActionPerformed(ActionEvent evt) {
 		System.out.println("load");
+        controller.addDrawingController().getGraph().loadGraph();
 	}
 
 	private void saveButtonActionPerformed(ActionEvent evt) {
 		System.out.println("save");
+
 	}
 
 	private void removeButtonActionPerformed(ActionEvent evt) {
