@@ -1,5 +1,8 @@
 package model;
 
+import model.algorithm.Algorithm;
+import model.algorithm.RandomLayout;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -14,6 +17,7 @@ public class Graph {
     private String file;
     private ArrayList<Node> nodes;
     private ArrayList<Edge> edges;
+    private Algorithm algorithm;
 
     /**
      * Default Constructor
@@ -44,7 +48,10 @@ public class Graph {
     /**
      * Apply a specific algorithm to the graph
      */
-    public void applyAlgorithm() {
+    public void applyAlgorithm(String Algorithm) {
+    algorithm=new RandomLayout();
+        algorithm.Algorithm(this);
+
 
     }
 

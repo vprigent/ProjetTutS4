@@ -73,8 +73,8 @@ public class Node {
      * @param y new value on y
      */
     public void setPosition(int x, int y) {
-        if(x > maxPosition) x = maxPosition;
-        if(y > maxPosition) y = maxPosition;
+    if(x+getSize() > maxPosition) x = maxPosition;
+        if(y +getSize()> maxPosition) y = maxPosition;
         this.posX = x;
         this.posY = y;
     }

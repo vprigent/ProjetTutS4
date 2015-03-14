@@ -4,5 +4,5 @@ import model.Graph;
 
 public abstract class Algorithm {
 
-    public abstract void algorithm(Graph g);
+    public abstract void Algorithm(Graph g);
 }

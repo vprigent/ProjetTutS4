@@ -9,7 +9,7 @@ import model.Shape;
 public class CircleLayout extends Algorithm {
 
     @Override
-    public void algorithm(Graph g) {
+    public void Algorithm(Graph g) {
     	Collection<Node> myNodes = g.getNodes ();
     	
     	for (Node n : myNodes) {
