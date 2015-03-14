@@ -36,7 +36,7 @@ public class MainFrame extends JFrame implements Observer {
 	
 	private JComboBox<String> displayMode;
 	private JButton loadButton;
-	private DrawingPanel mainPanel;
+	private drawingPanel mainPanel;
 	private JPanel menuBar;
 	private JButton newButton;
 	private JButton paste;
@@ -58,7 +58,7 @@ public class MainFrame extends JFrame implements Observer {
 	
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
-		mainPanel = new DrawingPanel(controller.addDrawingController());
+		mainPanel = new drawingPanel(controller.addDrawingController());
 		toolBar = new JPanel();
 		menuBar = new JPanel();
 		newButton = new JButton();

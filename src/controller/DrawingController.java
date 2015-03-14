@@ -1,11 +1,13 @@
 package controller;
 
+import javafx.scene.shape.Circle;
 import model.Edge;
 import model.Graph;
 import model.Node;
 import model.Shape;
-import view.DrawingPanel;
+import view.drawingPanel;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -29,6 +31,17 @@ public class DrawingController {
         boolean found = false;
         int x = evt.getX();
         int y = evt.getY();
+        if(SwingUtilities.isRightMouseButton(evt))
+        {
+            System.out.println("clic droit");
+            for (Node n : graph.getNodes()) {
+                if (contains(n, x, y) && !found) {
+
+                    System.out.println("clic droit sur un noeud ");
+
+                }
+            }
+        }
 
         if (!evt.isControlDown())
             selectedNodes.clear();
@@ -72,9 +85,9 @@ public class DrawingController {
      * @return if the node is in this position
      */
     public boolean contains(Node n, int mouseX, int mouseY) {
-        Rectangle hitbox = new Rectangle(n.getPosX(), n.getPosY(), n.getSize() * DrawingPanel.defaultSize, n.getSize() * DrawingPanel.defaultSize);
+        Rectangle hitbox = new Rectangle(n.getPosX(), n.getPosY(), n.getSize() * drawingPanel.defaultSize, n.getSize() * drawingPanel.defaultSize);
 
-        return hitbox.contains(mouseX + n.getSize() * DrawingPanel.defaultSize / 2, mouseY + n.getSize() * DrawingPanel.defaultSize / 2);
+        return hitbox.contains(mouseX + n.getSize() * drawingPanel.defaultSize / 2, mouseY + n.getSize() * drawingPanel.defaultSize / 2);
     }
 
 
