@@ -1,15 +1,9 @@
 package view;
 
-
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -24,8 +18,6 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
 import model.GraphHandler;
-import model.Node;
-import model.Shape;
 import controller.Controller;
 
 
@@ -398,6 +390,7 @@ public class MainFrame extends JFrame implements Observer {
 
 		GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
 		mainPanel.setLayout(mainPanelLayout);
+        mainPanel.setLocation(0, 70);
 		mainPanelLayout.setHorizontalGroup(mainPanelLayout.createParallelGroup(
 				GroupLayout.Alignment.LEADING).addComponent(toolBar,
 				GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
@@ -461,6 +454,8 @@ public class MainFrame extends JFrame implements Observer {
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             controller.applyAlgorithm(algorithms.getSelectedItem().toString());
         }
+
+        repaint();
     }
 
 	private void zoomInActionPerformed(ActionEvent evt) {
