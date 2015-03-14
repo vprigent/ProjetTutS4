@@ -1,11 +1,10 @@
 package controller;
 
-import javafx.scene.shape.Circle;
 import model.Edge;
 import model.Graph;
 import model.Node;
 import model.Shape;
-import view.drawingPanel;
+import view.DrawingPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,30 +30,25 @@ public class DrawingController {
         boolean found = false;
         int x = evt.getX();
         int y = evt.getY();
-        if(SwingUtilities.isRightMouseButton(evt))
-        {
-            System.out.println("clic droit");
+        if (SwingUtilities.isRightMouseButton(evt)) {
             for (Node n : graph.getNodes()) {
                 if (contains(n, x, y) && !found) {
 
-                    System.out.println("clic droit sur un noeud ");
-
                 }
             }
-        }
+        } else {
+            if (!evt.isControlDown())
+                selectedNodes.clear();
 
-        if (!evt.isControlDown())
-            selectedNodes.clear();
-
-        for (Node n : graph.getNodes()) {
-            if (contains(n, x, y) && !found) {
-                selectedNodes.add(n);
-                found = true;
+            for (Node n : graph.getNodes()) {
+                if (contains(n, x, y) && !found) {
+                    selectedNodes.add(n);
+                    found = true;
+                }
             }
-        }
-
-        if (selectedNodes.isEmpty()) {
-            graph.addNode(new Node(1, x, y, "name", Shape.SQUARE, Color.BLACK));
+            if (selectedNodes.isEmpty()) {
+                graph.addNode(new Node(1, x, y, "name", Shape.SQUARE, Color.BLACK));
+            }
         }
     }
 
@@ -85,9 +79,9 @@ public class DrawingController {
      * @return if the node is in this position
      */
     public boolean contains(Node n, int mouseX, int mouseY) {
-        Rectangle hitbox = new Rectangle(n.getPosX(), n.getPosY(), n.getSize() * drawingPanel.defaultSize, n.getSize() * drawingPanel.defaultSize);
+        Rectangle hitbox = new Rectangle(n.getPosX(), n.getPosY(), n.getSize() * DrawingPanel.defaultSize, n.getSize() * DrawingPanel.defaultSize);
 
-        return hitbox.contains(mouseX + n.getSize() * drawingPanel.defaultSize / 2, mouseY + n.getSize() * drawingPanel.defaultSize / 2);
+        return hitbox.contains(mouseX + n.getSize() * DrawingPanel.defaultSize / 2, mouseY + n.getSize() * DrawingPanel.defaultSize / 2);
     }
 
 
@@ -104,10 +98,10 @@ public class DrawingController {
                     graph.addEdge(new Edge(selectedNode, isNode));
             }
             selectedNode = null;
-        } else if(selectedNodes.size() != 0) {
+        } else if (selectedNodes.size() != 0) {
             int moveOnX = evt.getX() - old_x;
             int moveOnY = evt.getY() - old_y;
-            for(Node n : selectedNodes) {
+            for (Node n : selectedNodes) {
                 n.setPosition(n.getPosX() + moveOnX, n.getPosY() + moveOnY);
             }
         }

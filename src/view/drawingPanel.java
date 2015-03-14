@@ -11,14 +11,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class drawingPanel extends JPanel {
+public class DrawingPanel extends JPanel {
 
     private Graph graph;
     private DrawingController controller;
     private double scale = 1.;
     public static final int defaultSize = 15;
 
-    public drawingPanel(final DrawingController controller) {
+    public DrawingPanel(final DrawingController controller) {
         setName("MainPanel"); // NOI18N
         setPreferredSize(new java.awt.Dimension(400, 400));
         graph = controller.getGraph();
