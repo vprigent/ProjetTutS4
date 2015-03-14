@@ -9,7 +9,7 @@ import model.Node;
 public class ColorAlgorithm extends Algorithm {
 
 	@Override
-	public void algorithm(Graph g) {
+	public void Algorithm(Graph g) {
 		Collection<Node> myNodes = g.getNodes();
 		
 		

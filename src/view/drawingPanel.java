@@ -11,7 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class DrawingPanel extends JPanel {
+class DrawingPanel extends JPanel {
 
     private Graph graph;
     private DrawingController controller;

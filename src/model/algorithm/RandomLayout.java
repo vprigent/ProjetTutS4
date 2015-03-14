@@ -10,7 +10,7 @@ import model.Shape;
 public class RandomLayout extends Algorithm {
 
     @Override
-    public void algorithm(Graph g) {
+    public void Algorithm(Graph g) {
         Collection<Node> myNodes = g.getNodes();
         
         for (Node n : myNodes) {
@@ -39,7 +39,7 @@ public class RandomLayout extends Algorithm {
             	break;
             }
             
-            int size = 1 + (int)(Math.random()*(4-1)+1);
+            int size = 1 + (int)(Math.random()*(100-1)+1);
             n.setSize(size);
         }
 

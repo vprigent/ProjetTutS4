@@ -459,8 +459,11 @@ public class MainFrame extends JFrame implements Observer {
 
 	private void algorithmsItemStateChanged(ItemEvent evt) {
 		if (evt.getStateChange() == ItemEvent.SELECTED) {
-			System.out.println(algorithms.getSelectedItem());
-		}
+                System.out.println(algorithms.getSelectedItem());
+                controller.addDrawingController().getGraph().applyAlgorithm((String) algorithms.getSelectedItem());
+
+        }
+        repaint();
 	}
 
 	private void zoomInActionPerformed(ActionEvent evt) {
