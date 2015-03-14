@@ -4,11 +4,11 @@ import model.Edge;
 import model.Graph;
 import model.Node;
 import model.Shape;
+import view.DrawingPanel;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class DrawingController {
 
@@ -32,14 +32,14 @@ public class DrawingController {
             selectedNodes.clear();
 
         for (Node n : graph.getNodes()) {
-            if (n.contains(x, y) && !found) {
+            if (contains(n, x, y) && !found) {
                 selectedNodes.add(n);
                 found = true;
             }
         }
 
         if (selectedNodes.isEmpty()) {
-            graph.addNode(new Node(25, x, y, "name", Shape.SQUARE, Color.BLACK));
+            graph.addNode(new Node(1, x, y, "name", Shape.SQUARE, Color.BLACK));
         }
     }
 
@@ -55,22 +55,37 @@ public class DrawingController {
         int y = evt.getY();
 
         for (Node n : graph.getNodes()) {
-            if (n.contains(x, y) && !found) {
+            if (contains(n, x, y) && !found) {
                 selectedNode = n;
                 found = true;
             }
         }
     }
 
+    /**
+     * Hitbox function
+     *
+     * @param mouseX position on x
+     * @param mouseY position on y
+     * @return if the node is in this position
+     */
+    public boolean contains(Node n, int mouseX, int mouseY) {
+        Rectangle hitbox = new Rectangle(n.getPosX(), n.getPosY(), n.getSize() * DrawingPanel.defaultSize, n.getSize() * DrawingPanel.defaultSize);
+
+        return hitbox.contains(mouseX + n.getSize() * DrawingPanel.defaultSize / 2, mouseY + n.getSize() * DrawingPanel.defaultSize / 2);
+    }
+
+
     public void mainPanelMouseReleased(MouseEvent evt) {
-        if(selectedNode != null) {
+        if (selectedNode != null && selectedNodes.size() == 0) {
             Node isNode = isOnNode(evt.getX(), evt.getY());
-            if(isNode == null) {
-                Node n = new Node(25, evt.getX(), evt.getY(), "name", Shape.CIRCLE, Color.BLACK);
+            if (isNode == null) {
+                Node n = new Node(1, evt.getX(), evt.getY(), "name", Shape.SQUARE, Color.BLACK);
                 graph.addNode(n);
                 graph.addEdge(new Edge(selectedNode, n));
             } else {
-                graph.addEdge(new Edge(selectedNode, isNode));
+                if (selectedNode.getID() != isNode.getID())
+                    graph.addEdge(new Edge(selectedNode, isNode));
             }
             selectedNode = null;
         }
@@ -78,13 +93,14 @@ public class DrawingController {
 
     /**
      * Utility function : return node on position x, y
+     *
      * @param x position on x
      * @param y position on y
      * @return node or null
      */
     public Node isOnNode(int x, int y) {
         for (Node n : graph.getNodes()) {
-            if (n.contains(x, y)) {
+            if (contains(n, x, y)) {
                 return n;
             }
         }

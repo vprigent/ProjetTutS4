@@ -69,6 +69,7 @@ public class Controller {
         } else if (value.equals("Taille")) {
             algorithm = new SizeAlgorithm();
         } else if (value.equals("Personnalisé")) {
+            algorithm = new PersonnalAlgorithm();
         } else {
             return;
         }

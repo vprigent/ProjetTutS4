@@ -6,7 +6,7 @@ import model.Node;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class CircleLayout extends Algorithm {
+public class CircleLayout implements Algorithm {
 
     @Override
     public void Algorithm(Graph g) {

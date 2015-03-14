@@ -3,7 +3,7 @@ package model;
 import java.awt.*;
 
 public class Node {
-    public static final int maxSize = 100;
+    public static final int maxSize = 10;
 
     public static final int maxPosition = 2000;
 
@@ -42,15 +42,15 @@ public class Node {
      * @param color color of the node
      */
     public Node(int size, int posX, int posY, String name, Shape shape, Color color) {
-        if(size > maxSize)
+        if (size > maxSize)
             size = maxSize;
         this.size = size;
 
-        if(posX > maxPosition)
+        if (posX + getSize() > maxPosition)
             posX = maxPosition;
         this.posX = posX;
 
-        if(posY > maxPosition)
+        if (posY + getSize() > maxPosition)
             posY = maxPosition;
         this.posY = posY;
 
@@ -73,8 +73,8 @@ public class Node {
      * @param y new value on y
      */
     public void setPosition(int x, int y) {
-    if(x+getSize() > maxPosition) x = maxPosition;
-        if(y +getSize()> maxPosition) y = maxPosition;
+        if (x + getSize() > maxPosition) x = maxPosition;
+        if (y + getSize() > maxPosition) y = maxPosition;
         this.posX = x;
         this.posY = y;
     }
@@ -83,14 +83,14 @@ public class Node {
      * @return value of the node
      */
     public int getValue() {
-    	return value;
+        return value;
     }
 
     /**
      * @param value the value to set
      */
     public void setValue(int value) {
-        this.value=value;
+        this.value = value;
     }
 
     /**
@@ -104,7 +104,7 @@ public class Node {
      * @param size the size to set
      */
     public void setSize(int size) {
-        if(size > maxSize) size = maxSize;
+        if (size > maxSize) size = maxSize;
         this.size = size;
     }
 
@@ -158,6 +158,13 @@ public class Node {
     }
 
     /**
+     * @return id of the node
+     */
+    public int getID() {
+        return id;
+    }
+
+    /**
      * @return name of the node
      */
     public String getName() {
@@ -170,7 +177,7 @@ public class Node {
     public void setName(String name) {
         this.name = name;
     }
-
+    
     /**
      * Debugging function
      */
@@ -185,21 +192,5 @@ public class Node {
                 ", shape=" + shape +
                 ", color=" + color +
                 '}' + "\n";
-    }
-
-    /**
-     * Hitbox function
-     * @param mouseX position on x
-     * @param mouseY position on y
-     * @return if the node is in this position
-     */
-	public boolean contains(int mouseX, int mouseY) {
-		Rectangle hitbox = new Rectangle(posX,posY,size,size);
-
-		return hitbox.contains(mouseX+size/2,mouseY+size/2);
-	}
-
-    public int getID() {
-        return id;
     }
 }

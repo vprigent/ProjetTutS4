@@ -1,13 +1,10 @@
 package model;
 
-import model.algorithm.*;
+import model.algorithm.Algorithm;
 import model.fileManager.GraphLoader;
 import model.fileManager.Graphml;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 
 
 public class Graph {
@@ -18,10 +15,7 @@ public class Graph {
     private String file;
     private ArrayList<Node> nodes;
     private ArrayList<Edge> edges;
-    private Algorithm algorithm;
     private GraphLoader graphl;
-
-//57bb3f1b5bb60dafdf54653529d3f604c632eb22
 
     /**
      * Default Constructor
@@ -46,7 +40,7 @@ public class Graph {
      * Load the graph from a specific file
      */
     public void loadGraph() {
-       graphl=new Graphml();
+        graphl = new Graphml();
         graphl.loadGraph("graphml.xml");
     }
 
@@ -86,8 +80,8 @@ public class Graph {
      * Remove a node and every edges associated
      */
     public void removeNode(Node n) {
-        for(Edge e : edges) {
-            if(e.getDestination() == n || e.getSource() == n) edges.remove(e);
+        for (Edge e : edges) {
+            if (e.getDestination() == n || e.getSource() == n) edges.remove(e);
         }
         nodes.remove(n);
     }
@@ -101,17 +95,18 @@ public class Graph {
 
     /**
      * Search and return the node with the given coordinates
+     *
      * @param x the coordinate in x of the node
      * @param y the coordinate in y of the node
      * @return the node if exist or null
      */
     public Node getNodeFromCoordinates(int x, int y) {
-        if(nodes.isEmpty()) {
+        if (nodes.isEmpty()) {
             return null;
         }
 
         for (Node n : nodes) {
-            if(n.getPosX() == x && n.getPosY() == y) {
+            if (n.getPosX() == x && n.getPosY() == y) {
                 return n;
             }
         }
@@ -125,6 +120,25 @@ public class Graph {
 
     public ArrayList<Node> getNodes() {
         return nodes;
+    }
+
+
+    /**
+     * Get thhe direct neightbours of a node
+     * @param n node
+     * @return Arraylist of neightbours
+     */
+    public ArrayList<Node> getNeightbours(Node n) {
+        ArrayList<Node> neightbours = new ArrayList<Node>();
+        for(Edge e : edges) {
+            if(n.getID() == e.getSource().getID()) {
+                neightbours.add(e.getDestination());
+            }
+            if(n.getID() == e.getDestination().getID()) {
+                neightbours.add(e.getSource());
+            }
+        }
+        return neightbours;
     }
 
     /**
@@ -141,7 +155,7 @@ public class Graph {
     public void save() {
     }
 
-    public void removeAll(){
+    public void removeAll() {
         nodes.clear();
         edges.clear();
     }

@@ -11,11 +11,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-class DrawingPanel extends JPanel {
+public class DrawingPanel extends JPanel {
 
     private Graph graph;
     private DrawingController controller;
     private double scale = 1.;
+    public static final int defaultSize = 15;
 
     public DrawingPanel(final DrawingController controller) {
         setName("MainPanel"); // NOI18N
@@ -53,7 +54,22 @@ class DrawingPanel extends JPanel {
             else
                 g.setColor(n.getColor());
 
-            g.drawRect(n.getPosX()-n.getSize()/2, n.getPosY()-n.getSize()/2, n.getSize(), n.getSize());
+            switch (n.getShape()) {
+                case SQUARE:
+                    g.drawRect(n.getPosX()-n.getSize()*defaultSize/2, n.getPosY()-n.getSize()*defaultSize/2, n.getSize()*defaultSize, n.getSize()*defaultSize);
+                    break;
+                case TRIANGLE:
+                    int[] pointsX = {n.getPosX()+n.getSize()*defaultSize/2, n.getPosX(), n.getPosX()-n.getSize()*defaultSize/2};
+                    int[] pointsY = {n.getPosY()+n.getSize()*defaultSize/2, n.getPosY()-n.getSize()*defaultSize/2, n.getPosY()+n.getSize()*defaultSize/2};
+                    g.drawPolygon(pointsX, pointsY, 3);
+                    break;
+                case CIRCLE:
+                    g.drawOval(n.getPosX()-n.getSize()*defaultSize/2, n.getPosY()-n.getSize()*defaultSize/2, n.getSize()*defaultSize, n.getSize()*defaultSize);
+                    break;
+                default:
+                    g.drawRect(n.getPosX()-n.getSize()*defaultSize/2, n.getPosY()-n.getSize()*defaultSize/2, n.getSize()*defaultSize, n.getSize()*defaultSize);
+                    break;
+            }
         }
 
         for (Edge e : graph.getEdges()) {
