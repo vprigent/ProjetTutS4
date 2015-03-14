@@ -47,7 +47,7 @@ public class Graph {
      */
     public void loadGraph() {
        graphl=new Graphml();
-        graphl.loadGraph("graphml.xml");
+       graphl.loadGraph(file);
     }
 
     /**

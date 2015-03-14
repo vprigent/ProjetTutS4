@@ -3,6 +3,7 @@ package model.fileManager;
 import model.Edge;
 import model.Graph;
 import model.Node;
+import model.Shape;
 import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -13,6 +14,7 @@ import org.jdom.output.XMLOutputter;
 
 import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Iterator;
@@ -21,6 +23,8 @@ import java.util.List;
 public class Graphml extends GraphLoader {
     @Override
     public Graph loadGraph(String filePath) {
+        Graph grp;
+        grp=new Graph();
     	SAXBuilder sxb = new SAXBuilder();
     	Document document = null;
     	Element racine;
@@ -40,18 +44,33 @@ public class Graphml extends GraphLoader {
         {
 
             Element graph = (Element)i.next();
-        	 List Node=graph.getChildren();
-        	 Iterator j=Node.iterator();
-        	 while(j.hasNext())
-        	 {
-                 System.out.println(((Element) j.next()).getValue());
+        	 List Node= graph.getChildren();
 
+        	 for (Object e : Node)
+        	 {
+                 Float weight = Float.valueOf(1);
+                 if (((Element) e).getName()=="node")
+                 {
+                     grp.addNode(new Node(25, 1 + (int)(Math.random()*(800-1)+1), 1 + (int)(Math.random()*(800-1)+1),((Element) e).getAttributeValue("id"),Shape.SQUARE,Color.getColor(((Element) e).getValue().replaceAll("\\s", "").toUpperCase())));
+                 }
+                 if (((Element) e).getName()=="edge")
+                 {
+                     if (((Element) e).getValue()!=null)
+                     {
+
+                         //grp.addEdge(new Edge((((Element) e).getAttributeValue("source")),(((Element) e).getAttributeValue("target")),false, java.awt.Color.black,((Element) e).getAttributeValue("id"),Float.parseFloat(String.valueOf(((Element) e).getValue()))));
+
+                     }
+
+                 }
+                 System.out.println(((Element) e).getAttributeValue("source"));
+                 System.out.println(((Element)e).getValue());
         	 }
             
              
         }
 
-    	return null;
+    	return grp;
     }
 
     @Override
