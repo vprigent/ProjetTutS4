@@ -17,6 +17,8 @@ public class DrawingController {
     private ArrayList<Node> selectedNodes;
     private ArrayList<Edge> selectedEdges;
     private Node selectedNode = null;
+    private int old_x;
+    private int old_y;
 
     public DrawingController(Graph graph) {
         this.graph = graph;
@@ -51,11 +53,11 @@ public class DrawingController {
     public void mainPanelMousePressed(MouseEvent evt) {
 
         boolean found = false;
-        int x = evt.getX();
-        int y = evt.getY();
+        old_x = evt.getX();
+        old_y = evt.getY();
 
         for (Node n : graph.getNodes()) {
-            if (contains(n, x, y) && !found) {
+            if (contains(n, old_x, old_y) && !found) {
                 selectedNode = n;
                 found = true;
             }
@@ -77,6 +79,7 @@ public class DrawingController {
 
 
     public void mainPanelMouseReleased(MouseEvent evt) {
+
         if (selectedNode != null && selectedNodes.size() == 0) {
             Node isNode = isOnNode(evt.getX(), evt.getY());
             if (isNode == null) {
@@ -88,6 +91,12 @@ public class DrawingController {
                     graph.addEdge(new Edge(selectedNode, isNode));
             }
             selectedNode = null;
+        } else if(selectedNodes.size() != 0) {
+            int moveOnX = evt.getX() - old_x;
+            int moveOnY = evt.getY() - old_y;
+            for(Node n : selectedNodes) {
+                n.setPosition(n.getPosX() + moveOnX, n.getPosY() + moveOnY);
+            }
         }
     }
 
