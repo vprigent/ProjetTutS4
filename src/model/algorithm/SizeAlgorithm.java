@@ -11,24 +11,19 @@ public class SizeAlgorithm implements Algorithm{
     public void Algorithm(Graph g) {
 		Collection<Node> myNodes = g.getNodes();
 
-		int nbNodes=myNodes.size();
-		
-		int minValue=-1;
-		int nextMin=1000001;
-		
-		for (int i = 1; i <= myNodes.size(); i++) {
-			for (Node n : myNodes) {
-				if (n.getValue()>minValue)
-				{
-					n.setSize(100/(nbNodes-i));
-					
-					if (n.getValue()<=nextMin) {
-						nextMin=n.getValue();
-					}
-				}
-			}
-			minValue=nextMin;
-			nextMin=1000001;
-		}
+		int range = 0;
+
+        for(Node n : myNodes) {
+            int nbNeighbours = g.getNeightbours(n).size();
+            if(nbNeighbours > range) {
+                range = nbNeighbours;
+            }
+        }
+
+        int middleRange = range/10+1;
+
+        for(Node n : myNodes) {
+            n.setSize(g.getNeightbours(n).size()/middleRange);
+        }
     }
 }
