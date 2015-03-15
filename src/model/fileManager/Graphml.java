@@ -23,23 +23,25 @@ import java.util.List;
 public class Graphml extends GraphLoader {
     @Override
     public Graph loadGraph(String filePath) {
-        Graph grp;
-        grp=new Graph();
+        Graph grp = new Graph();
     	SAXBuilder sxb = new SAXBuilder();
     	Document document = null;
     	Element racine;
+
         try
         {
            document = sxb.build(new File(filePath));
            
         }
         catch(Exception e){
-
+            System.err.println(e.getMessage());
         }
+
         racine = document.getRootElement();
         System.out.println(racine);
         List graphs =racine.getChildren();
         Iterator i=graphs.iterator();
+
         while(i.hasNext())
         {
 
