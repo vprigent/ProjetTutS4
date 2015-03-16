@@ -485,7 +485,7 @@ public class MainFrame extends JFrame implements Observer {
 	}
 
 	private void deleteActionPerformed(ActionEvent evt) {
-        controller.removeSelectedNodes();
+		controller.removeSelectedNodes();
         repaint();
 	}
 
