@@ -19,6 +19,7 @@ import javax.swing.WindowConstants;
 
 import model.GraphHandler;
 import controller.Controller;
+import model.Node;
 
 
 public class MainFrame extends JFrame implements Observer {
@@ -50,6 +51,7 @@ public class MainFrame extends JFrame implements Observer {
 
 	public MainFrame(Controller controller) {
         this.controller = controller;
+        controller.setMainFrame(this);
 		this.setVisible(true);
 		initComponents();
 	}
@@ -506,4 +508,11 @@ public class MainFrame extends JFrame implements Observer {
         repaint();
 	}
 
+    public DrawingPanel getDrawingPanel() {
+        return mainPanel;
+    }
+
+    public void createDialogNode(Node n) {
+        new DialogProperties(this, "Changement de noeud", true, n);
+    }
 }

@@ -16,7 +16,10 @@ public class DrawingController {
 
     private Graph graph;
 
+    public MainFrame mainFrame;
+
     private ArrayList<Node> selectedNodes;
+
     private ArrayList<Edge> selectedEdges;
     private Node selectedNode = null;
     private int old_x;
@@ -26,15 +29,19 @@ public class DrawingController {
         this.graph = graph;
     }
 
+    /**
+     * treat mouse click event on DrawingPanelZ
+     * @param evt mouse event
+     */
     public void mainPanelMouseClicked(MouseEvent evt) {
-        selectedNode=null;
+        selectedNode = null;
         boolean found = false;
         int x = evt.getX();
         int y = evt.getY();
         if (SwingUtilities.isRightMouseButton(evt)) {
             for (Node n : graph.getNodes()) {
                 if (contains(n, x, y) && !found) {
-                
+                    mainFrame.createDialogNode(n);
                 }
             }
         } else {
@@ -47,7 +54,7 @@ public class DrawingController {
                     found = true;
                 }
             }
-            if (selectedNodes.isEmpty() && y>=70) {
+            if (selectedNodes.isEmpty() && y >= 70) {
                 graph.addNode(new Node(1, x, y, "name", Shape.SQUARE, Color.BLACK));
             }
         }
@@ -56,7 +63,6 @@ public class DrawingController {
     public Graph getGraph() {
         return graph;
     }
-
 
     public void mainPanelMousePressed(MouseEvent evt) {
 
@@ -72,6 +78,7 @@ public class DrawingController {
         }
     }
 
+
     /**
      * Hitbox function
      *
@@ -84,7 +91,6 @@ public class DrawingController {
 
         return hitbox.contains(mouseX + n.getSize() * DrawingPanel.defaultSize / 2, mouseY + n.getSize() * DrawingPanel.defaultSize / 2);
     }
-
 
     public void mainPanelMouseReleased(MouseEvent evt) {
 
@@ -107,6 +113,7 @@ public class DrawingController {
             }
         }
     }
+
 
     /**
      * Utility function : return node on position x, y
@@ -138,6 +145,10 @@ public class DrawingController {
 
     public void setSelectedNodes(ArrayList<Node> selectedNodes) {
         this.selectedNodes = selectedNodes;
+    }
+
+    public void setMainFrame(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
     }
 
 }

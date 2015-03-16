@@ -12,6 +12,5 @@ public class Main {
         MainFrame mainFrame = new MainFrame(c);
 
         graphHandler.addObserver(mainFrame);
-
     }
 }

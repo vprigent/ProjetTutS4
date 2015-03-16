@@ -2,11 +2,13 @@
 
 # Personal exclusion #
 out/
-.idea/
 bin/
+.idea/
 saves/
 .classpath
 .projet
+.project
+.metadata/
 *.iml
 
 
