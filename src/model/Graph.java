@@ -122,25 +122,6 @@ public class Graph {
         return nodes;
     }
 
-
-    /**
-     * Get thhe direct neightbours of a node
-     * @param n node
-     * @return Arraylist of neightbours
-     */
-    public ArrayList<Node> getNeightbours(Node n) {
-        ArrayList<Node> neightbours = new ArrayList<Node>();
-        for(Edge e : edges) {
-            if(n.getID() == e.getSource().getID()) {
-                neightbours.add(e.getDestination());
-            }
-            if(n.getID() == e.getDestination().getID()) {
-                neightbours.add(e.getSource());
-            }
-        }
-        return neightbours;
-    }
-
     /**
      * @return name of the graph
      */

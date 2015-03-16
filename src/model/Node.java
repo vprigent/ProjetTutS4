@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Node {
     public static final int maxSize = 10;
@@ -17,6 +18,7 @@ public class Node {
     private String name;
     private Color color = Color.BLACK;
     private Shape shape = Shape.SQUARE;
+    private ArrayList<Node> neighbours;
 
     /**
      * Default constructor
@@ -27,6 +29,7 @@ public class Node {
         this.posX = 0;
         this.posY = 0;
         this.name = "";
+        this.neighbours = new ArrayList<Node>();
         this.id = Node.maxID;
         Node.maxID++;
     }
@@ -57,6 +60,7 @@ public class Node {
         this.name = name;
         this.shape = shape;
         this.color = color;
+        this.neighbours = new ArrayList<Node>();
         this.id = Node.maxID;
         Node.maxID++;
     }
@@ -65,7 +69,6 @@ public class Node {
      * @param shape the shape to set
      */
     public void setShape(Shape shape) {
-
         this.shape = shape;
     }
 
@@ -178,7 +181,28 @@ public class Node {
     public void setName(String name) {
         this.name = name;
     }
-    
+
+    /**
+     * @return List of neighbours
+     */
+    public ArrayList<Node> getNeighbours() {
+        return neighbours;
+    }
+
+    /**
+     * @return false if the neighbour is already in list
+     */
+    public boolean addNeighbour(Node node) {
+        for(Node n : neighbours) {
+            if(n.getID() == node.getID())
+                return false;
+        }
+
+        neighbours.add(node);
+
+        return true;
+    }
+
     /**
      * Debugging function
      */

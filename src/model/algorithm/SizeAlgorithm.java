@@ -14,7 +14,7 @@ public class SizeAlgorithm implements Algorithm{
 		int range = 0;
 
         for(Node n : myNodes) {
-            int nbNeighbours = g.getNeightbours(n).size();
+            int nbNeighbours = n.getNeighbours().size();
             if(nbNeighbours > range) {
                 range = nbNeighbours;
             }
@@ -23,7 +23,7 @@ public class SizeAlgorithm implements Algorithm{
         int middleRange = range/10+1;
 
         for(Node n : myNodes) {
-            n.setSize(g.getNeightbours(n).size()/middleRange);
+            n.setSize(n.getNeighbours().size()/middleRange+1);
         }
     }
 }
