@@ -7,15 +7,7 @@ import java.awt.event.ItemListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.LayoutStyle;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import model.GraphHandler;
 import controller.Controller;
@@ -27,28 +19,29 @@ public class MainFrame extends JFrame implements Observer {
     private GraphHandler model;
 
 	// Variables declaration
-	private JButton add;
-	
+	private JMenuItem add;
+
 	private JComboBox<String> algorithms;
-	private JButton copy;
-	private JButton cut;
+	private JMenuItem copy;
+	private JMenuItem cut;
 	private JButton delete;
 	
 	private JComboBox<String> displayMode;
-	private JButton loadButton;
+	private JMenuItem loadButton;
 	private DrawingPanel mainPanel;
-	private JPanel menuBar;
-	private JButton newButton;
-	private JButton paste;
-	private JButton redo;
-	private JButton removeButton;
-	private JButton saveButton;
-	private JPanel toolBar;
-	private JButton undo;
-	private JButton zoomIn;
-	private JButton zoomOut;
+	private JMenuBar menuBar;
+	private JMenuItem newButton;
+	private JMenuItem paste;
+	private JMenuItem redo;
+	private JMenuItem removeButton;
+	private JMenuItem saveButton;
+	private JMenuBar toolBar;
+	private JMenuItem undo;
+	private JMenuItem zoomIn;
+	private JMenuItem zoomOut;
 
 	public MainFrame(Controller controller) {
+
         this.controller = controller;
 		this.setVisible(true);
 		initComponents();
@@ -58,23 +51,36 @@ public class MainFrame extends JFrame implements Observer {
 	
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
+
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
 		mainPanel = new DrawingPanel(controller.addDrawingController());
-		toolBar = new JPanel();
-		menuBar = new JPanel();
-		newButton = new JButton();
-		loadButton = new JButton();
-		saveButton = new JButton();
-		removeButton = new JButton();
-		undo = new JButton();
-		redo = new JButton();
+		toolBar = new JMenuBar();
+		menuBar = new JMenuBar();
+		newButton = new JMenuItem();
+		loadButton = new JMenuItem();
+		saveButton = new JMenuItem();
+		removeButton = new JMenuItem();
+		undo = new JMenuItem();
+		redo = new JMenuItem();
 		displayMode = new JComboBox<String>();
 		algorithms = new JComboBox<String>();
-		zoomIn = new JButton();
-		zoomOut = new JButton();
-		copy = new JButton();
-		cut = new JButton();
-		paste = new JButton();
-		add = new JButton();
+		zoomIn = new JMenuItem();
+		zoomOut = new JMenuItem();
+		copy = new JMenuItem();
+		cut = new JMenuItem();
+		paste = new JMenuItem();
+		add = new JMenuItem();
 		delete = new JButton();
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -92,8 +98,6 @@ public class MainFrame extends JFrame implements Observer {
 		newButton.setFocusPainted(false);
 		newButton.setFocusable(false);
 		newButton.setText("Nouveau");
-		newButton.setMaximumSize(new java.awt.Dimension(69, 30));
-		newButton.setMinimumSize(new java.awt.Dimension(69, 30));
 		newButton.setName("new"); // NOI18N
 		newButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -106,8 +110,6 @@ public class MainFrame extends JFrame implements Observer {
 		loadButton.setFocusPainted(false);
 		loadButton.setFocusable(false);
 		loadButton.setText("Charger");
-		loadButton.setMaximumSize(new java.awt.Dimension(65, 30));
-		loadButton.setMinimumSize(new java.awt.Dimension(65, 30));
 		loadButton.setName("load"); // NOI18N
 		loadButton.setOpaque(true);
 		loadButton.addActionListener(new ActionListener() {
@@ -133,8 +135,6 @@ public class MainFrame extends JFrame implements Observer {
 		removeButton.setFocusPainted(false);
 		removeButton.setFocusable(false);
 		removeButton.setText("Supprimer");
-		removeButton.setMaximumSize(new java.awt.Dimension(79, 30));
-		removeButton.setMinimumSize(new java.awt.Dimension(79, 30));
 		removeButton.setName("remove"); // NOI18N
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
