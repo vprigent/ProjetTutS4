@@ -5,6 +5,7 @@ import model.Graph;
 import model.Node;
 import model.Shape;
 import view.DrawingPanel;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,14 +27,14 @@ public class DrawingController {
     }
 
     public void mainPanelMouseClicked(MouseEvent evt) {
-
+        selectedNode=null;
         boolean found = false;
         int x = evt.getX();
         int y = evt.getY();
         if (SwingUtilities.isRightMouseButton(evt)) {
             for (Node n : graph.getNodes()) {
                 if (contains(n, x, y) && !found) {
-
+                
                 }
             }
         } else {

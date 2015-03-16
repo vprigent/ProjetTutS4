@@ -36,6 +36,7 @@ public class Controller {
                         selectedEdges.add(e);
                     }
                 }
+
                 graphHandler.getNodes().remove(n);
             }
         }
