@@ -24,7 +24,7 @@ public class MainFrame extends JFrame implements Observer {
 	private JComboBox<String> algorithms;
 	private JMenuItem copy;
 	private JMenuItem cut;
-	private JButton delete;
+	private JMenuItem delete;
 	
 	private JComboBox<String> displayMode;
 	private JMenuItem loadButton;
@@ -81,7 +81,7 @@ public class MainFrame extends JFrame implements Observer {
 		cut = new JMenuItem();
 		paste = new JMenuItem();
 		add = new JMenuItem();
-		delete = new JButton();
+		delete = new JMenuItem();
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Graph Drawer");
@@ -94,7 +94,6 @@ public class MainFrame extends JFrame implements Observer {
 		menuBar.setBackground(new java.awt.Color(65, 65, 65));
 
 		newButton.setBackground(new java.awt.Color(65, 65, 65));
-		newButton.setForeground(new java.awt.Color(254, 254, 254));
 		newButton.setFocusPainted(false);
 		newButton.setFocusable(false);
 		newButton.setText("Nouveau");
@@ -106,12 +105,10 @@ public class MainFrame extends JFrame implements Observer {
 		});
 
 		loadButton.setBackground(new java.awt.Color(65, 65, 65));
-		loadButton.setForeground(new java.awt.Color(254, 254, 254));
 		loadButton.setFocusPainted(false);
 		loadButton.setFocusable(false);
 		loadButton.setText("Charger");
 		loadButton.setName("load"); // NOI18N
-		loadButton.setOpaque(true);
 		loadButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				loadButtonActionPerformed(evt);
@@ -119,7 +116,6 @@ public class MainFrame extends JFrame implements Observer {
 		});
 
 		saveButton.setBackground(new java.awt.Color(65, 65, 65));
-		saveButton.setForeground(new java.awt.Color(254, 254, 254));
 		saveButton.setFocusPainted(false);
 		saveButton.setFocusable(false);
 		saveButton.setText("Sauvegarder");
@@ -131,7 +127,6 @@ public class MainFrame extends JFrame implements Observer {
 		});
 
 		removeButton.setBackground(new java.awt.Color(65, 65, 65));
-		removeButton.setForeground(new java.awt.Color(254, 254, 254));
 		removeButton.setFocusPainted(false);
 		removeButton.setFocusable(false);
 		removeButton.setText("Supprimer");
