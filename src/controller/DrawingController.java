@@ -46,7 +46,7 @@ public class DrawingController {
                     found = true;
                 }
             }
-            if (selectedNodes.isEmpty()) {
+            if (selectedNodes.isEmpty() && y>=70) {
                 graph.addNode(new Node(1, x, y, "name", Shape.SQUARE, Color.BLACK));
             }
         }
