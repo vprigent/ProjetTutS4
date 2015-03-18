@@ -1,25 +1,17 @@
 package view;
 
+import controller.Controller;
+import model.Edge;
+import model.GraphHandler;
+import model.Node;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Observable;
 import java.util.Observer;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.LayoutStyle;
-import javax.swing.WindowConstants;
-
-import model.GraphHandler;
-import controller.Controller;
-import model.Node;
 
 
 public class MainFrame extends JFrame implements Observer {
@@ -513,6 +505,9 @@ public class MainFrame extends JFrame implements Observer {
     }
 
     public void createDialogNode(Node n) {
-        new DialogProperties(this, "Changement de noeud", true, n);
+        new DialogProperties(this, "Changement de noeud", false, n);
     }
+	public void createDialogEdge(Edge e){
+		new DialogPropertiesEdge(this, "Changement de noeud", false, e);
+	}
 }

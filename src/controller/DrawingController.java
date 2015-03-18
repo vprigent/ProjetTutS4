@@ -34,6 +34,7 @@ public class DrawingController {
      * @param evt mouse event
      */
     public void mainPanelMouseClicked(MouseEvent evt) {
+        boolean newnode=false;
         selectedNode = null;
         boolean found = false;
         int x = evt.getX();
@@ -42,11 +43,21 @@ public class DrawingController {
             for (Node n : graph.getNodes()) {
                 if (contains(n, x, y) && !found) {
                     mainFrame.createDialogNode(n);
+
+                }
+
+
+            }
+            for (Edge e : graph.getEdges()) {
+                if(EdgeContain(e, x, y)) {
+                    mainFrame.createDialogEdge(e);//size don't work
                 }
             }
         } else {
-            if (!evt.isControlDown())
+            if (!evt.isControlDown()) {
                 selectedNodes.clear();
+                selectedEdges.clear();
+            }
 
             for (Node n : graph.getNodes()) {
                 if (contains(n, x, y) && !found) {
@@ -54,7 +65,14 @@ public class DrawingController {
                     found = true;
                 }
             }
-            if (selectedNodes.isEmpty() && y >= 70) {
+            for (Edge e : graph.getEdges()) {
+            if(EdgeContain(e,x,y))
+            {
+                selectedEdges.add(e);
+                newnode=true;
+            }
+            }
+            if (selectedNodes.isEmpty() && y >= 70&&!newnode) {
                 graph.addNode(new Node(1, x, y, "name", Shape.SQUARE, Color.BLACK));
             }
         }
@@ -91,6 +109,14 @@ public class DrawingController {
 
         return hitbox.contains(mouseX + n.getSize() * DrawingPanel.defaultSize / 2, mouseY + n.getSize() * DrawingPanel.defaultSize / 2);
     }
+    public Boolean EdgeContain(Edge e,int mouseX,int mouseY){
+    Polygon p=new Polygon();
+    p.addPoint(e.getSource().getPosX() + e.getSource().getSize(), e.getSource().getPosY() + e.getSource().getSize());
+        p.addPoint(e.getSource().getPosX() - e.getSource().getSize(), e.getSource().getPosY() - e.getSource().getSize());
+        p.addPoint(e.getDestination().getPosX() + e.getDestination().getSize(), e.getDestination().getPosY() + e.getDestination().getSize());
+        p.addPoint(e.getDestination().getPosX() - e.getDestination().getSize(), e.getDestination().getPosY() - e.getDestination().getSize());
+    return (p.intersects(mouseX,mouseY,4,4));
+}
 
     public void mainPanelMouseReleased(MouseEvent evt) {
 
