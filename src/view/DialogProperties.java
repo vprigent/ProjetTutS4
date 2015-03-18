@@ -3,9 +3,6 @@ import model.Node;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-/**
- * Created by basbournas on 16/03/15.
- */
 
 
 public class DialogProperties extends JDialog {

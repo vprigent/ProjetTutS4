@@ -7,8 +7,7 @@ import org.junit.Test;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class GraphTest {
     protected Graph g;
@@ -39,7 +38,7 @@ public class GraphTest {
         Node n = new Node();
         g.addNode(n);
         g.moveNode(n, 1,5);
-        ArrayList<Node> nodes = (ArrayList)g.getNodes();
+        ArrayList<Node> nodes = g.getNodes();
         assertEquals(nodes.get(0).getPosX(), 1);
         assertEquals(nodes.get(0).getPosY(), 5);
     }
@@ -53,7 +52,7 @@ public class GraphTest {
         g.addNode(n);
         assertEquals(g.getNodes().size(), 2);
 
-        ArrayList<Node> nodes = (ArrayList)g.getNodes();
+        ArrayList<Node> nodes = g.getNodes();
         assertTrue(nodes.get(0) != n);
 
         for(int i = 0 ; i < 10000; i++) {
@@ -86,8 +85,28 @@ public class GraphTest {
 
         ArrayList<Node> nodes = (ArrayList)g.getNodes();
         assertTrue(nodes.get(0) == n);
+        assertTrue(g.getNodes().contains(n));
         g.removeNode(n);
         assertEquals(g.getNodes().size(), 0);
+
+        Node nd = new Node();
+        g.addNode(nd);
+
+        for(int i =0; i< 100; i++) {
+            g.addNode(new Node());
+        }
+
+        assertEquals(g.getNodes().size(), 101);
+        assertTrue(g.getNodes().contains(nd));
+        g.removeNode(nd);
+        assertFalse(g.getNodes().contains(nd));
+        assertEquals(g.getNodes().size(), 100);
+
+        g.addNode(n);
+        g.addNode(nd);
+        g.addEdge(new Edge(n, nd));
+        g.removeNode(n);
+        assertFalse(g.getNodes().contains(n));
     }
 
     @Test
