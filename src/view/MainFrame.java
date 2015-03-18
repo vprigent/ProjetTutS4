@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import model.Edge;
 import model.GraphHandler;
 import model.Node;
 
@@ -506,4 +507,7 @@ public class MainFrame extends JFrame implements Observer {
     public void createDialogNode(Node n) {
         new DialogProperties(this, "Changement de noeud", false, n);
     }
+	public void createDialogEdge(Edge e){
+		new DialogPropertiesEdge(this, "Changement de noeud", false, e);
+	}
 }
