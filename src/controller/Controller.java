@@ -4,6 +4,7 @@ import model.Edge;
 import model.GraphHandler;
 import model.Node;
 import model.algorithm.*;
+import view.MainFrame;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public class Controller {
     private ArrayList<Node> selectedNodes;
     private ArrayList<Edge> selectedEdges;
     private DrawingController drawingController;
-
+    public MainFrame mainFrame;
 
     public Controller(GraphHandler graphHandler) {
         this.graphHandler = graphHandler;
@@ -25,6 +26,7 @@ public class Controller {
         drawingController = new DrawingController(graphHandler.getCurrentGraph());
         drawingController.setSelectedNodes(selectedNodes);
         drawingController.setSelectedEdges(selectedEdges);
+        drawingController.setMainFrame(mainFrame);
         return drawingController;
     }
 
@@ -36,6 +38,7 @@ public class Controller {
                         selectedEdges.add(e);
                     }
                 }
+
                 graphHandler.getNodes().remove(n);
             }
         }
@@ -76,6 +79,10 @@ public class Controller {
 
         graphHandler.getCurrentGraph().applyAlgorithm(algorithm);
 
+    }
+
+    public void setMainFrame(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
     }
 
 }

@@ -66,8 +66,5 @@ public class Graphvis extends GraphLoader {
         }
 
         str.append("}");
-
-        System.out.println(str);
-
     }
 }

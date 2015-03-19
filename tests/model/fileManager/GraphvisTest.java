@@ -32,7 +32,6 @@ public class GraphvisTest {
 
         String[] temp = g.split("[\\{*\\}]");
 
-
         for (int i = 0; i < temp.length; i++) {
             temp[i] = temp[i].trim();
         }
@@ -50,6 +49,6 @@ public class GraphvisTest {
         g.addNode(nd);
         g.addEdge(new Edge(n, nd));
 
-        filemanager.saveGraph(g, "test.dot");
+        filemanager.saveGraph(g, "saves/test.dot");
     }
 }

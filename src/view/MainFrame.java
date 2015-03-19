@@ -1,5 +1,12 @@
 package view;
 
+
+import controller.Controller;
+import model.Edge;
+import model.GraphHandler;
+import model.Node;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,12 +14,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Observable;
 import java.util.Observer;
-
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicArrowButton;
-
-import model.GraphHandler;
-import controller.Controller;
 
 
 public class MainFrame extends JFrame implements Observer {
@@ -27,13 +28,15 @@ public class MainFrame extends JFrame implements Observer {
 
     public MainFrame(Controller controller) {
         this.controller = controller;
+        controller.setMainFrame(this);
+
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         initComponents();
-	}
-	
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
-	private void initComponents() {
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+    private void initComponents() {
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -47,7 +50,7 @@ public class MainFrame extends JFrame implements Observer {
             e.printStackTrace();
         }
 
-		mainPanel = new DrawingPanel(controller.addDrawingController());
+        mainPanel = new DrawingPanel(controller.addDrawingController());
         JMenuBar menuBar = new JMenuBar();
         JToolBar toolBar = new JToolBar();
 
@@ -64,8 +67,8 @@ public class MainFrame extends JFrame implements Observer {
         JMenu about = new JMenu("A propos");
         JMenuItem help = new JMenuItem("Aide");
 
-		displayMode = new JComboBox<String>();
-		algorithms = new JComboBox<String>();
+        displayMode = new JComboBox<String>();
+        algorithms = new JComboBox<String>();
 
         JButton zoomIn = new JButton();
         JButton zoomOut = new JButton();
@@ -78,10 +81,10 @@ public class MainFrame extends JFrame implements Observer {
         JButton redoButton = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setTitle("Graph Drawer");
-		setMinimumSize(new Dimension(800, 400));
-		setName("MainFrame");
-		setPreferredSize(new Dimension(800, 600));
+        setTitle("Graph Drawer");
+        setMinimumSize(new Dimension(800, 400));
+        setName("MainFrame");
+        setPreferredSize(new Dimension(800, 600));
 
         // add elements on menu bar
         fileMenu.add(newButton);
@@ -111,28 +114,28 @@ public class MainFrame extends JFrame implements Observer {
         this.add(mainPanel, BorderLayout.CENTER);
 
 
-		newButton.addActionListener(new ActionListener() {
+        newButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 newButtonActionPerformed(evt);
             }
         });
 
-		loadButton.addActionListener(new ActionListener() {
+        loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 loadButtonActionPerformed(evt);
             }
         });
 
-		saveButton.addActionListener(new ActionListener() {
+        saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 saveButtonActionPerformed(evt);
             }
         });
 
-		remove.addActionListener(new ActionListener() {
+        remove.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 removeButtonActionPerformed(evt);
@@ -141,7 +144,7 @@ public class MainFrame extends JFrame implements Observer {
 
         undo.setIcon(new ImageIcon(getClass().getResource(
                 "icons/DataContainer_MovePreviousHS.png")));
-		undo.addActionListener(new ActionListener() {
+        undo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 undoActionPerformed(evt);
@@ -158,7 +161,7 @@ public class MainFrame extends JFrame implements Observer {
 
         redo.setIcon(new ImageIcon(getClass().getResource(
                 "icons/DataContainer_MoveNextHS.png")));
-		redo.addActionListener(new ActionListener() {
+        redo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 redoActionPerformed(evt);
@@ -175,10 +178,10 @@ public class MainFrame extends JFrame implements Observer {
 
         displayMode.setModel(new DefaultComboBoxModel<String>(new String[]{
                 "Tout afficher", "Sommets", "Arrêtes"}));
-		displayMode.addItemListener(new ItemListener() {
+        displayMode.addItemListener(new ItemListener() {
             @Override
-			public void itemStateChanged(ItemEvent evt) {
-				displayModeItemStateChanged(evt);
+            public void itemStateChanged(ItemEvent evt) {
+                displayModeItemStateChanged(evt);
             }
         });
 
@@ -186,15 +189,15 @@ public class MainFrame extends JFrame implements Observer {
                 "Aucun Algorithme", "Aleatoire", "Circulaire",
                 "Modele de force", "Colorisation", "Calcul d'indice", "Taille",
                 "Personnalisé"}));
-		algorithms.addItemListener(new ItemListener() {
+        algorithms.addItemListener(new ItemListener() {
             @Override
-			public void itemStateChanged(ItemEvent evt) {
-				algorithmsItemStateChanged(evt);
+            public void itemStateChanged(ItemEvent evt) {
+                algorithmsItemStateChanged(evt);
             }
         });
 
         zoomIn.setIcon(new ImageIcon(getClass().getResource("icons/zoomIn.png")));
-		zoomIn.addActionListener(new ActionListener() {
+        zoomIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 zoomInActionPerformed(evt);
@@ -202,7 +205,7 @@ public class MainFrame extends JFrame implements Observer {
         });
 
         zoomOut.setIcon(new ImageIcon(getClass().getResource("icons/zoomOut.png")));
-		zoomOut.addActionListener(new ActionListener() {
+        zoomOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 zoomOutActionPerformed(evt);
@@ -210,7 +213,7 @@ public class MainFrame extends JFrame implements Observer {
         });
 
         copy.setIcon(new ImageIcon(getClass().getResource("icons/copy.png")));
-		copy.addActionListener(new ActionListener() {
+        copy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 copyActionPerformed(evt);
@@ -218,7 +221,7 @@ public class MainFrame extends JFrame implements Observer {
         });
 
         cut.setIcon(new ImageIcon(getClass().getResource("icons/cut.png")));
-		cut.addActionListener(new ActionListener() {
+        cut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 cutActionPerformed(evt);
@@ -226,7 +229,7 @@ public class MainFrame extends JFrame implements Observer {
         });
 
         paste.setIcon(new ImageIcon(getClass().getResource("icons/paste.png")));
-		paste.addActionListener(new ActionListener() {
+        paste.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 pasteActionPerformed(evt);
@@ -234,8 +237,8 @@ public class MainFrame extends JFrame implements Observer {
         });
 
         add.setIcon(new ImageIcon(getClass().getResource("icons/add.png"))); //
-		add.setToolTipText("");
-		add.addActionListener(new ActionListener() {
+        add.setToolTipText("");
+        add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 addActionPerformed(evt);
@@ -243,51 +246,51 @@ public class MainFrame extends JFrame implements Observer {
         });
 
         delete.setIcon(new ImageIcon(getClass().getResource("icons/delete.png")));
-		delete.addActionListener(new ActionListener() {
+        delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 deleteActionPerformed(evt);
             }
         });
 
-		pack();
-	}// </editor-fold>
+        pack();
+    }// </editor-fold>
 
-	// Actions
-	private void newButtonActionPerformed(ActionEvent evt) {
-		System.out.println("new");
-	}
+    // Actions
+    private void newButtonActionPerformed(ActionEvent evt) {
+        System.out.println("new");
+    }
 
-	private void loadButtonActionPerformed(ActionEvent evt) {
-		System.out.println("load");
+    private void loadButtonActionPerformed(ActionEvent evt) {
+        System.out.println("load");
         controller.addDrawingController().getGraph().loadGraph();
-	}
+    }
 
-	private void saveButtonActionPerformed(ActionEvent evt) {
-		System.out.println("save");
+    private void saveButtonActionPerformed(ActionEvent evt) {
+        System.out.println("save");
 
-	}
+    }
 
-	private void removeButtonActionPerformed(ActionEvent evt) {
+    private void removeButtonActionPerformed(ActionEvent evt) {
         controller.removeAllNodes();
-		mainPanel.repaint();
-	}
+        mainPanel.repaint();
+    }
 
-	private void undoActionPerformed(ActionEvent evt) {
-		System.out.println("undo");
-	}
+    private void undoActionPerformed(ActionEvent evt) {
+        System.out.println("undo");
+    }
 
-	private void redoActionPerformed(ActionEvent evt) {
-		System.out.println("redo");
-	}
+    private void redoActionPerformed(ActionEvent evt) {
+        System.out.println("redo");
+    }
 
-	private void displayModeItemStateChanged(ItemEvent evt) {
-		if (evt.getStateChange() == ItemEvent.SELECTED) {
-			System.out.println(displayMode.getSelectedItem());
-		}
-	}
+    private void displayModeItemStateChanged(ItemEvent evt) {
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            System.out.println(displayMode.getSelectedItem());
+        }
+    }
 
-	private void algorithmsItemStateChanged(ItemEvent evt) {
+    private void algorithmsItemStateChanged(ItemEvent evt) {
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             controller.applyAlgorithm(algorithms.getSelectedItem().toString());
         }
@@ -295,50 +298,61 @@ public class MainFrame extends JFrame implements Observer {
         repaint();
     }
 
-	private void zoomInActionPerformed(ActionEvent evt) {
-		System.out.println("zoomIn");
-	}
+    private void zoomInActionPerformed(ActionEvent evt) {
+        System.out.println("zoomIn");
+    }
 
-	private void zoomOutActionPerformed(ActionEvent evt) {
-		System.out.println("zoomOut");
-	}
+    private void zoomOutActionPerformed(ActionEvent evt) {
+        System.out.println("zoomOut");
+    }
 
-	private void copyActionPerformed(ActionEvent evt) {
-		System.out.println("copy");
-	}
+    private void copyActionPerformed(ActionEvent evt) {
+        System.out.println("copy");
+    }
 
-	private void cutActionPerformed(ActionEvent evt) {
-		System.out.println("cut");
-	}
+    private void cutActionPerformed(ActionEvent evt) {
+        System.out.println("cut");
+    }
 
-	private void pasteActionPerformed(ActionEvent evt) {
-		System.out.println("paste");
-	}
+    private void pasteActionPerformed(ActionEvent evt) {
+        System.out.println("paste");
+    }
 
-	private void addActionPerformed(ActionEvent evt) {
-		System.out.println("add");
-	}
+    private void addActionPerformed(ActionEvent evt) {
+        System.out.println("add");
+    }
 
-	private void deleteActionPerformed(ActionEvent evt) {
+    private void deleteActionPerformed(ActionEvent evt) {
         controller.removeSelectedNodes();
         repaint();
-	}
+    }
 
-	private void drawGraph() {
+    private void drawGraph() {
         mainPanel.revalidate();
         mainPanel.repaint();
-	}
+    }
 
-	@Override
-	public void repaint() {
-		drawGraph();
-	}
+    @Override
+    public void repaint() {
+        drawGraph();
+    }
 
-	@Override
-	public void update(Observable arg0, Object arg1) {
+    @Override
+    public void update(Observable arg0, Object arg1) {
         model = (GraphHandler) arg1;
         revalidate();
         repaint();
-	}
+    }
 
+    public DrawingPanel getDrawingPanel() {
+        return mainPanel;
+    }
+
+    public void createDialogNode(Node n) {
+        new DialogProperties(this, "Changement de noeud", false, n);
+    }
+
+    public void createDialogEdge(Edge e) {
+        new DialogPropertiesEdge(this, "Changement de noeud", false, e);
+    }
 }

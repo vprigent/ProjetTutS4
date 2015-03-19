@@ -30,6 +30,8 @@ public class Edge {
         this.color = Color.black;
         this.source = source;
         this.destination = destination;
+        source.addNeighbour(destination);
+        destination.addNeighbour(source);
     }
 
     /**
@@ -52,6 +54,8 @@ public class Edge {
         if(weight > maxWeight)
             weight = maxWeight;
         this.weight = weight;
+        source.addNeighbour(destination);
+        destination.addNeighbour(source);
     }
 
     public int getweight() {

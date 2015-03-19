@@ -80,8 +80,11 @@ public class Graph {
      * Remove a node and every edges associated
      */
     public void removeNode(Node n) {
-        for (Edge e : edges) {
-            if (e.getDestination() == n || e.getSource() == n) edges.remove(e);
+        for (int i =0; i < edges.size(); i++) {
+            if (edges.get(i).getDestination() == n || edges.get(i).getSource() == n) {
+                edges.remove(i);
+                i = edges.size();
+            }
         }
         nodes.remove(n);
     }
@@ -122,25 +125,6 @@ public class Graph {
         return nodes;
     }
 
-
-    /**
-     * Get thhe direct neightbours of a node
-     * @param n node
-     * @return Arraylist of neightbours
-     */
-    public ArrayList<Node> getNeightbours(Node n) {
-        ArrayList<Node> neightbours = new ArrayList<Node>();
-        for(Edge e : edges) {
-            if(n.getID() == e.getSource().getID()) {
-                neightbours.add(e.getDestination());
-            }
-            if(n.getID() == e.getDestination().getID()) {
-                neightbours.add(e.getSource());
-            }
-        }
-        return neightbours;
-    }
-
     /**
      * @return name of the graph
      */
@@ -155,9 +139,12 @@ public class Graph {
     public void save() {
     }
 
+    /**
+     * Clear the graph, by removing edges and nodes
+     */
     public void removeAll() {
-        nodes.clear();
         edges.clear();
+        nodes.clear();
     }
 
     /**

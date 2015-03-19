@@ -71,7 +71,6 @@ public class DrawingPanel extends JPanel {
                     break;
             }
         }
-
         for (Edge e : graph.getEdges()) {
             if(controller.getSelectedEdges() != null) {
                 if (controller.getSelectedEdges().contains(e))

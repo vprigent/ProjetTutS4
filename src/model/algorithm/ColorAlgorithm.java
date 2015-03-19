@@ -36,7 +36,7 @@ public class ColorAlgorithm implements Algorithm {
             n.setColor(Color.BLACK);
 
         for (Node n : myNodes) {
-            for (Node neightbours : g.getNeightbours(n)) {
+            for (Node neightbours : n.getNeighbours()) {
                 for (int i = 0; i < usualColors.size(); i++) {
                     if (neightbours.getColor() == usualColors.get(i)) {
                         usedColors.set(i, true);
