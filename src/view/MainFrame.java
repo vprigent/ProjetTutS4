@@ -18,36 +18,16 @@ public class MainFrame extends JFrame implements Observer {
     private Controller controller;
     private GraphHandler model;
 
-	// Variables declaration
-	private JMenuItem add;
+    private JComboBox<String> algorithms;
 
-	private JComboBox<String> algorithms;
-	private JMenuItem copy;
-	private JMenuItem cut;
-	private JMenuItem delete;
-	
-	private JComboBox<String> displayMode;
-	private JMenuItem loadButton;
-	private DrawingPanel mainPanel;
-	private JMenuBar menuBar;
-	private JMenuItem newButton;
-	private JMenuItem paste;
-	private JMenuItem redo;
-	private JMenuItem removeButton;
-	private JMenuItem saveButton;
-	private JMenuBar toolBar;
-	private JMenuItem undo;
-	private JMenuItem zoomIn;
-	private JMenuItem zoomOut;
+    private JComboBox<String> displayMode;
+    private DrawingPanel mainPanel;
 
-	public MainFrame(Controller controller) {
-
+    public MainFrame(Controller controller) {
         this.controller = controller;
 		this.setVisible(true);
 		initComponents();
 	}
-
-	// Generated code : don't modify
 	
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
@@ -65,23 +45,29 @@ public class MainFrame extends JFrame implements Observer {
         }
 
 		mainPanel = new DrawingPanel(controller.addDrawingController());
-		toolBar = new JMenuBar();
-		menuBar = new JMenuBar();
-		newButton = new JMenuItem();
-		loadButton = new JMenuItem();
-		saveButton = new JMenuItem();
-		removeButton = new JMenuItem();
-		undo = new JMenuItem();
-		redo = new JMenuItem();
+        JMenuBar toolBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("Fichiers");
+        JMenuItem newButton = new JMenuItem();
+        JMenuItem loadButton = new JMenuItem();
+        JMenuItem saveButton = new JMenuItem();
+
+        JMenu modifier = new JMenu("Modifier");
+        JMenuItem removeButton = new JMenuItem();
+        JMenuItem undo = new JMenuItem("Annuler");
+        JMenuItem redo = new JMenuItem("Répéter");
+
 		displayMode = new JComboBox<String>();
 		algorithms = new JComboBox<String>();
-		zoomIn = new JMenuItem();
-		zoomOut = new JMenuItem();
-		copy = new JMenuItem();
-		cut = new JMenuItem();
-		paste = new JMenuItem();
-		add = new JMenuItem();
-		delete = new JMenuItem();
+
+        JMenuItem zoomIn = new JMenuItem();
+        JMenuItem zoomOut = new JMenuItem();
+        JMenuItem copy = new JMenuItem();
+        JMenuItem cut = new JMenuItem();
+        JMenuItem paste = new JMenuItem();
+        JMenuItem add = new JMenuItem();
+        JMenuItem delete = new JMenuItem();
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Graph Drawer");
@@ -89,128 +75,85 @@ public class MainFrame extends JFrame implements Observer {
 		setName("MainFrame"); // NOI18N
 		setPreferredSize(new java.awt.Dimension(800, 600));
 
-		toolBar.setBackground(new java.awt.Color(65, 65, 65));
+        fileMenu.add(newButton);
+        fileMenu.add(loadButton);
+        fileMenu.add(saveButton);
+        menuBar.add(fileMenu);
+        this.setJMenuBar(menuBar);
 
-		menuBar.setBackground(new java.awt.Color(65, 65, 65));
+        modifier.add(removeButton);
+        modifier.add(undo);
+        modifier.add(redo);
+        menuBar.add(modifier);
+
+        this.setLocationRelativeTo(null);
+
+        toolBar.setVisible(true);
+        this.setContentPane(toolBar);
 
 		newButton.setBackground(new java.awt.Color(65, 65, 65));
-		newButton.setFocusPainted(false);
 		newButton.setFocusable(false);
 		newButton.setText("Nouveau");
 		newButton.setName("new"); // NOI18N
 		newButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				newButtonActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                newButtonActionPerformed(evt);
+            }
+        });
 
 		loadButton.setBackground(new java.awt.Color(65, 65, 65));
-		loadButton.setFocusPainted(false);
 		loadButton.setFocusable(false);
 		loadButton.setText("Charger");
 		loadButton.setName("load"); // NOI18N
 		loadButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				loadButtonActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                loadButtonActionPerformed(evt);
+            }
+        });
 
 		saveButton.setBackground(new java.awt.Color(65, 65, 65));
-		saveButton.setFocusPainted(false);
 		saveButton.setFocusable(false);
 		saveButton.setText("Sauvegarder");
 		saveButton.setName("save"); // NOI18N
 		saveButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				saveButtonActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
 		removeButton.setBackground(new java.awt.Color(65, 65, 65));
-		removeButton.setFocusPainted(false);
 		removeButton.setFocusable(false);
 		removeButton.setText("Supprimer");
 		removeButton.setName("remove"); // NOI18N
 		removeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				removeButtonActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
 
 		GroupLayout menuBarLayout = new GroupLayout(menuBar);
 
-		menuBar.setLayout(menuBarLayout);
-		menuBarLayout.setHorizontalGroup(menuBarLayout.createParallelGroup(
-				GroupLayout.Alignment.LEADING)
-				.addGroup(
-						menuBarLayout
-								.createSequentialGroup()
-								.addComponent(newButton,
-										GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(
-										LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(loadButton,
-										GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(
-										LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(saveButton)
-								.addPreferredGap(
-										LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(removeButton,
-										GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addGap(0, 0, Short.MAX_VALUE)));
-
-		menuBarLayout.setVerticalGroup(menuBarLayout.createParallelGroup(
-				GroupLayout.Alignment.LEADING).addGroup(
-				GroupLayout.Alignment.TRAILING,
-				menuBarLayout
-						.createSequentialGroup()
-						.addGap(0, 0, Short.MAX_VALUE)
-						.addGroup(
-								menuBarLayout
-										.createParallelGroup(
-												GroupLayout.Alignment.BASELINE)
-										.addComponent(newButton,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(loadButton,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(saveButton)
-										.addComponent(removeButton,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE))));
-
 		undo.setIcon(new ImageIcon(getClass().getResource(
-				"icons/DataContainer_MovePreviousHS.png"))); // NOI18N
+                "icons/DataContainer_MovePreviousHS.png"))); // NOI18N
 		undo.setFocusPainted(false);
 		undo.setFocusable(false);
 		undo.setName("undo"); // NOI18N
 		undo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				undoActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                undoActionPerformed(evt);
+            }
+        });
 
 		redo.setIcon(new ImageIcon(getClass().getResource(
-				"icons/DataContainer_MoveNextHS.png"))); // NOI18N
+                "icons/DataContainer_MoveNextHS.png"))); // NOI18N
 		redo.setFocusPainted(false);
 		redo.setFocusable(false);
 		redo.setName("undo"); // NOI18N
 		redo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				redoActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                redoActionPerformed(evt);
+            }
+        });
 
 		displayMode.setModel(new DefaultComboBoxModel<String>(new String[] {
 				"Tout afficher", "Sommets", "Arrêtes" }));
@@ -235,183 +178,67 @@ public class MainFrame extends JFrame implements Observer {
 		zoomIn.setIcon(new ImageIcon(getClass().getResource("icons/zoomIn.png"))); // NOI18N
 		zoomIn.setFocusable(false);
 		zoomIn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				zoomInActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                zoomInActionPerformed(evt);
+            }
+        });
 
 		zoomOut.setIcon(new ImageIcon(getClass().getResource(
-				"icons/zoomOut.png"))); // NOI18N
+                "icons/zoomOut.png"))); // NOI18N
 		zoomOut.setFocusable(false);
 		zoomOut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				zoomOutActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                zoomOutActionPerformed(evt);
+            }
+        });
 
 		copy.setIcon(new ImageIcon(getClass().getResource("icons/copy.png"))); // NOI18N
 		copy.setFocusable(false);
 		copy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				copyActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                copyActionPerformed(evt);
+            }
+        });
 
 		cut.setIcon(new ImageIcon(getClass().getResource("icons/cut.png"))); // NOI18N
 		cut.setFocusable(false);
 		cut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				cutActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                cutActionPerformed(evt);
+            }
+        });
 
 		paste.setIcon(new ImageIcon(getClass().getResource("icons/paste.png"))); // NOI18N
 		paste.setFocusable(false);
 		paste.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				pasteActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                pasteActionPerformed(evt);
+            }
+        });
 
 		add.setIcon(new ImageIcon(getClass().getResource("icons/add.png"))); // NOI18N
 		add.setToolTipText("");
 		add.setFocusable(false);
 		add.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				addActionPerformed(evt);
-			}
-		});
+            public void actionPerformed(ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
 
 		delete.setIcon(new ImageIcon(getClass().getResource("icons/delete.png"))); // NOI18N
 		delete.setFocusable(false);
 		delete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				deleteActionPerformed(evt);
-			}
-		});
-
-		GroupLayout toolBarLayout = new GroupLayout(toolBar);
-		toolBar.setLayout(toolBarLayout);
-		toolBarLayout
-				.setHorizontalGroup(toolBarLayout
-						.createParallelGroup(GroupLayout.Alignment.LEADING)
-						.addGroup(
-								toolBarLayout
-										.createSequentialGroup()
-										.addComponent(undo)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(redo)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.UNRELATED)
-										.addComponent(displayMode,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(algorithms,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(zoomIn)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(zoomOut)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(copy)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(cut)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(paste)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(add)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(delete)
-										.addGap(0, 256, Short.MAX_VALUE))
-						.addComponent(menuBar, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-
-		toolBarLayout
-				.setVerticalGroup(toolBarLayout
-						.createParallelGroup(GroupLayout.Alignment.LEADING)
-						.addGroup(
-								toolBarLayout
-										.createSequentialGroup()
-										.addComponent(menuBar,
-												GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												LayoutStyle.ComponentPlacement.RELATED,
-												GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addGroup(
-												toolBarLayout
-														.createParallelGroup(
-																GroupLayout.Alignment.LEADING)
-														.addGroup(
-																toolBarLayout
-																		.createParallelGroup(
-																				GroupLayout.Alignment.BASELINE)
-																		.addComponent(
-																				displayMode,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addComponent(
-																				algorithms,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addComponent(
-																				zoomIn))
-														.addComponent(zoomOut)
-														.addComponent(copy)
-														.addComponent(cut)
-														.addComponent(redo)
-														.addComponent(undo)
-														.addComponent(paste)
-														.addComponent(add)
-														.addComponent(delete))
-										.addContainerGap()));
+            public void actionPerformed(ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
 
 		GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
 		mainPanel.setLayout(mainPanelLayout);
         mainPanel.setLocation(0, 70);
-		mainPanelLayout.setHorizontalGroup(mainPanelLayout.createParallelGroup(
-				GroupLayout.Alignment.LEADING).addComponent(toolBar,
-				GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-				Short.MAX_VALUE));
-
-		mainPanelLayout.setVerticalGroup(mainPanelLayout.createParallelGroup(
-				GroupLayout.Alignment.LEADING).addGroup(
-				mainPanelLayout
-						.createSequentialGroup()
-						.addComponent(toolBar, GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(397, Short.MAX_VALUE)));
-
-		GroupLayout layout = new GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(
-				GroupLayout.Alignment.LEADING).addComponent(mainPanel,
-				GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE));
-		layout.setVerticalGroup(layout.createParallelGroup(
-				GroupLayout.Alignment.LEADING).addComponent(mainPanel,
-				GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE));
 
 		pack();
 	}// </editor-fold>
-	// End of Generated code
 
 	// Actions
 	private void newButtonActionPerformed(ActionEvent evt) {
