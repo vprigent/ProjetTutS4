@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Graphvis extends GraphLoader {
     @Override
-    public Graph loadGraph(String filePath) {
+    public Graph loadGraph(String filePath, Graph graph) {
 
         try {
             // récupérer tout le fichier pour ensuite exploiter ses infos

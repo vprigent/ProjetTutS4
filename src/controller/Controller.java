@@ -11,11 +11,11 @@ import java.util.ArrayList;
 public class Controller {
 
     private GraphHandler graphHandler;
+
     private ArrayList<Node> selectedNodes;
     private ArrayList<Edge> selectedEdges;
     private DrawingController drawingController;
     public MainFrame mainFrame;
-
     public Controller(GraphHandler graphHandler) {
         this.graphHandler = graphHandler;
         this.selectedNodes = new ArrayList<Node>();
@@ -56,7 +56,7 @@ public class Controller {
 
     public void applyAlgorithm(String value) {
 
-        Algorithm algorithm = null;
+        IAlgorithm algorithm = null;
 
         if (value.equals("Aleatoire")) {
             algorithm = new RandomLayout();
@@ -79,6 +79,10 @@ public class Controller {
 
         graphHandler.getCurrentGraph().applyAlgorithm(algorithm);
 
+    }
+
+    public GraphHandler getGraphHandler() {
+        return graphHandler;
     }
 
     public void setMainFrame(MainFrame mainFrame) {

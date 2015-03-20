@@ -12,9 +12,6 @@ public class DialogPropertiesEdge extends JDialog {
 
     Edge selected;
 
-    private JPanel tools;
-    private JButton test;
-
     public DialogPropertiesEdge(final JFrame parent, String title, boolean modal, final Edge selected) {
 
         //On appelle le construteur de JDialog correspondant
@@ -22,10 +19,10 @@ public class DialogPropertiesEdge extends JDialog {
         this.selected = selected;
         //On spécifie une taille
         JPanel messagePane = new JPanel();
-        messagePane.add(new JLabel("propriétés du Noeud"));
+        messagePane.add(new JLabel("propriétés de l'arête"));
         final JSpinner size = new JSpinner();
         final JColorChooser color = new JColorChooser();
-        size.setValue((Integer) selected.getweight());
+        size.setValue(selected.getweight());
         getContentPane().add(messagePane);
 
         JPanel buttonPane = new JPanel();

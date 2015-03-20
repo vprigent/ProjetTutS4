@@ -5,7 +5,7 @@ import java.util.Collection;
 import model.Graph;
 import model.Node;
 
-public class SizeAlgorithm implements Algorithm{
+public class SizeAlgorithm implements IAlgorithm{
 
     @Override
     public void Algorithm(Graph g) {

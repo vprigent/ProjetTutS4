@@ -1,8 +1,9 @@
 package model;
 
-import model.algorithm.Algorithm;
+import model.algorithm.IAlgorithm;
 import model.fileManager.GraphLoader;
 import model.fileManager.Graphml;
+import model.fileManager.Graphvis;
 
 import java.util.ArrayList;
 
@@ -33,21 +34,31 @@ public class Graph {
      */
     public Graph(String file) {
         this.file = file;
-        this.loadGraph();
+
+        try {
+            this.loadGraph();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Load the graph from a specific file
      */
-    public void loadGraph() {
-        graphl = new Graphml();
-        graphl.loadGraph("graphml.xml");
+    private void loadGraph() throws Exception {
+        if(file.endsWith("xml") || file.endsWith("graphml")) {
+            new Graphml().loadGraph(file, this);
+        } else if(file.endsWith("dot")) {
+            new Graphvis().loadGraph(file, this);
+        } else {
+            throw new Exception("Error on load file");
+        }
     }
 
     /**
      * Apply a specific algorithm to the graph
      */
-    public void applyAlgorithm(Algorithm algorithm) {
+    public void applyAlgorithm(IAlgorithm algorithm) {
         algorithm.Algorithm(this);
     }
 

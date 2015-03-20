@@ -3,10 +3,12 @@ package view;
 
 import controller.Controller;
 import model.Edge;
+import model.Graph;
 import model.GraphHandler;
 import model.Node;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +27,7 @@ public class MainFrame extends JFrame implements Observer {
     private JComboBox<String> displayMode;
 
     private DrawingPanel mainPanel;
+    private JFileChooser jFileChooser;
 
     public MainFrame(Controller controller) {
         this.controller = controller;
@@ -51,6 +54,9 @@ public class MainFrame extends JFrame implements Observer {
         }
 
         mainPanel = new DrawingPanel(controller.addDrawingController());
+
+        jFileChooser = new JFileChooser();
+
         JMenuBar menuBar = new JMenuBar();
         JToolBar toolBar = new JToolBar();
 
@@ -262,8 +268,12 @@ public class MainFrame extends JFrame implements Observer {
     }
 
     private void loadButtonActionPerformed(ActionEvent evt) {
-        System.out.println("load");
-        controller.addDrawingController().getGraph().loadGraph();
+        int returnVal = jFileChooser.showOpenDialog(this);
+        jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Graph files", "xml", "dot", "graphml"));
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            String selectedFile = jFileChooser.getSelectedFile().getName();
+            controller.getGraphHandler().addGraph(new Graph(selectedFile));
+        }
     }
 
     private void saveButtonActionPerformed(ActionEvent evt) {
@@ -286,7 +296,6 @@ public class MainFrame extends JFrame implements Observer {
 
     private void displayModeItemStateChanged(ItemEvent evt) {
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            System.out.println(displayMode.getSelectedItem());
         }
     }
 
@@ -353,6 +362,6 @@ public class MainFrame extends JFrame implements Observer {
     }
 
     public void createDialogEdge(Edge e) {
-        new DialogPropertiesEdge(this, "Changement de noeud", false, e);
+        new DialogPropertiesEdge(this, "Changement d'arête", false, e);
     }
 }

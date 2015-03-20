@@ -10,9 +10,12 @@ import java.util.Observer;
 
 public class GraphHandler extends Observable {
     private Graph currentGraph;
+    private ArrayList<Graph> graphs;
 
     public GraphHandler() {
     	currentGraph = new Graph();
+        graphs = new ArrayList<Graph>();
+        graphs.add(currentGraph);
     }
 
     public void addNode(Node node) {
@@ -28,19 +31,18 @@ public class GraphHandler extends Observable {
     public ArrayList<Edge> getEdges() { return currentGraph.getEdges();}
 
     public void createNewGraph() {
-        if (currentGraph != null) currentGraph.save();
+        if (currentGraph != null)
+            currentGraph.save();
         currentGraph = new Graph();
-    }
-
-    public void loadGraphFromFile(String path) {
-        currentGraph = new Graph(path);
+        graphs.add(currentGraph);
     }
 
     public Graph getCurrentGraph() {
         return currentGraph;
     }
-    
-    public void removeAll(){
+
+
+    public void removeAllOnCurrentGraph(){
     	currentGraph.removeAll();
     }
 
@@ -49,5 +51,12 @@ public class GraphHandler extends Observable {
         super.addObserver(o);
         setChanged();
         notifyObservers(this);
+    }
+
+    public void addGraph(Graph g) {
+        if(currentGraph != null)
+            currentGraph.save();
+        currentGraph = g;
+        graphs.add(g);
     }
 }

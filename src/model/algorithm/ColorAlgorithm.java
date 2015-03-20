@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
-public class ColorAlgorithm implements Algorithm {
+public class ColorAlgorithm implements IAlgorithm {
 
     @Override
     public void Algorithm(Graph g) {

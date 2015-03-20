@@ -21,7 +21,7 @@ public class GraphvisTest {
         g = new Graph();
         filemanager = new Graphvis();
 
-        filemanager.loadGraph("tests/graphvis.dot");
+        filemanager.loadGraph("tests/graphvis.dot", new Graph());
     }
 
 

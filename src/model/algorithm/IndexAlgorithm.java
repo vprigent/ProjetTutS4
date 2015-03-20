@@ -2,7 +2,7 @@ package model.algorithm;
 
 import model.Graph;
 
-public class IndexAlgorithm implements Algorithm {
+public class IndexAlgorithm implements IAlgorithm {
 
     @Override
     public void Algorithm(Graph g) {

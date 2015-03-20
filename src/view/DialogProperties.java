@@ -13,9 +13,6 @@ public class DialogProperties extends JDialog {
 
     Node selected;
 
-    private JPanel tools;
-    private JButton test;
-
     public DialogProperties(final JFrame parent, String title, boolean modal, final Node selected) {
 
         //On appelle le construteur de JDialog correspondant
@@ -26,7 +23,7 @@ public class DialogProperties extends JDialog {
         messagePane.add(new JLabel("propriétés du Noeud"));
         final JSpinner size = new JSpinner();
         final JColorChooser color = new JColorChooser();
-        size.setValue((Integer) selected.getSize());
+        size.setValue(selected.getSize());
         getContentPane().add(messagePane);
 
         JPanel buttonPane = new JPanel();
@@ -77,8 +74,6 @@ public class DialogProperties extends JDialog {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 selected.setColor(color.showDialog(null, "Choose a Color", null));
-
-
             }
         });
 

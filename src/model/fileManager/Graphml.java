@@ -22,8 +22,7 @@ import java.util.List;
 
 public class Graphml extends GraphLoader {
     @Override
-    public Graph loadGraph(String filePath) {
-        Graph grp = new Graph();
+    public Graph loadGraph(String filePath, Graph graph) {
     	SAXBuilder sxb = new SAXBuilder();
     	Document document = null;
     	Element racine;
@@ -45,22 +44,22 @@ public class Graphml extends GraphLoader {
         while(i.hasNext())
         {
 
-            Element graph = (Element)i.next();
-        	 List Node= graph.getChildren();
+             Element grp = (Element)i.next();
+        	 List Node = grp.getChildren();
 
         	 for (Object e : Node)
         	 {
                  Float weight = Float.valueOf(1);
                  if (((Element) e).getName()=="node")
                  {
-                     grp.addNode(new Node(25, 1 + (int)(Math.random()*(800-1)+1), 1 + (int)(Math.random()*(800-1)+1),((Element) e).getAttributeValue("id"),Shape.SQUARE,Color.getColor(((Element) e).getValue().replaceAll("\\s", "").toUpperCase())));
+                     graph.addNode(new Node(25, 1 + (int)(Math.random()*(800-1)+1), 1 + (int)(Math.random()*(800-1)+1),((Element) e).getAttributeValue("id"),Shape.SQUARE,Color.getColor(((Element) e).getValue().replaceAll("\\s", "").toUpperCase())));
                  }
                  if (((Element) e).getName()=="edge")
                  {
                      if (((Element) e).getValue()!=null)
                      {
 
-                         //grp.addEdge(new Edge((((Element) e).getAttributeValue("source")),(((Element) e).getAttributeValue("target")),false, java.awt.Color.black,((Element) e).getAttributeValue("id"),Float.parseFloat(String.valueOf(((Element) e).getValue()))));
+                         //graph.addEdge(new Edge((((Element) e).getAttributeValue("source")),(((Element) e).getAttributeValue("target")),false, java.awt.Color.black,((Element) e).getAttributeValue("id"),Float.parseFloat(String.valueOf(((Element) e).getValue()))));
 
                      }
 
@@ -72,7 +71,7 @@ public class Graphml extends GraphLoader {
              
         }
 
-    	return grp;
+    	return graph;
     }
 
     @Override

@@ -7,7 +7,7 @@ import model.Shape;
 import java.awt.*;
 import java.util.Collection;
 
-public class RandomLayout implements Algorithm {
+public class RandomLayout implements IAlgorithm {
 
     @Override
     public void Algorithm(Graph g) {
