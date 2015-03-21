@@ -317,13 +317,16 @@ public class MainFrame extends JFrame implements Observer {
         }
     }
 
-    private void zoomInActionPerformed(ActionEvent evt) {
-        System.out.println("zoomIn");
+    private void zoomInActionPerformed(ActionEvent evt){
+    controller.zoomIn();
+        repaint();
     }
 
     private void zoomOutActionPerformed(ActionEvent evt) {
-        System.out.println("zoomOut");
+        controller.zoomOut();
+        repaint();
     }
+
 
     private void copyActionPerformed(ActionEvent evt) {
         System.out.println("copy");

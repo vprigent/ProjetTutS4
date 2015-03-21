@@ -180,4 +180,20 @@ public class Controller {
             }
         }
     }
+    public void zoomIn()
+    {
+        Graph graph = graphHandler.getCurrentGraph();
+        for(Node n:graph.getNodes())
+        {
+            n.setPosition(n.getPosX()*2,n.getPosY()*2);
+        }
+    }
+    public void zoomOut()
+    {
+        Graph graph = graphHandler.getCurrentGraph();
+        for(Node n:graph.getNodes())
+        {
+            n.setPosition(n.getPosX()/2,n.getPosY()/2);
+        }
+    }
 }
