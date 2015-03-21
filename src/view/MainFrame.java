@@ -56,6 +56,8 @@ public class MainFrame extends JFrame implements Observer {
         mainPanel = new DrawingPanel(controller.addDrawingController());
 
         jFileChooser = new JFileChooser();
+        jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("XML files", "xml", "graphml"));
+        jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Graphvis files", "dot"));
 
         JMenuBar menuBar = new JMenuBar();
         JToolBar toolBar = new JToolBar();
@@ -268,7 +270,6 @@ public class MainFrame extends JFrame implements Observer {
 
     private void loadButtonActionPerformed(ActionEvent evt) {
         int returnVal = jFileChooser.showOpenDialog(this);
-        jFileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Graph files", "xml", "dot", "graphml"));
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             String selectedFile = jFileChooser.getSelectedFile().getName();
             controller.getGraphHandler().addGraph(new Graph(selectedFile));
@@ -276,8 +277,15 @@ public class MainFrame extends JFrame implements Observer {
     }
 
     private void saveButtonActionPerformed(ActionEvent evt) {
-        System.out.println("save");
-
+        int returnVal = jFileChooser.showOpenDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            String selectedFile = jFileChooser.getSelectedFile().getName();
+            try {
+                model.getCurrentGraph().save(selectedFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void removeButtonActionPerformed(ActionEvent evt) {

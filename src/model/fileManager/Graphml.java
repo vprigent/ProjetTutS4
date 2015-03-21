@@ -12,8 +12,6 @@ import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
-
 import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
@@ -23,55 +21,39 @@ import java.util.List;
 public class Graphml extends GraphLoader {
     @Override
     public Graph loadGraph(String filePath, Graph graph) {
-    	SAXBuilder sxb = new SAXBuilder();
-    	Document document = null;
-    	Element racine;
+        SAXBuilder sxb = new SAXBuilder();
+        Document document = null;
+        Element racine;
 
-        try
-        {
-           document = sxb.build(new File(filePath));
-           
-        }
-        catch(Exception e){
+        try {
+            document = sxb.build(new File(filePath));
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
 
         racine = document.getRootElement();
-        System.out.println(racine);
-        List graphs =racine.getChildren();
-        Iterator i=graphs.iterator();
+        List graphs = racine.getChildren();
 
-        while(i.hasNext())
-        {
+        for (Object graph1 : graphs) {
 
-             Element grp = (Element)i.next();
-        	 List Node = grp.getChildren();
+            Element grp = (Element) graph1;
+            List Node = grp.getChildren();
 
-        	 for (Object e : Node)
-        	 {
-                 Float weight = Float.valueOf(1);
-                 if (((Element) e).getName()=="node")
-                 {
-                     graph.addNode(new Node(25, 1 + (int)(Math.random()*(800-1)+1), 1 + (int)(Math.random()*(800-1)+1),((Element) e).getAttributeValue("id"),Shape.SQUARE,Color.getColor(((Element) e).getValue().replaceAll("\\s", "").toUpperCase())));
-                 }
-                 if (((Element) e).getName()=="edge")
-                 {
-                     if (((Element) e).getValue()!=null)
-                     {
-
-                         //graph.addEdge(new Edge((((Element) e).getAttributeValue("source")),(((Element) e).getAttributeValue("target")),false, java.awt.Color.black,((Element) e).getAttributeValue("id"),Float.parseFloat(String.valueOf(((Element) e).getValue()))));
-
-                     }
-
-                 }
-                 System.out.println(((Element) e).getAttributeValue("source"));
-                 System.out.println(((Element)e).getValue());
-        	 }
-            
-             
+            for (Object e : Node) {
+                if (((Element) e).getName().equals("node")) {
+                    graph.addNode(new Node(25, 1 + (int) (Math.random() * (800 - 1) + 1), 1 + (int) (Math.random() * (800 - 1) + 1), ((Element) e).getAttributeValue("id"), Shape.SQUARE, Color.getColor(((Element) e).getValue().replaceAll("\\s", "").toUpperCase())));
+                }
+                if (((Element) e).getName().equals("edge")) {
+                    if (((Element) e).getValue() != null) {
+                        //graph.addEdge(new Edge((((Element) e).getAttributeValue("source")),(((Element) e).getAttributeValue("target")),false, java.awt.Color.black,((Element) e).getAttributeValue("id"),Float.parseFloat(String.valueOf(((Element) e).getValue()))));
+                    }
+                }
+                System.out.println(((Element) e).getAttributeValue("source"));
+                System.out.println(((Element) e).getValue());
+            }
         }
 
-    	return graph;
+        return graph;
     }
 
     @Override
@@ -167,7 +149,7 @@ public class Graphml extends GraphLoader {
             edge.setAttribute("source", String.valueOf(e.getSource().getID()));
             edge.setAttribute("target", String.valueOf(e.getDestination().getID()));
 
-            if(e.isOriented()) {
+            if (e.isOriented()) {
                 edge.setAttribute("directed", "true");
             }
 

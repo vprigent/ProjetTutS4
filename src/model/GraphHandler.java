@@ -31,8 +31,17 @@ public class GraphHandler extends Observable {
     public ArrayList<Edge> getEdges() { return currentGraph.getEdges();}
 
     public void createNewGraph() {
-        if (currentGraph != null)
-            currentGraph.save();
+        if (currentGraph != null) {
+            String path = "/saves/defaultsave.dot";
+            if(currentGraph.getFile() != null) {
+                path = currentGraph.getFile();
+            }
+            try {
+                currentGraph.save(path);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         currentGraph = new Graph();
         graphs.add(currentGraph);
         notifyObservers(this);
@@ -55,8 +64,17 @@ public class GraphHandler extends Observable {
     }
 
     public void addGraph(Graph g) {
-        if(currentGraph != null)
-            currentGraph.save();
+        if(currentGraph != null) {
+            String path = "/saves/defaultsave.dot";
+            if(currentGraph.getFile() != null) {
+                path = currentGraph.getFile();
+            }
+            try {
+                currentGraph.save(path);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         currentGraph = g;
         graphs.add(g);
         notifyObservers(this);

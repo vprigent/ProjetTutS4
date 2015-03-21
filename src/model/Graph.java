@@ -13,11 +13,12 @@ public class Graph {
     public static final int defaultThickness = 1;
 
     private String name = "Default";
+
     private String file;
+
     private ArrayList<Node> nodes;
     private ArrayList<Edge> edges;
     private GraphLoader graphl;
-
     /**
      * Default Constructor
      */
@@ -25,7 +26,6 @@ public class Graph {
         this.nodes = new ArrayList<Node>();
         this.edges = new ArrayList<Edge>();
     }
-
 
     /**
      * Constructor
@@ -42,17 +42,33 @@ public class Graph {
         }
     }
 
+
     /**
      * Load the graph from a specific file
      */
     private void loadGraph() throws Exception {
-        if(file.endsWith("xml") || file.endsWith("graphml")) {
+        if (file.endsWith("xml") || file.endsWith("graphml")) {
             new Graphml().loadGraph(file, this);
-        } else if(file.endsWith("dot")) {
+        } else if (file.endsWith("dot")) {
             new Graphvis().loadGraph(file, this);
         } else {
             throw new Exception("Error on load file");
         }
+    }
+
+    /**
+     * Save the current graph on a file
+     */
+    public void save(String path) throws Exception {
+        this.file = path;
+        if (file.endsWith("xml") || file.endsWith("graphml")) {
+            new Graphml().saveGraph(this, file);
+        } else if (file.endsWith("dot")) {
+            new Graphvis().saveGraph(this, file);
+        } else {
+            throw new Exception("Error on save file");
+        }
+
     }
 
     /**
@@ -91,7 +107,7 @@ public class Graph {
      * Remove a node and every edges associated
      */
     public void removeNode(Node n) {
-        for (int i =0; i < edges.size(); i++) {
+        for (int i = 0; i < edges.size(); i++) {
             if (edges.get(i).getDestination() == n || edges.get(i).getSource() == n) {
                 edges.remove(i);
                 i = edges.size();
@@ -144,10 +160,10 @@ public class Graph {
     }
 
     /**
-     * TODO : mise en place du système de sauvegarde, si le fichier n'a pas été créé, le créer en demandant à l'utilisateur quel format choisir
-     * Save the current graph on a file
+     * @return path of the file
      */
-    public void save() {
+    public String getFile() {
+        return file;
     }
 
     /**
