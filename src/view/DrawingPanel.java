@@ -17,10 +17,10 @@ public class DrawingPanel extends JPanel {
     private DrawingController controller;
     private double scale = 1.;
     public static final int defaultSize = 15;
+    private int itemVisible = 0;
 
     public DrawingPanel(final DrawingController controller) {
-        setName("MainPanel"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(400, 400));
+        setName("MainPanel");
         graph = controller.getGraph();
         this.controller = controller;
 
@@ -48,38 +48,47 @@ public class DrawingPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        for (Node n : graph.getNodes()) {
-            if (controller.getSelectedNodes().contains(n))
-                g.setColor(Color.RED);
-            else
-                g.setColor(n.getColor());
-
-            switch (n.getShape()) {
-                case SQUARE:
-                    g.drawRect(n.getPosX()-n.getSize()*defaultSize/2, n.getPosY()-n.getSize()*defaultSize/2, n.getSize()*defaultSize, n.getSize()*defaultSize);
-                    break;
-                case TRIANGLE:
-                    int[] pointsX = {n.getPosX()+n.getSize()*defaultSize/2, n.getPosX(), n.getPosX()-n.getSize()*defaultSize/2};
-                    int[] pointsY = {n.getPosY()+n.getSize()*defaultSize/2, n.getPosY()-n.getSize()*defaultSize/2, n.getPosY()+n.getSize()*defaultSize/2};
-                    g.drawPolygon(pointsX, pointsY, 3);
-                    break;
-                case CIRCLE:
-                    g.drawOval(n.getPosX()-n.getSize()*defaultSize/2, n.getPosY()-n.getSize()*defaultSize/2, n.getSize()*defaultSize, n.getSize()*defaultSize);
-                    break;
-                default:
-                    g.drawRect(n.getPosX()-n.getSize()*defaultSize/2, n.getPosY()-n.getSize()*defaultSize/2, n.getSize()*defaultSize, n.getSize()*defaultSize);
-                    break;
-            }
-        }
-        for (Edge e : graph.getEdges()) {
-            if(controller.getSelectedEdges() != null) {
-                if (controller.getSelectedEdges().contains(e))
+        if (itemVisible != 2) {
+            for (Node n : graph.getNodes()) {
+                if (controller.getSelectedNodes().contains(n))
                     g.setColor(Color.RED);
                 else
-                    g.setColor(e.getColor());
-            }
+                    g.setColor(n.getColor());
 
-            g.drawLine(e.getSource().getPosX(), e.getSource().getPosY(), e.getDestination().getPosX(), e.getDestination().getPosY());
+                switch (n.getShape()) {
+                    case SQUARE:
+                        g.drawRect(n.getPosX() - n.getSize() * defaultSize / 2, n.getPosY() - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
+                        break;
+                    case TRIANGLE:
+                        int[] pointsX = {n.getPosX() + n.getSize() * defaultSize / 2, n.getPosX(), n.getPosX() - n.getSize() * defaultSize / 2};
+                        int[] pointsY = {n.getPosY() + n.getSize() * defaultSize / 2, n.getPosY() - n.getSize() * defaultSize / 2, n.getPosY() + n.getSize() * defaultSize / 2};
+                        g.drawPolygon(pointsX, pointsY, 3);
+                        break;
+                    case CIRCLE:
+                        g.drawOval(n.getPosX() - n.getSize() * defaultSize / 2, n.getPosY() - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
+                        break;
+                    default:
+                        g.drawRect(n.getPosX() - n.getSize() * defaultSize / 2, n.getPosY() - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
+                        break;
+                }
+            }
         }
+        if (itemVisible != 1) {
+            for (Edge e : graph.getEdges()) {
+                if (controller.getSelectedEdges() != null) {
+                    if (controller.getSelectedEdges().contains(e))
+                        g.setColor(Color.RED);
+                    else
+                        g.setColor(e.getColor());
+                }
+                ((Graphics2D)g).setStroke(new BasicStroke(e.getWeight()));
+
+                g.drawLine(e.getSource().getPosX(), e.getSource().getPosY(), e.getDestination().getPosX(), e.getDestination().getPosY());
+            }
+        }
+    }
+
+    public void setItemVisible(int itemVisible) {
+        this.itemVisible = itemVisible;
     }
 }

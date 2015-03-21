@@ -22,7 +22,7 @@ public class DialogPropertiesEdge extends JDialog {
         messagePane.add(new JLabel("propriétés de l'arête"));
         final JSpinner size = new JSpinner();
         final JColorChooser color = new JColorChooser();
-        size.setValue(selected.getweight());
+        size.setValue(selected.getWeight());
         getContentPane().add(messagePane);
 
         JPanel buttonPane = new JPanel();

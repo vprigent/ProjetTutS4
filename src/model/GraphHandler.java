@@ -35,6 +35,7 @@ public class GraphHandler extends Observable {
             currentGraph.save();
         currentGraph = new Graph();
         graphs.add(currentGraph);
+        notifyObservers(this);
     }
 
     public Graph getCurrentGraph() {
@@ -58,5 +59,6 @@ public class GraphHandler extends Observable {
             currentGraph.save();
         currentGraph = g;
         graphs.add(g);
+        notifyObservers(this);
     }
 }

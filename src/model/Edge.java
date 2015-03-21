@@ -58,14 +58,14 @@ public class Edge {
         destination.addNeighbour(source);
     }
 
-    public int getweight() {
+    public int getWeight() {
         return weight;
     }
 
     /**
      * @param weight the weight to set
      */
-    public void setweight(int weight) {
+    public void setWeight(int weight) {
         if(this.weight <= maxWeight) this.weight = weight;
     }
 

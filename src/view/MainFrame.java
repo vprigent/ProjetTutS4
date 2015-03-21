@@ -104,17 +104,16 @@ public class MainFrame extends JFrame implements Observer {
         menuBar.add(modifier);
         this.setJMenuBar(menuBar);
 
+        toolBar.add(copy);
+        toolBar.add(cut);
+        toolBar.add(paste);
+        toolBar.add(undoButton);
+        toolBar.add(redoButton);
         toolBar.add(zoomIn);
         toolBar.add(zoomOut);
         toolBar.add(displayMode);
         toolBar.add(algorithms);
-        toolBar.add(copy);
-        toolBar.add(cut);
-        toolBar.add(paste);
-        toolBar.add(add);
         toolBar.add(delete);
-        toolBar.add(undoButton);
-        toolBar.add(redoButton);
         toolBar.setFloatable(false);
         this.add(toolBar, BorderLayout.PAGE_START);
         this.add(mainPanel, BorderLayout.CENTER);
@@ -175,7 +174,7 @@ public class MainFrame extends JFrame implements Observer {
         });
 
         redoButton.setIcon(redo.getIcon());
-        redo.addActionListener(new ActionListener() {
+        redoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 redoActionPerformed(evt);
@@ -264,7 +263,7 @@ public class MainFrame extends JFrame implements Observer {
 
     // Actions
     private void newButtonActionPerformed(ActionEvent evt) {
-        System.out.println("new");
+        controller.addGraph();
     }
 
     private void loadButtonActionPerformed(ActionEvent evt) {
@@ -282,29 +281,32 @@ public class MainFrame extends JFrame implements Observer {
     }
 
     private void removeButtonActionPerformed(ActionEvent evt) {
-        controller.removeAllNodes();
+        controller.removeAll();
         mainPanel.repaint();
     }
 
     private void undoActionPerformed(ActionEvent evt) {
-        System.out.println("undo");
+        controller.undo();
+        mainPanel.repaint();
     }
 
     private void redoActionPerformed(ActionEvent evt) {
-        System.out.println("redo");
+        controller.redo();
+        mainPanel.repaint();
     }
 
     private void displayModeItemStateChanged(ItemEvent evt) {
         if (evt.getStateChange() == ItemEvent.SELECTED) {
+            mainPanel.setItemVisible(displayMode.getSelectedIndex());
+            repaint();
         }
     }
 
     private void algorithmsItemStateChanged(ItemEvent evt) {
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             controller.applyAlgorithm(algorithms.getSelectedItem().toString());
+            repaint();
         }
-
-        repaint();
     }
 
     private void zoomInActionPerformed(ActionEvent evt) {
@@ -328,7 +330,7 @@ public class MainFrame extends JFrame implements Observer {
     }
 
     private void addActionPerformed(ActionEvent evt) {
-        System.out.println("add");
+
     }
 
     private void deleteActionPerformed(ActionEvent evt) {

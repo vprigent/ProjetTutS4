@@ -19,61 +19,73 @@ public class DrawingController {
     public MainFrame mainFrame;
 
     private ArrayList<Node> selectedNodes;
-
     private ArrayList<Edge> selectedEdges;
+
+    private UndoRedoManager undoRedoManager;
+
     private Node selectedNode = null;
     private int old_x;
     private int old_y;
 
-    public DrawingController(Graph graph) {
+    public DrawingController(Graph graph, UndoRedoManager undoRedoManager) {
         this.graph = graph;
+        this.undoRedoManager = undoRedoManager;
     }
 
     /**
-     * treat mouse click event on DrawingPanelZ
+     * treat mouse click event on DrawingPanel
+     *
      * @param evt mouse event
      */
     public void mainPanelMouseClicked(MouseEvent evt) {
-        boolean newnode=false;
-        selectedNode = null;
+        boolean newnode = false;
         boolean found = false;
+        selectedNode = null;
         int x = evt.getX();
         int y = evt.getY();
+
         if (SwingUtilities.isRightMouseButton(evt)) {
             for (Node n : graph.getNodes()) {
-                if (contains(n, x, y) && !found) {
+                if (contains(n, x, y)) {
                     mainFrame.createDialogNode(n);
-
                 }
-
-
             }
             for (Edge e : graph.getEdges()) {
-                if(EdgeContain(e, x, y)) {
+                if (EdgeContain(e, x, y)) {
                     mainFrame.createDialogEdge(e);//size don't work
                 }
             }
         } else {
+
             if (!evt.isControlDown()) {
                 selectedNodes.clear();
                 selectedEdges.clear();
             }
 
-            for (Node n : graph.getNodes()) {
-                if (contains(n, x, y) && !found) {
-                    selectedNodes.add(n);
-                    found = true;
+            int i = 0;
+
+            while (!found && i < graph.getNodes().size()) {
+                Node n = graph.getNodes().get(i);
+                if (contains(n, x, y)) {
+                    if (selectedNodes.contains(n)) {
+                        selectedNodes.remove(n);
+                    } else {
+                        selectedNodes.add(n);
+                        found = true;
+                    }
+                }
+                i++;
+            }
+
+            for (Edge e : graph.getEdges()) {
+                if (EdgeContain(e, x, y)) {
+                    selectedEdges.add(e);
+                    newnode = true;
                 }
             }
-            for (Edge e : graph.getEdges()) {
-            if(EdgeContain(e,x,y))
-            {
-                selectedEdges.add(e);
-                newnode=true;
-            }
-            }
-            if (selectedNodes.isEmpty() && y >= 70&&!newnode) {
+            if (selectedNodes.isEmpty() && !newnode) {
                 graph.addNode(new Node(1, x, y, "name", Shape.SQUARE, Color.BLACK));
+                undoRedoManager.addAction(Action.CREATE, graph.getNodes().get(graph.getNodes().size() - 1));
             }
         }
     }
@@ -98,25 +110,33 @@ public class DrawingController {
 
 
     /**
-     * Hitbox function
+     * Hitbox function for node
      *
      * @param mouseX position on x
      * @param mouseY position on y
-     * @return if the node is in this position
+     * @return true if the node is in this position
      */
     public boolean contains(Node n, int mouseX, int mouseY) {
         Rectangle hitbox = new Rectangle(n.getPosX(), n.getPosY(), n.getSize() * DrawingPanel.defaultSize, n.getSize() * DrawingPanel.defaultSize);
 
         return hitbox.contains(mouseX + n.getSize() * DrawingPanel.defaultSize / 2, mouseY + n.getSize() * DrawingPanel.defaultSize / 2);
     }
-    public Boolean EdgeContain(Edge e,int mouseX,int mouseY){
-    Polygon p=new Polygon();
-    p.addPoint(e.getSource().getPosX() + e.getSource().getSize(), e.getSource().getPosY() + e.getSource().getSize());
+
+    /**
+     * Hitbox function for edges
+     * @param e edge to test
+     * @param mouseX position on x
+     * @param mouseY position on y
+     * @return true if the mouse is close or on the edge
+     */
+    public boolean EdgeContain(Edge e, int mouseX, int mouseY) {
+        Polygon p = new Polygon();
+        p.addPoint(e.getSource().getPosX() + e.getSource().getSize(), e.getSource().getPosY() + e.getSource().getSize());
         p.addPoint(e.getSource().getPosX() - e.getSource().getSize(), e.getSource().getPosY() - e.getSource().getSize());
         p.addPoint(e.getDestination().getPosX() + e.getDestination().getSize(), e.getDestination().getPosY() + e.getDestination().getSize());
         p.addPoint(e.getDestination().getPosX() - e.getDestination().getSize(), e.getDestination().getPosY() - e.getDestination().getSize());
-    return (p.intersects(mouseX,mouseY,4,4));
-}
+        return (p.intersects(mouseX, mouseY, 4, 4));
+    }
 
     public void mainPanelMouseReleased(MouseEvent evt) {
 
@@ -125,10 +145,14 @@ public class DrawingController {
             if (isNode == null) {
                 Node n = new Node(1, evt.getX(), evt.getY(), "name", Shape.SQUARE, Color.BLACK);
                 graph.addNode(n);
+                undoRedoManager.addAction(Action.CREATE, n);
                 graph.addEdge(new Edge(selectedNode, n));
+                undoRedoManager.addAction(Action.CREATE, graph.getEdges().get(graph.getEdges().size() - 1));
             } else {
-                if (selectedNode.getID() != isNode.getID())
+                if (selectedNode.getID() != isNode.getID()) {
                     graph.addEdge(new Edge(selectedNode, isNode));
+                    undoRedoManager.addAction(Action.CREATE, graph.getEdges().get(graph.getEdges().size() - 1));
+                }
             }
             selectedNode = null;
         } else if (selectedNodes.size() != 0) {
