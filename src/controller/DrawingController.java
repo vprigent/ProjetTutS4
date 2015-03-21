@@ -121,6 +121,16 @@ public class DrawingController {
 
         return hitbox.contains(mouseX + n.getSize() * DrawingPanel.defaultSize / 2, mouseY + n.getSize() * DrawingPanel.defaultSize / 2);
     }
+    public boolean containsNode(Node n,int mouseX,int mouseY,int oldX,int oldY)
+    {
+
+        int x = Math.min(oldX, mouseX);
+        int y = Math.min(oldY,mouseY);
+        int width = Math.max(oldX -mouseX, mouseX - oldX);
+        int height = Math.max(oldY - mouseY,mouseY   - oldY);
+       Rectangle selectionBounds = new Rectangle(x, y, width, height);
+      return selectionBounds.contains(n.getPosX(),n.getPosY());
+    }
 
     /**
      * Hitbox function for edges
@@ -160,6 +170,16 @@ public class DrawingController {
             int moveOnY = evt.getY() - old_y;
             for (Node n : selectedNodes) {
                 n.setPosition(n.getPosX() + moveOnX, n.getPosY() + moveOnY);
+            }
+        }
+        else
+        {
+            for (Node n : graph.getNodes())
+            {
+                if(containsNode(n,evt.getX(),evt.getY(),old_x,old_y))
+                {
+                    selectedNodes.add(n);
+                }
             }
         }
     }

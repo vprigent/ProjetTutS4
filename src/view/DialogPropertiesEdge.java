@@ -49,6 +49,7 @@ public class DialogPropertiesEdge extends JDialog {
         this.setVisible(true);
         quit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                selected.setWeight((Integer) size.getValue());
                 parent.repaint();
                 dispose();
             }
