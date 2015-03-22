@@ -21,7 +21,6 @@ public class UndoRedoManager {
     }
 
     /**
-     *
      * @param action
      * @param object
      */
@@ -40,12 +39,14 @@ public class UndoRedoManager {
         return lastAct;
     }
 
+
     public Pair<Action, Object> redo() {
         if (lastUndo.isEmpty()) {
             return null;
         }
 
         Pair<Action, Object> undo = lastUndo.get(lastUndo.size() - 1);
+        lastAction.add(undo);
         lastUndo.remove(undo);
         return undo;
     }

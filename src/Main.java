@@ -1,6 +1,6 @@
+import controller.Controller;
 import model.GraphHandler;
 import view.MainFrame;
-import controller.*;
 
 
 public class Main {

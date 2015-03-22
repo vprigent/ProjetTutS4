@@ -1,7 +1,6 @@
 package model;
 
 import model.algorithm.IAlgorithm;
-import model.fileManager.GraphLoader;
 import model.fileManager.Graphml;
 import model.fileManager.Graphvis;
 
@@ -18,7 +17,6 @@ public class Graph {
 
     private ArrayList<Node> nodes;
     private ArrayList<Edge> edges;
-    private GraphLoader graphl;
 
     /**
      * Default Constructor
@@ -69,8 +67,9 @@ public class Graph {
         } else {
             throw new Exception("Error on save file");
         }
-
     }
+
+    //public Node get
 
     /**
      * Apply a specific algorithm to the graph

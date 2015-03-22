@@ -101,7 +101,7 @@ public class DrawingController {
                 }
             }
             if (selectedNodes.isEmpty() && !newnode) {
-                graph.addNode(new Node(1, (int) (x * (1 / scale)), (int) (y * (1 / scale)), "name", Shape.SQUARE, Color.BLACK));
+                graph.addNode(new Node(1, (int) (x * (1 / scale)), (int) (y * (1 / scale)), "", Shape.SQUARE, Color.BLACK));
                 undoRedoManager.addAction(Action.CREATE, graph.getNodes().get(graph.getNodes().size() - 1));
             }
         }
@@ -196,7 +196,7 @@ public class DrawingController {
         if (selectedNode != null && selectedNodes.size() == 0) {
             Node isNode = isOnNode(x, y);
             if (isNode == null) {
-                Node n = new Node(1, (int) (x * (1 / scale)), (int) (y * (1 / scale)), "name", Shape.SQUARE, Color.BLACK);
+                Node n = new Node(1, (int) (x * (1 / scale)), (int) (y * (1 / scale)), "", Shape.SQUARE, Color.BLACK);
                 graph.addNode(n);
                 undoRedoManager.addAction(Action.CREATE, n);
                 graph.addEdge(new Edge(selectedNode, n));

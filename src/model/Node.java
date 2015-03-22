@@ -73,6 +73,7 @@ public class Node {
 
     /**
      * Copy constructor
+     *
      * @param n node to copy
      */
     public Node(Node n) {

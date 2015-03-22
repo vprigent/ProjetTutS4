@@ -11,6 +11,7 @@ import java.util.Random;
 public class ColorAlgorithm implements IAlgorithm {
     /**
      * Apply the Color algorithm to a specific graph
+     *
      * @param g
      */
     @Override

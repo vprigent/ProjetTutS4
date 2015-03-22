@@ -15,7 +15,6 @@ import org.jdom.output.XMLOutputter;
 import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Iterator;
 import java.util.List;
 
 public class Graphml extends GraphLoader {
@@ -31,25 +30,23 @@ public class Graphml extends GraphLoader {
             System.err.println(e.getMessage());
         }
 
+        assert document != null;
         racine = document.getRootElement();
-        List graphs = racine.getChildren();
+        List<Element> graphs = racine.getChildren();
 
-        for (Object graph1 : graphs) {
+        for (Element elts : graphs) {
 
-            Element grp = (Element) graph1;
-            List Node = grp.getChildren();
+            List<Element> node = elts.getChildren();
 
-            for (Object e : Node) {
-                if (((Element) e).getName().equals("node")) {
-                    graph.addNode(new Node(25, 1 + (int) (Math.random() * (800 - 1) + 1), 1 + (int) (Math.random() * (800 - 1) + 1), ((Element) e).getAttributeValue("id"), Shape.SQUARE, Color.getColor(((Element) e).getValue().replaceAll("\\s", "").toUpperCase())));
+            for (Element e : node) {
+                if (e.getName().equals("node")) {
+                    graph.addNode(new Node(25, 1 + (int) (Math.random() * (800 - 1) + 1), 1 + (int) (Math.random() * (800 - 1) + 1), e.getAttributeValue("id"), Shape.SQUARE, Color.getColor(e.getValue().replaceAll("\\s", "").toUpperCase())));
                 }
-                if (((Element) e).getName().equals("edge")) {
-                    if (((Element) e).getValue() != null) {
-                        //graph.addEdge(new Edge((((Element) e).getAttributeValue("source")),(((Element) e).getAttributeValue("target")),false, java.awt.Color.black,((Element) e).getAttributeValue("id"),Float.parseFloat(String.valueOf(((Element) e).getValue()))));
+                if (e.getName().equals("edge")) {
+                    if (e.getValue() != null) {
+                        //graph.addEdge(new Edge(graph.getNode((Integer.parseInt(e.getAttributeValue("source"))), graph.getNode(Integer.parseInt(e.getAttributeValue("target"))), false, Color.black, e.getAttributeValue("id"), Float.parseFloat(String.valueOf(e.getValue())))));
                     }
                 }
-                System.out.println(((Element) e).getAttributeValue("source"));
-                System.out.println(((Element) e).getValue());
             }
         }
 

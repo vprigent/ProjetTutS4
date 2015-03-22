@@ -10,6 +10,7 @@ import java.util.Collection;
 public class RandomLayout implements IAlgorithm {
     /**
      * Algorithm which give to the nodes of a graph g a random color, a random position,a random size and a random shape
+     *
      * @param g
      */
     @Override

@@ -27,6 +27,7 @@ public class Controller {
 
     /**
      * Constructor
+     *
      * @param graphHandler graphHandler attached to the controller
      */
     public Controller(GraphHandler graphHandler) {
@@ -39,6 +40,7 @@ public class Controller {
 
     /**
      * Add a drawing controller
+     *
      * @return the drawingcontroller
      */
     public DrawingController addDrawingController() {
@@ -46,6 +48,7 @@ public class Controller {
         drawingController.setSelectedNodes(selectedNodes);
         drawingController.setSelectedEdges(selectedEdges);
         drawingController.setMainFrame(mainFrame);
+        drawingController.setToPaste(toPaste);
         return drawingController;
     }
 
@@ -91,6 +94,7 @@ public class Controller {
 
     /**
      * Apply a specific algorithm to the current graph
+     *
      * @param value
      */
     public void applyAlgorithm(String value) {
@@ -205,9 +209,9 @@ public class Controller {
 
     public void setToPaste(int action) {
         toPaste.addAll(this.selectedNodes);
-        if (action == 1) {}
-        else {
-            for(Node n : toPaste) {
+        if (action == 1) {
+        } else {
+            for (Node n : toPaste) {
                 graphHandler.getCurrentGraph().removeNode(n);
             }
         }

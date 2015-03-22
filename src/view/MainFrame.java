@@ -260,16 +260,16 @@ public class MainFrame extends JFrame implements Observer {
 
     private void loadButtonActionPerformed(ActionEvent evt) {
         int returnVal = jFileChooser.showOpenDialog(this);
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
-            String selectedFile = jFileChooser.getSelectedFile().getName();
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            String selectedFile = jFileChooser.getSelectedFile().getAbsolutePath();
             controller.getGraphHandler().addGraph(new Graph(selectedFile));
         }
     }
 
     private void saveButtonActionPerformed(ActionEvent evt) {
         int returnVal = jFileChooser.showOpenDialog(this);
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
-            String selectedFile = jFileChooser.getSelectedFile().getName();
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            String selectedFile = jFileChooser.getSelectedFile().getAbsolutePath();
             try {
                 model.getCurrentGraph().save(selectedFile);
             } catch (Exception e) {
@@ -307,18 +307,18 @@ public class MainFrame extends JFrame implements Observer {
         }
     }
 
-    private void zoomInActionPerformed(ActionEvent evt){
-        getDrawingPanel().setScale(getDrawingPanel().getScale()+0.2);
+    private void zoomInActionPerformed(ActionEvent evt) {
+        getDrawingPanel().setScale(getDrawingPanel().getScale() + 0.2);
         repaint();
     }
 
     private void zoomOutActionPerformed(ActionEvent evt) {
-        getDrawingPanel().setScale(getDrawingPanel().getScale()-0.2);
+        getDrawingPanel().setScale(getDrawingPanel().getScale() - 0.2);
         repaint();
     }
 
 
-    private void copyActionPerformed(ActionEvent evt){
+    private void copyActionPerformed(ActionEvent evt) {
         controller.setToPaste(1);
     }
 
@@ -361,6 +361,6 @@ public class MainFrame extends JFrame implements Observer {
     }
 
     public void createDialogEdge(Edge e) {
-        new DialogPropertiesEdge(this, "Changement d'arête", false, e);
+        new DialogProperties(this, "Changement d'arête", false, e);
     }
 }

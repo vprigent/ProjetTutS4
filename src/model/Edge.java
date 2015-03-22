@@ -32,15 +32,14 @@ public class Edge {
     }
 
     /**
-     *
      * Constructor
      *
-     * @param source node source
+     * @param source      node source
      * @param destination node destination
-     * @param isOriented if the edge is oriented, ie source and destination are importants
-     * @param color the color of the edge
-     * @param label label of the edge, informations attached
-     * @param weight weight of the edge
+     * @param isOriented  if the edge is oriented, ie source and destination are importants
+     * @param color       the color of the edge
+     * @param label       label of the edge, informations attached
+     * @param weight      weight of the edge
      */
     public Edge(Node source, Node destination, boolean isOriented, Color color, String label, int weight) {
         this.source = source;
@@ -48,7 +47,7 @@ public class Edge {
         this.isOriented = isOriented;
         this.color = color;
         this.label = label;
-        if(weight > maxWeight)
+        if (weight > maxWeight)
             weight = maxWeight;
         this.weight = weight;
         source.addNeighbour(destination);
@@ -65,11 +64,11 @@ public class Edge {
     }
 
     /**
-     * @param source new source node
+     * @param source      new source node
      * @param destination new destination node
      */
     public void changeNode(Node source, Node destination) {
-        if(source != null)
+        if (source != null)
             this.source = source;
 
         if (destination != null)
@@ -87,7 +86,7 @@ public class Edge {
      * @param weight the weight to set
      */
     public void setWeight(int weight) {
-        if(this.weight <= maxWeight) this.weight = weight;
+        if (this.weight <= maxWeight) this.weight = weight;
     }
 
     /**

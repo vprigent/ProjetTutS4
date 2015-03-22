@@ -31,7 +31,7 @@ public class Graphvis extends GraphLoader {
 
         String[] buffer = data.split("[\\{*\\}]");
 
-        for(String s : buffer)
+        for (String s : buffer)
             separateDatas(s);
 
         return g;
@@ -49,18 +49,18 @@ public class Graphvis extends GraphLoader {
     public void saveGraph(Graph g, String filePath) {
         StringBuilder str = new StringBuilder();
 
-        str.append("digraph" + " \""+g.getName()+"\" "+"{"+"\n");
+        str.append("digraph" + " \"" + g.getName() + "\" " + "{" + "\n");
 
-        for(Node n : g.getNodes()) {
-            String node = "     \"" + n.getID()+"\" ";
-            node += " [ "+ "label=\""+ n.getName() + "\" " + "shape=" + n.getShape() + " color=" + n.getColor().getRGB();
+        for (Node n : g.getNodes()) {
+            String node = "     \"" + n.getID() + "\" ";
+            node += " [ " + "label=\"" + n.getName() + "\" " + "shape=" + n.getShape() + " color=" + n.getColor().getRGB();
             node += " ];\n";
             str.append(node);
         }
 
-        for(Edge e : g.getEdges()) {
+        for (Edge e : g.getEdges()) {
             String edge = "     \"" + e.getSource().getID() + "\"" + " -> " + "\"" + e.getDestination().getID() + "\" " + "[";
-            edge += " color=" + e.getColor().getRGB() + " label=\"" + e.getLabel()+ "\"";
+            edge += " color=" + e.getColor().getRGB() + " label=\"" + e.getLabel() + "\"";
             edge += " ];\n";
             str.append(edge);
         }

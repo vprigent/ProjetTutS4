@@ -2,10 +2,8 @@ package model;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
-
 
 
 public class GraphHandler extends Observable {
@@ -16,23 +14,12 @@ public class GraphHandler extends Observable {
      * Default constructor
      */
     public GraphHandler() {
-    	currentGraph = new Graph();
+        currentGraph = new Graph();
         graphs = new ArrayList<Graph>();
         graphs.add(currentGraph);
     }
 
     /**
-     * Add a node to the Graph
-     * @param node
-     */
-    public void addNode(Node node) {
-        currentGraph.addNode(node);
-        setChanged();
-        notifyObservers(this);
-    }
-
-    /**
-     *
      * @return The list of Nodes
      */
     public ArrayList<Node> getNodes() {
@@ -40,10 +27,11 @@ public class GraphHandler extends Observable {
     }
 
     /**
-     *
      * @return the list of edges
      */
-    public ArrayList<Edge> getEdges() { return currentGraph.getEdges();}
+    public ArrayList<Edge> getEdges() {
+        return currentGraph.getEdges();
+    }
 
     /**
      * create a new graph
@@ -51,7 +39,7 @@ public class GraphHandler extends Observable {
     public void createNewGraph() {
         if (currentGraph != null) {
             String path = "/saves/defaultsave.dot";
-            if(currentGraph.getFile() != null) {
+            if (currentGraph.getFile() != null) {
                 path = currentGraph.getFile();
             }
             try {
@@ -66,7 +54,6 @@ public class GraphHandler extends Observable {
     }
 
     /**
-     *
      * @return the current graph which is used
      */
     public Graph getCurrentGraph() {
@@ -74,15 +61,9 @@ public class GraphHandler extends Observable {
     }
 
     /**
-     * remove all node & edges on the current graph
-     */
-    public void removeAllOnCurrentGraph(){
-    	currentGraph.removeAll();
-    }
-
-    /**
      * add an observer to the current graph
-     * @param o
+     *
+     * @param o observer
      */
     @Override
     public synchronized void addObserver(Observer o) {
@@ -93,12 +74,13 @@ public class GraphHandler extends Observable {
 
     /**
      * add a new graph
-     * @param g
+     *
+     * @param g new graph
      */
     public void addGraph(Graph g) {
-        if(currentGraph != null) {
+        if (currentGraph != null) {
             String path = "/saves/defaultsave.dot";
-            if(currentGraph.getFile() != null) {
+            if (currentGraph.getFile() != null) {
                 path = currentGraph.getFile();
             }
             try {
