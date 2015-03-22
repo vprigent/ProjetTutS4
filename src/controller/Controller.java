@@ -204,7 +204,7 @@ public class Controller {
     }
 
     public void setToPaste(int action) {
-        toPaste = this.selectedNodes;
+        toPaste.addAll(this.selectedNodes);
         if (action == 1) {}
         else {
             for(Node n : toPaste) {

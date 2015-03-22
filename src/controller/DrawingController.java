@@ -67,14 +67,13 @@ public class DrawingController {
             }
             if (!found && !toPaste.isEmpty()) {
                 paste(x, y);
+                toPaste.clear();
             }
             selectedNodes.clear();
             selectedEdges.clear();
-
         } else {
-/**
- * clear the selected nodes and edges
- */
+
+            // clear the selected nodes and edges
             if (!evt.isControlDown()) {
                 selectedNodes.clear();
                 selectedEdges.clear();
@@ -114,7 +113,8 @@ public class DrawingController {
 
     /**
      * Treat when the mouse is pressed and old
-     * @param evt
+     *
+     * @param evt mouse event
      */
     public void mainPanelMousePressed(MouseEvent evt) {
 
@@ -278,8 +278,8 @@ public class DrawingController {
             Node node = new Node(n);
             node.setPosition(node.getPosX() + newX, node.getPosY() + newY);
             graph.addNode(node);
-            for(int i = 0; i < tmp; i++) {
-                if(n.getNeighbours().contains(toPaste.get(i))) {
+            for (int i = 0; i < tmp; i++) {
+                if (n.getNeighbours().contains(toPaste.get(i))) {
                     graph.addEdge(new Edge(node, graph.getNodeFromCoordinates(toPaste.get(i).getPosX() + newX, toPaste.get(i).getPosY() + newY)));
                 }
             }
