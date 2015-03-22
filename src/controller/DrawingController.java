@@ -15,15 +15,17 @@ import java.util.ArrayList;
 public class DrawingController {
 
     private Graph graph;
-
     public MainFrame mainFrame;
 
     private ArrayList<Node> selectedNodes;
     private ArrayList<Edge> selectedEdges;
 
+    private ArrayList<Node> toPaste;
+
     private UndoRedoManager undoRedoManager;
 
     private Node selectedNode = null;
+
     private int old_x;
     private int old_y;
 
@@ -49,12 +51,19 @@ public class DrawingController {
             for (Node n : graph.getNodes()) {
                 if (contains(n, x, y)) {
                     mainFrame.createDialogNode(n);
+                    found = true;
                 }
             }
-            for (Edge e : graph.getEdges()) {
-                if (EdgeContain(e, x, y)) {
-                    mainFrame.createDialogEdge(e);//size don't work
+            if (!found) {
+                for (Edge e : graph.getEdges()) {
+                    if (EdgeContain(e, x, y)) {
+                        mainFrame.createDialogEdge(e);
+                        found = true;
+                    }
                 }
+            }
+            if (!found && !toPaste.isEmpty()) {
+                paste(x, y);
             }
             selectedNodes.clear();
             selectedEdges.clear();
@@ -87,7 +96,7 @@ public class DrawingController {
                 }
             }
             if (selectedNodes.isEmpty() && !newnode) {
-                graph.addNode(new Node(1, (int)(x*(1/scale)), (int)(y*(1/scale)), "name", Shape.SQUARE, Color.BLACK));
+                graph.addNode(new Node(1, (int) (x * (1 / scale)), (int) (y * (1 / scale)), "name", Shape.SQUARE, Color.BLACK));
                 undoRedoManager.addAction(Action.CREATE, graph.getNodes().get(graph.getNodes().size() - 1));
             }
         }
@@ -111,7 +120,6 @@ public class DrawingController {
         }
     }
 
-
     /**
      * Hitbox function for node
      *
@@ -121,10 +129,11 @@ public class DrawingController {
      */
     public boolean contains(Node n, int mouseX, int mouseY) {
         double scale = mainFrame.getDrawingPanel().getScale();
-        Rectangle hitbox = new Rectangle((int)(n.getPosX()*scale), (int)(n.getPosY()*scale), n.getSize() * DrawingPanel.defaultSize, n.getSize() * DrawingPanel.defaultSize);
+        Rectangle hitbox = new Rectangle((int) (n.getPosX() * scale), (int) (n.getPosY() * scale), n.getSize() * DrawingPanel.defaultSize, n.getSize() * DrawingPanel.defaultSize);
 
         return hitbox.contains(mouseX + n.getSize() * DrawingPanel.defaultSize / 2, mouseY + n.getSize() * DrawingPanel.defaultSize / 2);
     }
+
 
     /**
      * Hitbox function for zone
@@ -133,20 +142,21 @@ public class DrawingController {
      * @param mouseY position on y
      * @return true if the zone contains n
      */
-    public boolean containsNode(Node n,int mouseX,int mouseY) {
+    public boolean containsNode(Node n, int mouseX, int mouseY) {
 
         int x = Math.min(old_x, mouseX);
         int y = Math.min(old_y, mouseY);
-        int width = Math.max(old_x -mouseX, mouseX - old_x);
-        int height = Math.max(old_y - mouseY,mouseY   - old_y);
+        int width = Math.max(old_x - mouseX, mouseX - old_x);
+        int height = Math.max(old_y - mouseY, mouseY - old_y);
         Rectangle selectionBounds = new Rectangle(x, y, width, height);
 
-        return selectionBounds.contains(n.getPosX(),n.getPosY());
+        return selectionBounds.contains(n.getPosX(), n.getPosY());
     }
 
     /**
      * Hitbox function for edges
-     * @param e edge to test
+     *
+     * @param e      edge to test
      * @param mouseX position on x
      * @param mouseY position on y
      * @return true if the mouse is close or on the edge
@@ -164,16 +174,19 @@ public class DrawingController {
 
     /**
      * Treat the mouse released event
+     *
      * @param evt mouse event
      */
     public void mainPanelMouseReleased(MouseEvent evt) {
 
         double scale = mainFrame.getDrawingPanel().getScale();
+        int x = evt.getX();
+        int y = evt.getY();
 
         if (selectedNode != null && selectedNodes.size() == 0) {
-            Node isNode = isOnNode(evt.getX(), evt.getY());
+            Node isNode = isOnNode(x, y);
             if (isNode == null) {
-                Node n = new Node(1,(int)(evt.getX()*(1/scale)), (int)(evt.getY()*(1/scale)), "name", Shape.SQUARE, Color.BLACK);
+                Node n = new Node(1, (int) (x * (1 / scale)), (int) (y * (1 / scale)), "name", Shape.SQUARE, Color.BLACK);
                 graph.addNode(n);
                 undoRedoManager.addAction(Action.CREATE, n);
                 graph.addEdge(new Edge(selectedNode, n));
@@ -186,24 +199,19 @@ public class DrawingController {
             }
             selectedNode = null;
         } else if (!selectedNodes.isEmpty()) {
-            int moveOnX = evt.getX() - old_x;
-            int moveOnY = evt.getY() - old_y;
+            int moveOnX = x - old_x;
+            int moveOnY = y - old_y;
             for (Node n : selectedNodes) {
-                n.setPosition((int) (n.getPosX() + moveOnX*(1/scale)), (int) (n.getPosY() + moveOnY*(1/scale)));
+                n.setPosition((int) (n.getPosX() + moveOnX * (1 / scale)), (int) (n.getPosY() + moveOnY * (1 / scale)));
             }
-        }
-        else
-        {
-            for (Node n : graph.getNodes())
-            {
-                if(containsNode(n,evt.getX(),evt.getY()))
-                {
+        } else {
+            for (Node n : graph.getNodes()) {
+                if (containsNode(n, x, y)) {
                     selectedNodes.add(n);
                 }
             }
         }
     }
-
 
     /**
      * Utility function : return node on position x, y
@@ -221,6 +229,7 @@ public class DrawingController {
         return null;
     }
 
+
     public ArrayList<Edge> getSelectedEdges() {
         return selectedEdges;
     }
@@ -237,8 +246,34 @@ public class DrawingController {
         this.selectedNodes = selectedNodes;
     }
 
+    public void setToPaste(ArrayList<Node> toPaste) {
+        this.toPaste = toPaste;
+    }
+
     public void setMainFrame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
 
+    /**
+     * Past function
+     *
+     * @param x new x value
+     * @param y new y value
+     */
+    public void paste(int x, int y) {
+        int newX = x - toPaste.get(toPaste.size() - 1).getPosX();
+        int newY = y - toPaste.get(toPaste.size() - 1).getPosY();
+        int tmp = 0;
+        for (Node n : toPaste) {
+            Node node = new Node(n);
+            node.setPosition(node.getPosX() + newX, node.getPosY() + newY);
+            graph.addNode(node);
+            for(int i = 0; i < tmp; i++) {
+                if(n.getNeighbours().contains(toPaste.get(i))) {
+                    graph.addEdge(new Edge(node, graph.getNodeFromCoordinates(toPaste.get(i).getPosX() + newX, toPaste.get(i).getPosY() + newY)));
+                }
+            }
+            tmp++;
+        }
+    }
 }

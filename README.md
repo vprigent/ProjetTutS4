@@ -13,12 +13,13 @@ Elle permet la visualisation, l'édition, le chargement depuis certains formats 
 ### Sélection d'arêtes ( done )
 
 ## Visualisation
-### affichage des étiquettes du sommet si définie
+### affichage des étiquettes du sommet si définie ( done )
 ### changement de la couleur de fond
 ### rendre le dessin en zone du haut impossible ( done )
 ### zoom/dezoom ( done )
 ### Gérer tout les évènements sur boutons du haut
 ### Gestion de l'orientation
+### Copier/coller ( almost done ) petit bug, quand on clique sur un noeud après, ça l'ajoute je ne sais comment à la liste, et quand on clique droit, ça le colle
 
 ## Traitement
 ### Revoir algorithme de couleur ( pourquoi pas proposer deux alternatives tant qu'à faire )

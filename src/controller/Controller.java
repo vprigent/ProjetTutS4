@@ -18,18 +18,29 @@ public class Controller {
     private ArrayList<Node> selectedNodes;
     private ArrayList<Edge> selectedEdges;
 
-    private ArrayList<Node> pasted;
+    private ArrayList<Node> toPaste;
+
     private DrawingController drawingController;
+
     public MainFrame mainFrame;
     private UndoRedoManager undoRedoManager;
 
+    /**
+     * Constructor
+     * @param graphHandler graphHandler attached to the controller
+     */
     public Controller(GraphHandler graphHandler) {
         this.graphHandler = graphHandler;
         this.selectedNodes = new ArrayList<Node>();
         this.selectedEdges = new ArrayList<Edge>();
         this.undoRedoManager = new UndoRedoManager();
+        this.toPaste = new ArrayList<Node>();
     }
 
+    /**
+     * Add a drawing controller
+     * @return the drawingcontroller
+     */
     public DrawingController addDrawingController() {
         drawingController = new DrawingController(graphHandler.getCurrentGraph(), undoRedoManager);
         drawingController.setSelectedNodes(selectedNodes);
@@ -38,6 +49,9 @@ public class Controller {
         return drawingController;
     }
 
+    /**
+     * Remove the selected edges
+     */
     public void removeSelectedNodes() {
 
         ArrayList<?> actionList = new ArrayList<Object>();
@@ -52,7 +66,7 @@ public class Controller {
             }
 
             if (!selectedNodes.isEmpty())
-                actionList.addAll((Collection)selectedNodes);
+                actionList.addAll((Collection) selectedNodes);
         }
 
         if (!selectedEdges.isEmpty()) {
@@ -64,15 +78,21 @@ public class Controller {
         graphHandler.getNodes().removeAll(selectedNodes);
     }
 
+    /**
+     * remove all the nodes and edges from the current graph
+     */
     public void removeAll() {
         if (!graphHandler.getCurrentGraph().getEdges().isEmpty())
             undoRedoManager.addAction(Action.REMOVEMULTIPLE, graphHandler.getCurrentGraph().getEdges());
         if (!graphHandler.getCurrentGraph().getNodes().isEmpty())
             undoRedoManager.addAction(Action.REMOVEMULTIPLE, graphHandler.getCurrentGraph().getNodes());
-        graphHandler.getCurrentGraph().getEdges().clear();
-        graphHandler.getCurrentGraph().getNodes().clear();
+        graphHandler.getCurrentGraph().removeAll();
     }
 
+    /**
+     * Apply a specific algorithm to the current graph
+     * @param value
+     */
     public void applyAlgorithm(String value) {
 
         IAlgorithm algorithm = null;
@@ -121,28 +141,28 @@ public class Controller {
         if (undone.getValue() instanceof ArrayList<?>) {
             for (Object obj : (ArrayList<Object>) undone.getValue()) {
                 if (obj instanceof Node) {
-                    if(undone.getKey() == Action.CREATE)
+                    if (undone.getKey() == Action.CREATE)
                         graph.removeNode((Node) obj);
-                    if(undone.getKey() == Action.REMOVEMULTIPLE)
+                    if (undone.getKey() == Action.REMOVEMULTIPLE)
                         graph.addNode((Node) obj);
                 } else if (obj instanceof Edge) {
                     if (undone.getKey() == Action.CREATE)
-                        graph.removeEdge((Edge)obj);
-                    if(undone.getKey() == Action.REMOVEMULTIPLE)
+                        graph.removeEdge((Edge) obj);
+                    if (undone.getKey() == Action.REMOVEMULTIPLE)
                         graph.addEdge((Edge) obj);
                 }
             }
         } else {
             Object obj = undone.getValue();
-            if(obj instanceof Node) {
-                if(undone.getKey() == Action.CREATE)
-                    graph.removeNode((Node) obj);
-                if(undone.getKey() == Action.REMOVEMULTIPLE)
-                    graph.addNode((Node) obj);
-            } else if(obj instanceof Edge) {
+            if (obj instanceof Node) {
                 if (undone.getKey() == Action.CREATE)
-                    graph.removeEdge((Edge)obj);
-                if(undone.getKey() == Action.REMOVEMULTIPLE)
+                    graph.removeNode((Node) obj);
+                if (undone.getKey() == Action.REMOVEMULTIPLE)
+                    graph.addNode((Node) obj);
+            } else if (obj instanceof Edge) {
+                if (undone.getKey() == Action.CREATE)
+                    graph.removeEdge((Edge) obj);
+                if (undone.getKey() == Action.REMOVEMULTIPLE)
                     graph.addEdge((Edge) obj);
             }
         }
@@ -156,40 +176,41 @@ public class Controller {
         if (undone.getValue() instanceof ArrayList<?>) {
             for (Object obj : (ArrayList<Object>) undone.getValue()) {
                 if (obj instanceof Node) {
-                    if(undone.getKey() == Action.CREATE)
+                    if (undone.getKey() == Action.CREATE)
                         graph.addNode((Node) obj);
-                    if(undone.getKey() == Action.REMOVEMULTIPLE)
+                    if (undone.getKey() == Action.REMOVEMULTIPLE)
                         graph.removeNode((Node) obj);
                 } else if (obj instanceof Edge) {
                     if (undone.getKey() == Action.CREATE)
-                        graph.addEdge((Edge)obj);
-                    if(undone.getKey() == Action.REMOVEMULTIPLE)
+                        graph.addEdge((Edge) obj);
+                    if (undone.getKey() == Action.REMOVEMULTIPLE)
                         graph.removeEdge((Edge) obj);
                 }
             }
         } else {
             Object obj = undone.getValue();
-            if(obj instanceof Node) {
-                if(undone.getKey() == Action.CREATE)
-                    graph.addNode((Node) obj);
-                if(undone.getKey() == Action.REMOVEMULTIPLE)
-                    graph.removeNode((Node) obj);
-            } else if(obj instanceof Edge) {
+            if (obj instanceof Node) {
                 if (undone.getKey() == Action.CREATE)
-                    graph.addEdge((Edge)obj);
-                if(undone.getKey() == Action.REMOVEMULTIPLE)
+                    graph.addNode((Node) obj);
+                if (undone.getKey() == Action.REMOVEMULTIPLE)
+                    graph.removeNode((Node) obj);
+            } else if (obj instanceof Edge) {
+                if (undone.getKey() == Action.CREATE)
+                    graph.addEdge((Edge) obj);
+                if (undone.getKey() == Action.REMOVEMULTIPLE)
                     graph.removeEdge((Edge) obj);
             }
         }
     }
 
-    public ArrayList<Node> getPasted() {
-        return pasted;
+    public void setToPaste(int action) {
+        toPaste = this.selectedNodes;
+        if (action == 1) {}
+        else {
+            for(Node n : toPaste) {
+                graphHandler.getCurrentGraph().removeNode(n);
+            }
+        }
+        drawingController.setToPaste(toPaste);
     }
-
-    public void setPasted(ArrayList<Node> pasted) {
-        this.pasted = pasted;
-    }
-
-
 }

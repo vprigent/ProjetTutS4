@@ -83,7 +83,6 @@ public class MainFrame extends JFrame implements Observer {
         JButton copy = new JButton();
         JButton cut = new JButton();
         JButton paste = new JButton();
-        JButton add = new JButton();
         JButton delete = new JButton();
         JButton undoButton = new JButton();
         JButton redoButton = new JButton();
@@ -243,15 +242,6 @@ public class MainFrame extends JFrame implements Observer {
             }
         });
 
-        add.setIcon(new ImageIcon(getClass().getResource("icons/add.png"))); //
-        add.setToolTipText("");
-        add.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                addActionPerformed(evt);
-            }
-        });
-
         delete.setIcon(new ImageIcon(getClass().getResource("icons/delete.png")));
         delete.addActionListener(new ActionListener() {
             @Override
@@ -329,20 +319,15 @@ public class MainFrame extends JFrame implements Observer {
 
 
     private void copyActionPerformed(ActionEvent evt){
-      for(Node n : controller.addDrawingController().getSelectedNodes())
-        controller.getPasted().add(n);
-
+        controller.setToPaste(1);
     }
 
     private void cutActionPerformed(ActionEvent evt) {
-        System.out.println("cut");
+        controller.setToPaste(2);
+        repaint();
     }
 
     private void pasteActionPerformed(ActionEvent evt) {
-    }
-
-    private void addActionPerformed(ActionEvent evt) {
-
     }
 
     private void deleteActionPerformed(ActionEvent evt) {

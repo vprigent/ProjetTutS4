@@ -19,6 +19,7 @@ public class Graph {
     private ArrayList<Node> nodes;
     private ArrayList<Edge> edges;
     private GraphLoader graphl;
+
     /**
      * Default Constructor
      */
@@ -110,9 +111,9 @@ public class Graph {
         for (int i = 0; i < edges.size(); i++) {
             if (edges.get(i).getDestination() == n || edges.get(i).getSource() == n) {
                 edges.remove(i);
-                i = edges.size();
             }
         }
+
         nodes.remove(n);
     }
 

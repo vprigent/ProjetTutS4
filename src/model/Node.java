@@ -72,6 +72,25 @@ public class Node {
     }
 
     /**
+     * Copy constructor
+     * @param n node to copy
+     */
+    public Node(Node n) {
+        this.size = n.getSize();
+
+        this.posX = n.getPosX();
+
+        this.posY = n.getPosY();
+
+        this.name = n.getName();
+        this.shape = n.getShape();
+        this.color = n.getColor();
+        this.neighbours = new ArrayList<Node>();
+        this.id = Node.maxID;
+        Node.maxID++;
+    }
+
+    /**
      * @param shape the shape to set
      */
     public void setShape(Shape shape) {
