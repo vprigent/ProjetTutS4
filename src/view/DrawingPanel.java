@@ -15,6 +15,15 @@ public class DrawingPanel extends JPanel {
 
     private Graph graph;
     private DrawingController controller;
+
+    public double getScale() {
+        return scale;
+    }
+
+    public void setScale(double scale) {
+        this.scale = scale;
+    }
+
     private double scale = 1.;
     public static final int defaultSize = 15;
     private int itemVisible = 0;
@@ -57,18 +66,18 @@ public class DrawingPanel extends JPanel {
 
                 switch (n.getShape()) {
                     case SQUARE:
-                        g.drawRect(n.getPosX() - n.getSize() * defaultSize / 2, n.getPosY() - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
+                        g.drawRect((int)(n.getPosX()*scale) - n.getSize() * defaultSize / 2, (int)(n.getPosY()*scale) - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
                         break;
                     case TRIANGLE:
-                        int[] pointsX = {n.getPosX() + n.getSize() * defaultSize / 2, n.getPosX(), n.getPosX() - n.getSize() * defaultSize / 2};
-                        int[] pointsY = {n.getPosY() + n.getSize() * defaultSize / 2, n.getPosY() - n.getSize() * defaultSize / 2, n.getPosY() + n.getSize() * defaultSize / 2};
+                        int[] pointsX = {(int)(n.getPosX()*scale) + n.getSize() * defaultSize / 2, (int)(n.getPosX()*scale), (int)(n.getPosX()*scale) - n.getSize() * defaultSize / 2};
+                        int[] pointsY = {(int)(n.getPosY()*scale) + n.getSize() * defaultSize / 2,(int)(n.getPosY()*scale) - n.getSize() * defaultSize / 2,(int)(n.getPosY()*scale) + n.getSize() * defaultSize / 2};
                         g.drawPolygon(pointsX, pointsY, 3);
                         break;
                     case CIRCLE:
-                        g.drawOval(n.getPosX() - n.getSize() * defaultSize / 2, n.getPosY() - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
+                        g.drawOval((int)(n.getPosX()*scale) - n.getSize() * defaultSize / 2, (int)(n.getPosY()*scale) - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
                         break;
                     default:
-                        g.drawRect(n.getPosX() - n.getSize() * defaultSize / 2, n.getPosY() - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
+                        g.drawRect((int)(n.getPosX()*scale) - n.getSize() * defaultSize / 2, (int)(n.getPosY()*scale) - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
                         break;
                 }
             }

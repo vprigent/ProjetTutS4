@@ -318,12 +318,12 @@ public class MainFrame extends JFrame implements Observer {
     }
 
     private void zoomInActionPerformed(ActionEvent evt){
-    controller.zoomIn();
+        getDrawingPanel().setScale(getDrawingPanel().getScale()+0.2);
         repaint();
     }
 
     private void zoomOutActionPerformed(ActionEvent evt) {
-        controller.zoomOut();
+        getDrawingPanel().setScale(getDrawingPanel().getScale()-0.2);
         repaint();
     }
 
