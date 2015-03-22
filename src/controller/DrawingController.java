@@ -43,6 +43,7 @@ public class DrawingController {
         selectedNode = null;
         int x = evt.getX();
         int y = evt.getY();
+        double scale = mainFrame.getDrawingPanel().getScale();
 
         if (SwingUtilities.isRightMouseButton(evt)) {
             for (Node n : graph.getNodes()) {
@@ -55,6 +56,8 @@ public class DrawingController {
                     mainFrame.createDialogEdge(e);//size don't work
                 }
             }
+            selectedNodes.clear();
+            selectedEdges.clear();
         } else {
 
             if (!evt.isControlDown()) {
@@ -84,7 +87,8 @@ public class DrawingController {
                 }
             }
             if (selectedNodes.isEmpty() && !newnode) {
-                graph.addNode(new Node(1, x, y, "name", Shape.SQUARE, Color.BLACK));
+                System.out.println("ha");
+                graph.addNode(new Node(1, (int)(x*(1/scale)), (int)(y*(1/scale)), "name", Shape.SQUARE, Color.BLACK));
                 undoRedoManager.addAction(Action.CREATE, graph.getNodes().get(graph.getNodes().size() - 1));
             }
         }
@@ -117,18 +121,27 @@ public class DrawingController {
      * @return true if the node is in this position
      */
     public boolean contains(Node n, int mouseX, int mouseY) {
-        Rectangle hitbox = new Rectangle(n.getPosX(), n.getPosY(), n.getSize() * DrawingPanel.defaultSize, n.getSize() * DrawingPanel.defaultSize);
+        double scale = mainFrame.getDrawingPanel().getScale();
+        Rectangle hitbox = new Rectangle((int)(n.getPosX()*scale), (int)(n.getPosY()*scale), n.getSize() * DrawingPanel.defaultSize, n.getSize() * DrawingPanel.defaultSize);
 
         return hitbox.contains(mouseX + n.getSize() * DrawingPanel.defaultSize / 2, mouseY + n.getSize() * DrawingPanel.defaultSize / 2);
     }
-    public boolean containsNode(Node n,int mouseX,int mouseY)
-    {
+
+    /**
+     * Hitbox function for zone
+     *
+     * @param mouseX position on x
+     * @param mouseY position on y
+     * @return true if the zone contains n
+     */
+    public boolean containsNode(Node n,int mouseX,int mouseY) {
 
         int x = Math.min(old_x, mouseX);
-        int y = Math.min(old_y,mouseY);
+        int y = Math.min(old_y, mouseY);
         int width = Math.max(old_x -mouseX, mouseX - old_x);
         int height = Math.max(old_y - mouseY,mouseY   - old_y);
         Rectangle selectionBounds = new Rectangle(x, y, width, height);
+
         return selectionBounds.contains(n.getPosX(),n.getPosY());
     }
 
@@ -141,19 +154,23 @@ public class DrawingController {
      */
     public boolean EdgeContain(Edge e, int mouseX, int mouseY) {
         Polygon p = new Polygon();
+
         p.addPoint(e.getSource().getPosX() + e.getSource().getSize(), e.getSource().getPosY() + e.getSource().getSize());
         p.addPoint(e.getSource().getPosX() - e.getSource().getSize(), e.getSource().getPosY() - e.getSource().getSize());
         p.addPoint(e.getDestination().getPosX() + e.getDestination().getSize(), e.getDestination().getPosY() + e.getDestination().getSize());
         p.addPoint(e.getDestination().getPosX() - e.getDestination().getSize(), e.getDestination().getPosY() - e.getDestination().getSize());
+
         return (p.intersects(mouseX, mouseY, 4, 4));
     }
 
     public void mainPanelMouseReleased(MouseEvent evt) {
 
+        double scale = mainFrame.getDrawingPanel().getScale();
+
         if (selectedNode != null && selectedNodes.size() == 0) {
             Node isNode = isOnNode(evt.getX(), evt.getY());
             if (isNode == null) {
-                Node n = new Node(1, evt.getX(), evt.getY(), "name", Shape.SQUARE, Color.BLACK);
+                Node n = new Node(1,(int)(evt.getX()*(1/scale)), (int)(evt.getY()*(1/scale)), "name", Shape.SQUARE, Color.BLACK);
                 graph.addNode(n);
                 undoRedoManager.addAction(Action.CREATE, n);
                 graph.addEdge(new Edge(selectedNode, n));
@@ -165,11 +182,11 @@ public class DrawingController {
                 }
             }
             selectedNode = null;
-        } else if (selectedNodes.size() != 0) {
+        } else if (!selectedNodes.isEmpty()) {
             int moveOnX = evt.getX() - old_x;
             int moveOnY = evt.getY() - old_y;
             for (Node n : selectedNodes) {
-                n.setPosition(n.getPosX() + moveOnX, n.getPosY() + moveOnY);
+                n.setPosition((int) (n.getPosX() + moveOnX*(1/scale)), (int) (n.getPosY() + moveOnY*(1/scale)));
             }
         }
         else

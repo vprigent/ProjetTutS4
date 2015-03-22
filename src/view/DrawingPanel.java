@@ -16,18 +16,11 @@ public class DrawingPanel extends JPanel {
     private Graph graph;
     private DrawingController controller;
 
-    public double getScale() {
-        return scale;
-    }
-
-    public void setScale(double scale) {
-        this.scale = scale;
-    }
-
     private double scale = 1.;
-    public static final int defaultSize = 15;
-    private int itemVisible = 0;
 
+    public static final int defaultSize = 15;
+
+    private int itemVisible = 0;
     public DrawingPanel(final DrawingController controller) {
         setName("MainPanel");
         graph = controller.getGraph();
@@ -53,7 +46,6 @@ public class DrawingPanel extends JPanel {
             }
         });
     }
-
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -92,12 +84,20 @@ public class DrawingPanel extends JPanel {
                 }
                 ((Graphics2D)g).setStroke(new BasicStroke(e.getWeight()));
 
-                g.drawLine(e.getSource().getPosX(), e.getSource().getPosY(), e.getDestination().getPosX(), e.getDestination().getPosY());
+                g.drawLine((int)(e.getSource().getPosX()*scale), (int)(e.getSource().getPosY()*scale), (int)(e.getDestination().getPosX()*scale), (int)(e.getDestination().getPosY()*scale));
             }
         }
     }
 
     public void setItemVisible(int itemVisible) {
         this.itemVisible = itemVisible;
+    }
+
+    public double getScale() {
+        return scale;
+    }
+
+    public void setScale(double scale) {
+        this.scale = scale;
     }
 }
