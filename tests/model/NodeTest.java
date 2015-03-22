@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class NodeTest {
 
@@ -41,11 +43,32 @@ public class NodeTest {
     }
 
     @Test
+    public void AccesseursTest() {
+        n.setSize(15000);
+        assertTrue(n.getSize() == 10);
+
+        n.setSize(-100);
+        assertTrue(n.getSize() == 1);
+
+        n.setPosition(-20150, -12025);
+        assertEquals(n.getPosX(), -Node.maxPosition);
+        assertEquals(n.getPosY(), -Node.maxPosition);
+    }
+
+    @Test
     public void testSetPosition() throws Exception {
         assertEquals(n.getPosX(), 15);
         assertEquals(n.getPosY(), 6);
         n.setPosition(1,5);
         assertEquals(n.getPosX(), 1);
         assertEquals(n.getPosY(), 5);
+    }
+
+    @Test
+    public void testAddNeighbour() {
+        Node node = new Node();
+
+        assertTrue(n.addNeighbour(node));
+        assertFalse(n.addNeighbour(node));
     }
 }

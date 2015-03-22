@@ -47,14 +47,20 @@ public class Node {
     public Node(int size, int posX, int posY, String name, Shape shape, Color color) {
         if (size > maxSize)
             size = maxSize;
+        if (size < 1)
+            size = 1;
         this.size = size;
 
         if (posX + getSize() > maxPosition)
             posX = maxPosition;
+        if (posX < -maxPosition)
+            posX = -maxPosition;
         this.posX = posX;
 
         if (posY + getSize() > maxPosition)
             posY = maxPosition;
+        if (posY < -maxPosition)
+            posY = -maxPosition;
         this.posY = posY;
 
         this.name = name;
@@ -79,6 +85,8 @@ public class Node {
     public void setPosition(int x, int y) {
         if (x + getSize() > maxPosition) x = maxPosition;
         if (y + getSize() > maxPosition) y = maxPosition;
+        if (x < -maxPosition) x = -maxPosition;
+        if (y < -maxPosition) y = -maxPosition;
         this.posX = x;
         this.posY = y;
     }
@@ -109,6 +117,7 @@ public class Node {
      */
     public void setSize(int size) {
         if (size > maxSize) size = maxSize;
+        if (size < 1) size = 1;
         this.size = size;
     }
 
@@ -193,10 +202,8 @@ public class Node {
      * @return false if the neighbour is already in list
      */
     public boolean addNeighbour(Node node) {
-        for(Node n : neighbours) {
-            if(n.getID() == node.getID())
-                return false;
-        }
+        if (neighbours.contains(node))
+            return false;
 
         neighbours.add(node);
 

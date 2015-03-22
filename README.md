@@ -15,9 +15,10 @@ Elle permet la visualisation, l'édition, le chargement depuis certains formats 
 ## Visualisation
 ### affichage des étiquettes du sommet si définie
 ### changement de la couleur de fond
-### rendre le dessin en zone du haut impossible
-### zoom/dezoom
+### rendre le dessin en zone du haut impossible ( done )
+### zoom/dezoom ( done )
 ### Gérer tout les évènements sur boutons du haut
+### Gestion de l'orientation
 
 ## Traitement
 ### Revoir algorithme de couleur ( pourquoi pas proposer deux alternatives tant qu'à faire )
@@ -31,4 +32,4 @@ Elle permet la visualisation, l'édition, le chargement depuis certains formats 
 ### Problèmes rencontrés
 Couleur des noeuds en aléatoire qui est de la même couleur que le fond
 Aléatoire qui met des noeuds sous les barres du haut --> Idée de zoom/unzoom en fonction de la position des noeuds
-Impossibilité de déselectionner un noeud
+Impossibilité de déselectionner un noeud ( done )

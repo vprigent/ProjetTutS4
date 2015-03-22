@@ -87,7 +87,6 @@ public class DrawingController {
                 }
             }
             if (selectedNodes.isEmpty() && !newnode) {
-                System.out.println("ha");
                 graph.addNode(new Node(1, (int)(x*(1/scale)), (int)(y*(1/scale)), "name", Shape.SQUARE, Color.BLACK));
                 undoRedoManager.addAction(Action.CREATE, graph.getNodes().get(graph.getNodes().size() - 1));
             }
@@ -163,6 +162,10 @@ public class DrawingController {
         return (p.intersects(mouseX, mouseY, 4, 4));
     }
 
+    /**
+     * Treat the mouse released event
+     * @param evt mouse event
+     */
     public void mainPanelMouseReleased(MouseEvent evt) {
 
         double scale = mainFrame.getDrawingPanel().getScale();

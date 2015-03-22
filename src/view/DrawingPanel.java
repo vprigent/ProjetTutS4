@@ -21,6 +21,7 @@ public class DrawingPanel extends JPanel {
     public static final int defaultSize = 15;
 
     private int itemVisible = 0;
+
     public DrawingPanel(final DrawingController controller) {
         setName("MainPanel");
         graph = controller.getGraph();
@@ -46,35 +47,43 @@ public class DrawingPanel extends JPanel {
             }
         });
     }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         if (itemVisible != 2) {
+            // For each nodes, we draw it on the graph
             for (Node n : graph.getNodes()) {
                 if (controller.getSelectedNodes().contains(n))
                     g.setColor(Color.RED);
                 else
                     g.setColor(n.getColor());
 
+                int x = (int) (n.getPosX() * scale);
+                int y = (int) (n.getPosY() * scale);
+                int size = n.getSize() * defaultSize;
                 switch (n.getShape()) {
                     case SQUARE:
-                        g.drawRect((int)(n.getPosX()*scale) - n.getSize() * defaultSize / 2, (int)(n.getPosY()*scale) - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
+                        g.drawRect(x - size / 2, y - size / 2, size, size);
                         break;
                     case TRIANGLE:
-                        int[] pointsX = {(int)(n.getPosX()*scale) + n.getSize() * defaultSize / 2, (int)(n.getPosX()*scale), (int)(n.getPosX()*scale) - n.getSize() * defaultSize / 2};
-                        int[] pointsY = {(int)(n.getPosY()*scale) + n.getSize() * defaultSize / 2,(int)(n.getPosY()*scale) - n.getSize() * defaultSize / 2,(int)(n.getPosY()*scale) + n.getSize() * defaultSize / 2};
+                        int[] pointsX = {x + size / 2, x, x - size / 2};
+                        int[] pointsY = {y + size / 2, y - size / 2, y + size / 2};
                         g.drawPolygon(pointsX, pointsY, 3);
                         break;
                     case CIRCLE:
-                        g.drawOval((int)(n.getPosX()*scale) - n.getSize() * defaultSize / 2, (int)(n.getPosY()*scale) - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
+                        g.drawOval(x - size / 2, y - size / 2, size, size);
                         break;
                     default:
-                        g.drawRect((int)(n.getPosX()*scale) - n.getSize() * defaultSize / 2, (int)(n.getPosY()*scale) - n.getSize() * defaultSize / 2, n.getSize() * defaultSize, n.getSize() * defaultSize);
+                        g.drawRect(x - size / 2, y - size / 2, size, size);
                         break;
                 }
+
+                g.drawString(n.getName(), x - (n.getSize() + 10), y - (n.getSize() * 10));
             }
         }
         if (itemVisible != 1) {
+            // For each edges, we draw it on the graph
             for (Edge e : graph.getEdges()) {
                 if (controller.getSelectedEdges() != null) {
                     if (controller.getSelectedEdges().contains(e))
@@ -82,9 +91,11 @@ public class DrawingPanel extends JPanel {
                     else
                         g.setColor(e.getColor());
                 }
-                ((Graphics2D)g).setStroke(new BasicStroke(e.getWeight()));
+                ((Graphics2D) g).setStroke(new BasicStroke(e.getWeight()));
 
-                g.drawLine((int)(e.getSource().getPosX()*scale), (int)(e.getSource().getPosY()*scale), (int)(e.getDestination().getPosX()*scale), (int)(e.getDestination().getPosY()*scale));
+                g.drawString(e.getLabel(), (int) (e.getSource().getPosX() * scale + e.getDestination().getPosX() * scale) / 2, (int) (e.getSource().getPosY() * scale + e.getDestination().getPosY() * scale) / 2);
+
+                g.drawLine((int) (e.getSource().getPosX() * scale), (int) (e.getSource().getPosY() * scale), (int) (e.getDestination().getPosX() * scale), (int) (e.getDestination().getPosY() * scale));
             }
         }
     }

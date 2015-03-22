@@ -2,9 +2,6 @@ package model;
 
 import java.awt.*;
 
-/**
- * NB : source and destination node are
- */
 
 public class Edge {
     public final int maxWeight = 10;
@@ -58,6 +55,30 @@ public class Edge {
         destination.addNeighbour(source);
     }
 
+    /**
+     * Allow to switch the source and destination node when the graph become oriented and the actual source become the destination
+     */
+    public void switchOrientationNode() {
+        Node temp = source;
+        source = destination;
+        destination = temp;
+    }
+
+    /**
+     * @param source new source node
+     * @param destination new destination node
+     */
+    public void changeNode(Node source, Node destination) {
+        if(source != null)
+            this.source = source;
+
+        if (destination != null)
+            this.destination = destination;
+    }
+
+    /**
+     * @return weight of the edge
+     */
     public int getWeight() {
         return weight;
     }
@@ -69,6 +90,9 @@ public class Edge {
         if(this.weight <= maxWeight) this.weight = weight;
     }
 
+    /**
+     * @return label of the edge
+     */
     public String getLabel() {
         return label;
     }
@@ -81,17 +105,17 @@ public class Edge {
     }
 
     /**
-     * @return color of the edge
-     */
-    public Color getColor() {
-        return color;
-    }
-
-    /**
      * @return default color of edges
      */
     public static Color getDefaultColor() {
         return Color.BLACK;
+    }
+
+    /**
+     * @return color of the edge
+     */
+    public Color getColor() {
+        return color;
     }
 
     /**
@@ -101,10 +125,16 @@ public class Edge {
         this.color = color;
     }
 
+    /**
+     * @return true if the edge is oriented
+     */
     public boolean isOriented() {
         return isOriented;
     }
 
+    /**
+     * @param isOriented new value of orientation
+     */
     public void setOriented(boolean isOriented) {
         this.isOriented = isOriented;
     }
@@ -121,23 +151,6 @@ public class Edge {
      */
     public Node getSource() {
         return source;
-    }
-
-    /**
-     * Allow to switch the source and destination node when the graph become oriented and the actual source become the destination
-     */
-    public void switchOrientationNode() {
-        Node temp = source;
-        source = destination;
-        destination = temp;
-    }
-
-    public void changeNode(Node source, Node destination) {
-        if(source != null)
-            this.source = source;
-
-        if (destination != null)
-            this.destination = destination;
     }
 
     /**
