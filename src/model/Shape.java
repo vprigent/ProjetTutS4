@@ -1,10 +1,17 @@
 package model;
-
+/**
+ * Enum used to set the shape to a Node
+ */
 public enum Shape {
     SQUARE,
     CIRCLE,
     TRIANGLE;
 
+    /**
+     *
+     * @param text
+     * @return the shape to set
+     */
     public static Shape fromString(String text) {
         if(text == "square") {
                 return SQUARE;

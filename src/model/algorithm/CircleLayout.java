@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class CircleLayout implements IAlgorithm {
-
+    /**
+     * Change the position of the nodes on the graph g to make a circle
+     * @param g
+     */
     @Override
     public void Algorithm(Graph g) {
         ArrayList<Node> myNodes = g.getNodes();

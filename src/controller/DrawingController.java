@@ -48,6 +48,9 @@ public class DrawingController {
         double scale = mainFrame.getDrawingPanel().getScale();
 
         if (SwingUtilities.isRightMouseButton(evt)) {
+            /**
+             * For each nodes, if the clic is inside, then open properties dialog
+             */
             for (Node n : graph.getNodes()) {
                 if (contains(n, x, y)) {
                     mainFrame.createDialogNode(n);
@@ -67,8 +70,11 @@ public class DrawingController {
             }
             selectedNodes.clear();
             selectedEdges.clear();
-        } else {
 
+        } else {
+/**
+ * clear the selected nodes and edges
+ */
             if (!evt.isControlDown()) {
                 selectedNodes.clear();
                 selectedEdges.clear();
@@ -106,6 +112,10 @@ public class DrawingController {
         return graph;
     }
 
+    /**
+     * Treat when the mouse is pressed and old
+     * @param evt
+     */
     public void mainPanelMousePressed(MouseEvent evt) {
 
         boolean found = false;

@@ -5,15 +5,26 @@ import javafx.util.Pair;
 
 import java.util.ArrayList;
 
+/**
+ * Class used for the undo/redo
+ */
 public class UndoRedoManager {
     private ArrayList<Pair<Action, Object>> lastAction;
     private ArrayList<Pair<Action, Object>> lastUndo;
 
+    /**
+     * Default constructor
+     */
     public UndoRedoManager() {
         lastAction = new ArrayList<Pair<Action, Object>>();
         lastUndo = new ArrayList<Pair<Action, Object>>();
     }
 
+    /**
+     *
+     * @param action
+     * @param object
+     */
     public void addAction(Action action, Object object) {
         lastAction.add(new Pair<Action, Object>(action, object));
     }
