@@ -17,6 +17,8 @@ public class Controller {
 
     private ArrayList<Node> selectedNodes;
     private ArrayList<Edge> selectedEdges;
+
+    private ArrayList<Node> pasted;
     private DrawingController drawingController;
     public MainFrame mainFrame;
     private UndoRedoManager undoRedoManager;
@@ -180,5 +182,14 @@ public class Controller {
             }
         }
     }
+
+    public ArrayList<Node> getPasted() {
+        return pasted;
+    }
+
+    public void setPasted(ArrayList<Node> pasted) {
+        this.pasted = pasted;
+    }
+
 
 }

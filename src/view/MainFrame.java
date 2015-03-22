@@ -328,8 +328,10 @@ public class MainFrame extends JFrame implements Observer {
     }
 
 
-    private void copyActionPerformed(ActionEvent evt) {
-        System.out.println("copy");
+    private void copyActionPerformed(ActionEvent evt){
+      for(Node n : controller.addDrawingController().getSelectedNodes())
+        controller.getPasted().add(n);
+
     }
 
     private void cutActionPerformed(ActionEvent evt) {
@@ -337,7 +339,6 @@ public class MainFrame extends JFrame implements Observer {
     }
 
     private void pasteActionPerformed(ActionEvent evt) {
-        System.out.println("paste");
     }
 
     private void addActionPerformed(ActionEvent evt) {
