@@ -6,7 +6,10 @@ import model.Graph;
 import model.Node;
 
 public class SizeAlgorithm implements IAlgorithm{
-
+    /**
+     * Affect a size for each Node in function of the number of the edges they have
+     * @param g
+     */
     @Override
     public void Algorithm(Graph g) {
 		Collection<Node> myNodes = g.getNodes();
