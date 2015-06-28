@@ -7,30 +7,4 @@ L'application est une application de traitement de graphes orientés ou non.
 
 Elle permet la visualisation, l'édition, le chargement depuis certains formats ainsi que l'application d'algorithmes spécifiques sur les graphes.
 
-
-# Liste des fonctionnalités restantes
-
-### Sélection d'arêtes ( done )
-
-## Visualisation
-### affichage des étiquettes du sommet si définie ( done )
-### changement de la couleur de fond
-### rendre le dessin en zone du haut impossible ( done )
-### zoom/dezoom ( done )
-### Gérer tout les évènements sur boutons du haut
-### Gestion de l'orientation
-### Copier/coller ( almost done ) petit bug, quand on clique sur un noeud après, ça l'ajoute je ne sais comment à la liste, et quand on clique droit, ça le colle
-
-## Traitement
-### Revoir algorithme de couleur ( pourquoi pas proposer deux alternatives tant qu'à faire )
- -> Le nouvel algo doit prendre en compte une propriété des noeuds ou arêtes, deux couleurs, chaque noeud se voyant attribuer une couleur ou une autre en fonction de la valeur de la propriété
- -> Sous entendu, il faut récupérer des évènements depuis une boite de dialogue à passer en paramètre du constructeur du nouvel algo de couleur
-
-### Revoir algorithme de taille ( pareil que précédent )
- -> Même principe, ce coup ci, c'est la taille du noeud qui change
- -> possibilité d'exporter ( sauvegarder ) le graph depuis le menu des algorithmes
-
-### Problèmes rencontrés
-Couleur des noeuds en aléatoire qui est de la même couleur que le fond
-Aléatoire qui met des noeuds sous les barres du haut --> Idée de zoom/unzoom en fonction de la position des noeuds
-Impossibilité de déselectionner un noeud ( done )
+Cette version est une V0.5, conforme aux attentes mais pas complète ni dénuée de bugs.
